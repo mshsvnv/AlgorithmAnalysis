@@ -1,0 +1,282 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут приведены требования к программному обеспечению, средства реализации, листинг кода и функциональные тесты.
+
+\section{Средства реализации}
+
+Для реализации данной лабораторной работы был выбран язык $C++$ \cite{cpp-lang}. Данный выбор обусловлен наличием у языка встроенного модуля $ctime$ измерения процессорного времени и типа данных, позволяющего хранить как кириллические символы, так и латинские --- $std::wstring$, что позволит удовлетворить третьему требованию из п.\ref{section:requirements} соответствуют выдвинутым техническим требованиям.
+
+Время работы было замерено с помощью функции \textit{clock()} из библиотеки \textit{сtime}~\cite{cpp-lang-time}
+ 
+\clearpage
+ 
+\section{Сведения о модулях программы}
+
+Данная программа разбита на следующие модули.
+
+\begin{itemize}
+	\item \texttt{main.cpp} --- файл, содержащий точку входа в программу, из которой происходит вызов алгоритмов по разработанному интерфейсу.
+	\item \texttt{algorithms.cpp} --- файл содержит функции поиска расстояния Левенштейна и Дамерау-Левенштейна.
+	\item \texttt{allocate.cpp} --- файл содержит функции динамического выделения и очищения памяти для матрицы.
+	\item \texttt{print\_mtr\_lev.cpp} --- файл содержит функцию вывода матрицы для итеративных алгоритмов поиска расстояния Левенштейна и Дамерау-Левенштейна, включая строки.
+	\item \texttt{cpu\_time.cpp} --- файл содержит функции, замеряющее процессорное время алгоритмов поиска расстояния Левенштейна и \newline Дамерау-Левенштейна.
+	\item \texttt{memory.cpp} --- файл содержит функции, замеряющее память итеративного и рекурсивного алгоритмов поиска расстояния Левенштейна.
+\end{itemize}
+
+\section{Реализация алгоритмов}
+
+В листингах \ref{lst:lev_mtr} -- \ref{lst:dameray_lev_rec_hash} приведены реализации алгоритмов поиска расстояний Левенштейна (только нерекурсивный алгоритм) и Дамерау-Левенштейна (нерекурсивный, рекурсивный и рекурсивный с кешированием).
+В листингах \ref{lst:allocate_mtr} -- \ref{lst:print_mtr} приведены реализации алгоритмов выделения памяти под матрицу и вывод матрицы.
+
+\clearpage
+
+\begin{lstlisting}[label=lst:lev_mtr,caption=Функция нахождения расстояния Левенштейна с использованием матрицы]
+int lev_mtr(wstring &str1, wstring &str2, bool print ) {
+	size_t n = str1.length();
+	size_t m = str2.length();
+	int **mtr = malloc_mtr(n + 1, m + 1);
+	int res = 0;
+	for (int i = 0; i <= n; i++)
+		for (int j = 0; j <= m; j++)
+			if (i == 0 && j == 0)
+				mtr[i][j] = 0;
+			else if (i > 0 && j == 0)
+				mtr[i][j] = i;
+			else if (j > 0 && i == 0)
+				mtr[i][j] = j;
+	else {
+		int change = 0;
+		if (str1[i - 1] != str2[j - 1])
+			change = 1;
+		
+		mtr[i][j] = std::min(mtr[i][j - 1] + 1,
+					std::min(mtr[i - 1][j] + 1,
+							 mtr[i - 1][j - 1] + change));
+	}
+	if (print)
+		print_mtr_lev(str1, str2, mtr, n, m);
+	res = mtr[n][m];
+	free_mtr(mtr, n);
+	return res;
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:dameray_lev_rec,caption=Функция нахождения расстояния Дамерау-Левенштейна с использованием матрицы]
+int dameray_lev_mtr(wstring &str1, wstring &str2, bool print)
+{
+	size_t n = str1.length();
+	size_t m = str2.length();
+	int **mtr = malloc_mtr(n + 1, m + 1);
+	int res = 0;
+	
+	for (int i = 0; i <= n; i++)
+		for (int j = 0; j <= m; j++) {
+			if (i == 0 && j == 0)
+				mtr[i][j] = 0;
+			else if (i > 0 && j == 0)
+				mtr[i][j] = i;
+			else if (j > 0 && i == 0)
+				mtr[i][j] = j;
+			else {
+				int change = 0;
+				if (str1[i - 1] != str2[j - 1])
+					change = 1;
+				
+				mtr[i][j] = min(mtr[i][j - 1] + 1,
+							min(mtr[i - 1][j] + 1,
+								mtr[i - 1][j - 1] + change));
+				
+				if (i > 1 && j > 1 &&
+				str1[i - 1] == str2[j - 2] &&
+				str1[i - 2] == str2[j - 1])
+					mtr[i][j] = min(mtr[i][j], mtr[i - 2][j - 2] + 1);
+			}
+	}
+	
+	if (print)
+		print_mtr_lev(str1, str2, mtr, n, m);
+	res = mtr[n][m];
+	free_mtr(mtr, n);
+	
+	return res;
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:dameray_lev_mtr,caption=Функция нахождения расстояния Дамерау-Левенштейна рекурсивно]
+int dameray_lev_rec_t(wstring &str1, wstring &str2, size_t n, size_t m) {
+	if (n == 0)
+		return m;
+	if (m == 0)
+		return n;
+	
+	int change = 0;
+	int res = 0;
+	if (str1[n - 1] != str2[m - 1])
+		change = 1;
+	
+	res = min(dameray_lev_rec_t(str1, str2, n, m - 1) + 1,
+		  min(dameray_lev_rec_t(str1, str2, n - 1, m) + 1,
+		      dameray_lev_rec_t(str1, str2, n - 1, m - 1) + change));
+	
+	if (n > 1 && m > 1 &&
+	str1[n - 1] == str2[m - 2] &&
+	str1[n - 2] == str2[m - 1])
+		res = std::min(res, dameray_lev_rec_t(str1, str2, n - 2, m - 2) + 1);
+	return res;
+}
+
+int dameray_lev_rec(wstring &str1, wstring &str2)
+{
+	return dameray_lev_rec_t(str1, str2, str1.length(), str2.length());
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:dameray_lev_rec_hash,caption=Функция нахождения расстояния Дамерау-Левенштейна рекурсивно c кешированием]
+int dameray_lev_rec_hash_t(wstring &str1, wstring &str2, int **mtr, size_t n, size_t m) {
+	if (n == 0)
+		return mtr[n][m] = m;
+	if (m == 0)
+		return mtr[n][m] = n;
+	int change = 0;
+	if (str1[n - 1] != str2[m - 1])
+		change = 1;
+	mtr[n][m] = min(dameray_lev_rec_hash_t(str1, str2, mtr, n, m - 1) + 1,
+				min(dameray_lev_rec_hash_t(str1, str2, mtr, n - 1, m) + 1,
+					dameray_lev_rec_hash_t(str1, str2, mtr, n - 1, m - 1) + change));
+	if (n > 1 && m > 1 &&
+	str1[n - 1] == str2[m - 2] &&
+	str1[n - 2] == str2[m - 1])
+		mtr[n][m] = min(mtr[n][m], dameray_lev_rec_hash_t(str1, str2, mtr, n - 2, m - 2) + 1);
+	return mtr[n][m];
+}
+
+int dameray_lev_rec_hash(wstring &str1, wstring &str2, bool print) {
+	size_t n = str1.length();
+	size_t m = str2.length();
+	int **mtr = malloc_mtr(n + 1, m + 1);
+	for (int i = 0; i <= n; i++)
+		for (int j = 0; j <= m; j++) {
+			mtr[i][j] = -1;
+		}
+	int res = dameray_lev_rec_hash_t(str1, str2, mtr, n, m);
+	if (print)
+		print_mtr_lev(str1, str2, mtr, n, m);
+	free_mtr(mtr, n);
+	return res;
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:allocate_mtr,caption=Функции динамического выделения и очищения памяти под матрицу]
+void free_mtr(int **mtr, std::size_t n) {
+	if (mtr != nullptr)
+	{
+		for (std::size_t i = 0; i < n; i++)
+		if (mtr[i] != nullptr)
+			free(mtr[i]);
+		free(mtr);
+	}
+}
+
+int **malloc_mtr(std::size_t n, std::size_t m)
+{
+	if (n == 0)
+	return nullptr;
+	
+	int **mtr = static_cast<int **>(malloc(n * sizeof(int *)));
+	if (mtr != nullptr)
+	for (std::size_t i = 0; mtr[i] != nullptr && i < n; i++) {
+		mtr[i] = static_cast<int *>(malloc(m * sizeof(int)));
+		if (mtr[i] == nullptr)
+			free_mtr(mtr, n);
+	}
+	
+	return mtr;
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:print_mtr,caption=Функции вывода матрицы для алгоритмов поиска расстояния Левенштейна и Дамерау-Левенштейна]
+void print_mtr_lev(std::wstring str1, std::wstring str2,
+int **mtr, std::size_t n, std::size_t m)
+{
+	for(std::size_t i = 0; i <= n + 1; i++)
+	{
+		for(std::size_t j = 0; j <= m + 1; j++)
+		{
+			if (i == 0 && j == 0)
+				std::wcout << "  ";
+			else if (i == 0)
+			if (j == 1)
+				std::wcout << "- ";
+			else
+				std::wcout << str2[j - 2] << " ";
+			else if (j == 0)
+			if (i == 1)
+				std::wcout << "- ";
+			else
+				std::wcout << str1[i - 2] << " ";
+			else
+				std::wcout << mtr[i - 1][j - 1] << " ";
+		}
+		std::wcout << std::endl;
+	}
+}
+\end{lstlisting}
+
+\clearpage
+
+\section{Функциональные тесты}
+
+В таблице \ref{tbl:func_tests} приведены функциональные тесты для алгоритмов вычисления расстояний Левенштейна и Дамерау—Левенштейна. Все тесты пройдены успешно.
+
+\begin{table}[ht]
+	\small
+	\begin{center}
+		\begin{threeparttable}
+		\caption{Функциональные тесты}
+		\label{tbl:func_tests}
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			\multicolumn{2}{|c|}{\bfseries Входные данные}
+			& \multicolumn{4}{c|}{\bfseries Расстояние и алгоритм} \\ 
+			\hline 
+			&
+			& \multicolumn{1}{c|}{\bfseries Левенштейна} 
+			& \multicolumn{3}{c|}{\bfseries Дамерау-Левенштейна} \\ \cline{3-6}
+			
+			\bfseries Строка 1 & \bfseries Строка 2 & \bfseries Итеративный & \bfseries Итеративный
+			
+			& \multicolumn{2}{c|}{\bfseries Рекурсивный} \\ \cline{5-6}
+			& & & & \bfseries Без кеша & \bfseries С кешом \\
+			\hline
+			a & b & 1 & 1 & 1 & 1 \\
+			\hline
+			a & a & 0 & 0 & 0 & 0 \\
+			\hline
+			кот & скат & 2 & 2 & 2 & 2 \\
+			\hline
+			друзья & рдузия & 3 & 2 & 2 & 2 \\
+			\hline
+			вагон & гонки & 4 & 4 & 4 & 4 \\
+			\hline
+			бар & раб & 2 & 2 & 2 & 2 \\
+			\hline
+			слон & слоны & 1 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}	
+		\end{threeparttable}
+	\end{center}
+\end{table}
+
+\section*{Вывод}
+
+Были реализованы алгоритмы поиска расстояния Левенштейна итеративно, а также поиска расстояния Дамерау–Левенштейна итеративно, рекурсивно и рекурсивного с кеширования. Проведено тестирование реализаций алгоритмов.
