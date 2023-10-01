@@ -1,41 +1,5 @@
 #include "../inc/matrix.h"
 
-// void freeMtr(int** mtr, int m) {
-
-//     if (mtr) {
-
-//         for (auto i = 0; i < m; ++i) {
-
-//             if (mtr[i])
-//                 free(mtr[i]);
-//         }
-
-//         free(mtr);
-//     }
-// }
-
-// int** allocateMtr(int m, int n) {
-
-//     if (!m)
-//         return nullptr;
-
-//     int** mtr = static_cast<int**>(malloc(m * sizeof(int *)));
-
-//     if (mtr) {
-//         for (int i = 0; i < m; ++i) {
-
-//             int* ptr = static_cast<int*>(malloc(n * sizeof(int)));
-
-//             if (ptr)
-//                 mtr[i] = ptr;
-//             else
-//                 freeMtr(mtr, m);
-//         }
-//     }
-
-//     return mtr;
-// }
-
 void allocateMtr(int*** mtr, int m, int n) {
     
     if (!m) return;

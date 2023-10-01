@@ -62,7 +62,6 @@ double getCPUTime(wstring& word1, wstring& word2, funcRecT fptr) {
     int res = fptr(word1, word2, len1, len2);
     endT = getThreadCpuTimeNs();
 
-    // std::cout << endT << std::endl;
     totalT = (double) (endT - startT) / CLOCKS_PER_SEC;
     return totalT;
 }
@@ -86,17 +85,17 @@ double getCPUTime(wstring& word1, wstring& word2, funcRecCashT fptr) {
 
 void printAlgs() {
 
-    wcout << L"| Длина |  Левенштейн   |                Дамерау-Левенштейн                |\n";
-    wcout << L"|(симв.)|  Итеративный  |  Итеративный  |             Рекурсивный          |\n";
-    wcout << L"|       |               |               |    Без кэша    |     С кэшом     |\n";
+    wcout << L"| Длина |  Левенштейн   |                Дамерау-Левенштейн             |\n";
+    wcout << L"|(симв.)|  Итеративный  |  Итеративный  |             Рекурсивный       |\n";
+    wcout << L"|       |               |               |    Без кэша    |     С кэшом  |\n";
 }
 
 void timeMeasure(int maxLen, int iters) {
     
-    wcout << L"+--------------------------------------------------------------+\n";
-    wcout << L"|       |                      Время(нс)                       |\n";
+    wcout << L"+-----------------------------------------------------------------------+\n";
+    wcout << L"|       |                            Время(нс)                          |\n";
     printAlgs();
-    wcout << L"+--------------------------------------------------------------+\n";
+    wcout << L"+-----------------------------------------------------------------------+\n";
     
     wstring word1, word2;
 
@@ -130,7 +129,7 @@ void timeMeasure(int maxLen, int iters) {
         for (int j = 0; j < times.size(); ++j)
             times[j] = 0;
 
-        if (i < 10)
+        if (i < 8)
             i++;
         else if (i < 100)
             i += 10;
@@ -138,36 +137,36 @@ void timeMeasure(int maxLen, int iters) {
             i += 100;
     }
 
-    wcout << L"+--------------------------------------------------------------+\n";
+    wcout << L"+------------------------------------------------------------------------+\n";
     
 }
 
 int getNotRecursiveLev(int len) {
     return (len + 1) * (len + 1) * sizeof(int) +
-           2 * sizeof(std::wstring) +
+           2 * sizeof(wstring) +
            2 * sizeof(int) +
-           2 * sizeof(int) +
-           sizeof(int **) + (len + 1) * sizeof(int *);
+           3 * sizeof(int) +
+           sizeof(int**) + (len + 1) * sizeof(int*);
 }
 
 int getNotRecursiveDamLev(int len) {
-    return 0;
+    return getNotRecursiveLev(len);
 }
 
 int getRecursiveDam(int len) {
-    return 0;
+    return 2 * sizeof(int) + sizeof(wstring) + sizeof(int*);
 }
 
 int getRecursiveDamCash(int len) {
-    return 0;
+    return sizeof(int) + sizeof(wstring) + sizeof(int*);
 }
 
 void memoryMeasure(int maxLen, int step) {
 
-    wcout << L"+--------------------------------------------------------------+\n";
-    wcout << L"|       |                   Размер(байтах)                     |\n";
+    wcout << L"+-----------------------------------------------------------------------+\n";
+    wcout << L"|       |                    Размер (в байтах)                           |\n";
     printAlgs();
-    wcout << L"+--------------------------------------------------------------+\n";
+    wcout << L"+------------------------------------------------------------------------+\n";
     
     
     for (int i = 0; i < maxLen; i += step) {
