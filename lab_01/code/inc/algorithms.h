@@ -11,12 +11,12 @@ using namespace std;
 
 using mapT = map<wstring, int>;
 
-using funcNotRecT = int(*)(wstring&, wstring&, int***);
+using funcNotRecT = int(*)(wstring&, wstring&, bool);
 using funcRecT = int(*)(wstring&, wstring&, int, int);
 using funcRecCashT = int(*)(wstring&, wstring&, int, int, mapT&);
 
-int notRecursiveLev(wstring &word1, wstring &word2, int*** mtr);
-int notRecursiveDamLev(wstring& word1, wstring& word2, int*** mtr);
+int notRecursiveLev(wstring &word1, wstring &word2, bool print = false);
+int notRecursiveDamLev(wstring& word1, wstring& word2, bool print = false);
 
 int recursive(wstring& word1, wstring& word2, int ind1, int ind2);
 

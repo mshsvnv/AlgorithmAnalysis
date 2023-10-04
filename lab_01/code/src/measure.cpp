@@ -16,6 +16,10 @@ wstring generateWord(int len) {
     return word;
 }
 
+static double getTotalTime(long long startT, long long endT) {
+    return 1000000000LL * (double) (endT - startT) / CLOCKS_PER_SEC;
+}
+
 static long long getThreadCpuTimeNs() {
     
     struct timespec t;
@@ -28,29 +32,28 @@ static long long getThreadCpuTimeNs() {
     return t.tv_sec * 1000000000LL + t.tv_nsec;
 }
 
-double getCPUTime(wstring& word1, wstring& word2, funcNotRecT fptr) {
+auto getCPUTime(wstring& word1, wstring& word2, funcNotRecT fptr) {
     
     long long startT, endT;
     double totalT;
 
-    int** mtr;
-
     int len1 = word1.length();
     int len2 = word2.length();
 
-    allocateMtr(&mtr, len2 + 1, len1 + 1);
+    // startT = getThreadCpuTimeNs();
+    auto start = chrono::high_resolution_clock::now(); 
+    int res = fptr(word1, word2, false);
+    auto end = chrono::high_resolution_clock::now();
+    // endT = getThreadCpuTimeNs();
 
-    startT = getThreadCpuTimeNs();
-    int res = fptr(word1, word2, &mtr);
-    endT = getThreadCpuTimeNs();
+    // return getTotalTime(startT, endT);
+    auto total = chrono::duration_cast<chrono::nanoseconds>(end - start);
+    // wcout << total << endl;
 
-    freeMtr(&mtr, len2 + 1);
-
-    totalT = (double) (endT - startT) / CLOCKS_PER_SEC;
-    return totalT;
+    return total;
 }
 
-double getCPUTime(wstring& word1, wstring& word2, funcRecT fptr) {
+auto getCPUTime(wstring& word1, wstring& word2, funcRecT fptr) {
     
     long long startT, endT;
     double totalT;
@@ -58,15 +61,19 @@ double getCPUTime(wstring& word1, wstring& word2, funcRecT fptr) {
     int len1 = word1.length();
     int len2 = word2.length();
 
-    startT = getThreadCpuTimeNs();
+    // startT = getThreadCpuTimeNs();
+    auto start = chrono::high_resolution_clock::now(); 
     int res = fptr(word1, word2, len1, len2);
-    endT = getThreadCpuTimeNs();
+    auto end = chrono::high_resolution_clock::now();
+    // endT = getThreadCpuTimeNs();
 
-    totalT = (double) (endT - startT) / CLOCKS_PER_SEC;
-    return totalT;
+    // return getTotalTime(startT, endT);
+    auto total = chrono::duration_cast<chrono::nanoseconds>(end - start);
+
+    return total;
 }
 
-double getCPUTime(wstring& word1, wstring& word2, funcRecCashT fptr) {
+auto getCPUTime(wstring& word1, wstring& word2, funcRecCashT fptr) {
     
     long long startT, endT;
     double totalT;
@@ -75,12 +82,16 @@ double getCPUTime(wstring& word1, wstring& word2, funcRecCashT fptr) {
     int len1 = word1.length();
     int len2 = word2.length();
 
-    startT = getThreadCpuTimeNs();
+    // startT = getThreadCpuTimeNs();
+    auto start = chrono::high_resolution_clock::now(); 
     int res = fptr(word1, word2, len1, len2, dict);
-    endT = getThreadCpuTimeNs();
+    auto end = chrono::high_resolution_clock::now();
+    // endT = getThreadCpuTimeNs();
 
-    totalT = (double) (endT - startT) / CLOCKS_PER_SEC;
-    return totalT;
+    // return getTotalTime(startT, endT);
+    auto total = chrono::duration_cast<chrono::nanoseconds>(end - start);
+
+    return total;
 }
 
 void printAlgs() {
@@ -99,9 +110,13 @@ void timeMeasure(int maxLen, int iters) {
     
     wstring word1, word2;
 
-    vector<double> times{0, 0, 0, 0};
+    vector<chrono::nanoseconds> times;
+    times.resize(4);
 
-    for (int i = 0; i < maxLen;) {
+    for (int j = 0; j < times.size(); ++j)
+        times[j] = (chrono::nanoseconds)0; 
+
+    for (int i = 0; i <= maxLen;) {
 
         word1 = generateWord(i);
         word2 = generateWord(i);
@@ -111,7 +126,7 @@ void timeMeasure(int maxLen, int iters) {
             times[0] += getCPUTime(word1, word2, notRecursiveLev);
             times[1] += getCPUTime(word1, word2, notRecursiveDamLev);
 
-            if (i < 10)
+            if (i < 11)
                 times[2] += getCPUTime(word1, word2, recursive);
                 times[3] += getCPUTime(word1, word2, recursiveCash);
         }
@@ -119,17 +134,21 @@ void timeMeasure(int maxLen, int iters) {
         for (int j = 0; j < times.size(); ++j)
             times[j] = times[j] / iters; 
 
-        std::wprintf(L"| %5d | %13.8g | %13.5g ", i, times[0],times[1]);
+        // for (int j = 0; j < times.size(); ++j)
+        //     wcout << times[j] << " "; 
+        // wcout << endl;
 
-        if (i < 10)
-            std::wprintf(L"| %13.5g | %13.5g |\n", times[2], times[3]);
+        std::wprintf(L"| %5d | %13d | %13d ", i, times[0],times[1]);
+
+        if (i < 11)
+            std::wprintf(L"| %13d | %13d |\n", times[2], times[3]);
         else
             std::wprintf(L"| %10s    | %10s    |\n", "-", "-");
 
         for (int j = 0; j < times.size(); ++j)
-            times[j] = 0;
+            times[j] = (chrono::nanoseconds)0; 
 
-        if (i < 8)
+        if (i < 10)
             i++;
         else if (i < 100)
             i += 10;
@@ -137,15 +156,15 @@ void timeMeasure(int maxLen, int iters) {
             i += 100;
     }
 
-    wcout << L"+------------------------------------------------------------------------+\n";
+    wcout << L"+-----------------------------------------------------------------------+\n";
     
 }
 
 int getNotRecursiveLev(int len) {
     return (len + 1) * (len + 1) * sizeof(int) +
-           2 * sizeof(wstring) +
+           2 * sizeof(wchar_t) * len +
            2 * sizeof(int) +
-           3 * sizeof(int) +
+           4 * sizeof(int) +
            sizeof(int**) + (len + 1) * sizeof(int*);
 }
 
@@ -154,29 +173,34 @@ int getNotRecursiveDamLev(int len) {
 }
 
 int getRecursiveDam(int len) {
-    return 2 * sizeof(int) + sizeof(wstring) + sizeof(int*);
+    return 2 * sizeof(int) + 
+           2 * sizeof(wchar_t) * len 
+           + sizeof(int*);
 }
 
 int getRecursiveDamCash(int len) {
-    return sizeof(int) + sizeof(wstring) + sizeof(int*);
+    return getRecursiveDam(len) + sizeof(int) * len;
 }
 
 void memoryMeasure(int maxLen, int step) {
 
     wcout << L"+-----------------------------------------------------------------------+\n";
-    wcout << L"|       |                    Размер (в байтах)                           |\n";
+    wcout << L"|       |                    Размер (в байтах)                          |\n";
     printAlgs();
-    wcout << L"+------------------------------------------------------------------------+\n";
+    wcout << L"+-----------------------------------------------------------------------+\n";
     
     
-    for (int i = 0; i < maxLen; i += step) {
+    for (int i = 0; i <= maxLen; i += step) {
 
-        std::wprintf(L"| %5zu | %13zu | %13zu | %8zu | %9zu |\n",
+        std::wprintf(L"| %5zu | %13zu | %13zu | %13zu | %13zu |\n",
                      i,
                      getNotRecursiveLev(i),
                      getNotRecursiveDamLev(i),
                      getRecursiveDam(i),
                      getRecursiveDamCash(i));
     }
+
+    wcout << L"+-----------------------------------------------------------------------+\n";
+    
 
 }

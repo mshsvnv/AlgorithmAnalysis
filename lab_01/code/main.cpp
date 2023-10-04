@@ -41,7 +41,6 @@ int main() {
     int choice = menu();
     int res = 0, m, n;
 
-    int** mtr = nullptr;
     mapT dict;
 
     while (choice) {
@@ -58,15 +57,11 @@ int main() {
             m = word1.length();
             n = word2.length();
 
-            allocateMtr(&mtr, n + 1, m + 1);
-
             wcout << L"Минимальное кол-во операций:\n";
-            res = notRecursiveLev(word1, word2, &mtr);
-            printMtr(word1, word2, &mtr);
+            res = notRecursiveLev(word1, word2, true);
             wcout << L"   1) Нерекурсивный Левенштейна:                " << res << endl;
 
-            res = notRecursiveDamLev(word1, word2, &mtr);
-            printMtr(word1, word2, &mtr);
+            res = notRecursiveDamLev(word1, word2, true);
             wcout << L"   2) Нерекурсивный Дамерау-Левенштейна:        " << res << endl;
 
             res = recursive(word1, word2, m, n);
@@ -75,12 +70,11 @@ int main() {
             res = recursiveCash(word1, word2, m, n, dict);
             wcout << L"   4) Рекурсивный Дамерау-Левенштейна с кэшом:  " << res << endl;
 
-            freeMtr(&mtr, n + 1);
             dict.clear();
         }
         else if (choice == 2) {
             timeMeasure(200, 1000);
-            // memoryMeasure(MAX_LEN, STEP);
+            memoryMeasure(MAX_LEN, STEP);
         }
         else
             wcout << L"Завершение!\n";
