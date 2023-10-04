@@ -94,13 +94,15 @@ int recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
 
 int recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, mapT& dict) {
 
-    if (min(ind1, ind2) == 0)
-        return max(ind1, ind2);
+    int key = ind1 + ind2 * (1 + word2.length());
 
-    wstring key = to_wstring(ind1) + L":" + to_wstring(ind2);
+    // wcout << ind1 << L" " << ind2 << L" " << key << endl;
 
     if (dict[key])
         return dict[key];
+
+    if (min(ind1, ind2) == 0)
+        return dict[key] = max(ind1, ind2);
 
     int dif = (word1[ind1 - 1] == word2[ind2 - 1]) ? 0 : 1;
 
@@ -113,5 +115,5 @@ int recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, mapT& dict
 
     dict[key] = res;
 
-    return res;
+    return dict[key];
 }

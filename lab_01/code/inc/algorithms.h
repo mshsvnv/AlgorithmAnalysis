@@ -9,7 +9,7 @@
 
 using namespace std;
 
-using mapT = map<wstring, int>;
+using mapT = map<int, int>;
 
 using funcNotRecT = int(*)(wstring&, wstring&, bool);
 using funcRecT = int(*)(wstring&, wstring&, int, int);

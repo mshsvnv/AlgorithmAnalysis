@@ -173,13 +173,13 @@ int getNotRecursiveDamLev(int len) {
 }
 
 int getRecursiveDam(int len) {
-    return 2 * sizeof(int) + 
-           2 * sizeof(wchar_t) * len 
-           + sizeof(int*);
+    return (len + len) * (2 * sizeof(int) +
+                          2 * sizeof(wchar_t) * len);  
 }
 
 int getRecursiveDamCash(int len) {
-    return getRecursiveDam(len) + sizeof(int) * len;
+    return getRecursiveDam(len) + 
+           (len + 1) * (len + 1) * (2 * sizeof(int));
 }
 
 void memoryMeasure(int maxLen, int step) {
@@ -192,7 +192,7 @@ void memoryMeasure(int maxLen, int step) {
     
     for (int i = 0; i <= maxLen; i += step) {
 
-        std::wprintf(L"| %5zu | %13zu | %13zu | %13zu | %13zu |\n",
+        std::wprintf(L"| %5d | %13d | %13d | %13d | %13d |\n",
                      i,
                      getNotRecursiveLev(i),
                      getNotRecursiveDamLev(i),

@@ -73,7 +73,7 @@ int main() {
             dict.clear();
         }
         else if (choice == 2) {
-            timeMeasure(200, 1000);
+            // timeMeasure(200, 1000);
             memoryMeasure(MAX_LEN, STEP);
         }
         else
