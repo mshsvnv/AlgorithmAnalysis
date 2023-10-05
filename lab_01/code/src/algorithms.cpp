@@ -86,7 +86,7 @@ int recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
                   min(recursive(word1, word2, ind1 - 1, ind2) + 1, 
                       recursive(word1, word2, ind1, ind2 - 1) + 1));
 
-    if (word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
+    if (ind1 > 1 && ind2 > 1 && word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
         res = min(res, recursive(word1, word2, ind1 - 2, ind2 - 2) + 1);
 
     return res;
@@ -95,8 +95,6 @@ int recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
 int recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, mapT& dict) {
 
     int key = ind1 + ind2 * (1 + word2.length());
-
-    // wcout << ind1 << L" " << ind2 << L" " << key << endl;
 
     if (dict[key])
         return dict[key];
@@ -110,7 +108,7 @@ int recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, mapT& dict
                   min(recursiveCash(word1, word2, ind1 - 1, ind2, dict) + 1, 
                       recursiveCash(word1, word2, ind1, ind2 - 1, dict) + 1));
 
-    if (word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
+    if (ind1 > 1 && ind2 > 1 && word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
         res = min(res, recursiveCash(word1, word2, ind1 - 2, ind2 - 2, dict) + 1);
 
     dict[key] = res;

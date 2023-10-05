@@ -1,0 +1,204 @@
+\chapter{Технологическая часть}
+
+В данном разделе будут приведены средства реализации, листинг кода и функциональные тесты.
+
+\section{Средства реализации}
+
+Для реализации данной лабораторной работы был выбран язык $C++$ \cite{cpp-lang}, так как в нем есть стандартная библиотека $chrono$, которая позволяет произвести замеры процессорного времени выполнения программы, а так же наличие типа данных $std::wstring$, позволяющего хранить как кириллические символы, так и латинские;
+В качестве среды разработки был выбран $Visual Studio Code$: он является кроссплатформенным и предоставляет полный функционал для проектирования и отладки кода.
+ 
+\section{Сведения о модулях программы}
+
+Данная программа разбита на следующие модули.
+
+\begin{itemize}
+	\item \texttt{main.cpp} --- файл, содержащий точку входа в программу, из которой происходит вызов алгоритмов по разработанному интерфейсу.
+	\item \texttt{algorithms.cpp} --- файл содержит функции поиска расстояния Левенштейна и Дамерау-Левенштейна.
+	\item \texttt{matrix.cpp} --- файл содержит функции динамического выделения и очищения памяти для матрицы, а так же ее вывод на экран.
+	\item \texttt{measure.cpp} --- файл содержит функции, замеряющее процессорное время для алгоритмов поиска расстояния Левенштейна и Дамерау-Левенштейна.
+\end{itemize}
+
+\section{Реализация алгоритмов}
+
+В листингах \ref{lst:lev_mtr} -- \ref{lst:dameray_lev_rec_hash} приведены реализации алгоритмов поиска расстояний Левенштейна (только нерекурсивный алгоритм) и \break Дамерау-Левенштейна (нерекурсивный, рекурсивный и рекурсивный с кешированием).
+
+\begin{lstlisting}[label=lst:lev_mtr,caption=Функция нахождения расстояния Левенштейна с использованием матрицы (начало)]
+int notRecursiveLev(wstring &word1, wstring &word2, bool print) {
+    
+    int len1 = word1.length();
+    int len2 = word2.length();
+
+    int** mtr = allocateMtr(len2 + 1, len1 + 1);
+
+    if (!mtr)
+        return 0;
+
+    for (int i = 0; i <= len2; ++i) {
+
+        for (int j = 0; j <= len1; ++j) {
+
+            if (i == 0)
+                mtr[i][j] = j;
+            else if (j == 0)
+                mtr[i][j] = i;
+            else {
+                int dif = (word1[j - 1] == word2[i - 1]) ? 0 : 1;
+
+                mtr[i][j] = min(mtr[i - 1][j] + 1, 
+                               min(mtr[i][j - 1] + 1, mtr[i - 1][j - 1] + dif));
+            }
+        }
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[label=lst:lev_mtr,caption=Функция нахождения расстояния Левенштейна с использованием матрицы (окончание)]
+    if (print)  
+        printMtr(mtr, word1, word2);
+
+    int res = mtr[len2][len1];
+    freeMtr(mtr, len2 + 1);
+
+    return res;
+}
+\end{lstlisting}
+
+\begin{lstlisting}[label=lst:dameray_lev_rec,caption=Функция нахождения расстояния Дамерау-Левенштейна с использованием матрицы (начало)]
+int notRecursiveDamLev(wstring &word1, wstring &word2, bool print) {
+
+    int len1 = word1.length();
+    int len2 = word2.length();
+
+    int** mtr = allocateMtr(len2 + 1, len1 + 1);
+
+    if (!mtr)
+        return 0;
+
+    for (int i = 0; i <= len2; ++i) {
+
+        for (int j = 0; j <= len1; ++j) {
+
+            if (i == 0)
+                mtr[i][j] = j;
+            else if (j == 0)
+                mtr[i][j] = i;
+            else {
+                int dif = (word1[j - 1] == word2[i - 1]) ? 0 : 1;
+
+                mtr[i][j] = min(mtr[i - 1][j] + 1, 
+                                min(mtr[i][j - 1] + 1, mtr[i - 1][j - 1] + dif));
+
+\end{lstlisting}
+
+\begin{lstlisting}[label=lst:dameray_lev_rec,caption=Функция нахождения расстояния Дамерау-Левенштейна с использованием матрицы (окончание)]
+                if (word1[j - 2] == word2[i - 1] && word1[j - 1] == word2[i - 2]) 
+                    mtr[i][j] = min(mtr[i][j], mtr[i - 2][j - 2] + 1);
+            }
+        }
+    }
+
+    if (print)  
+        printMtr(mtr, word1, word2);
+
+    int res = mtr[len2][len1];
+    freeMtr(mtr, len2 + 1);
+
+    return res;
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:dameray_lev_mtr,caption=Функция нахождения расстояния Дамерау-Левенштейна рекурсивно]
+int recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
+
+    if (min(ind1, ind2) == 0)
+        return max(ind1, ind2);
+
+    int dif = (word1[ind1 - 1] == word2[ind2 - 1]) ? 0 : 1;
+
+    int res = min(recursive(word1, word2, ind1 - 1, ind2 - 1) + dif,
+                  min(recursive(word1, word2, ind1 - 1, ind2) + 1, 
+                      recursive(word1, word2, ind1, ind2 - 1) + 1));
+                      
+    if (word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
+        res = min(res, recursive(word1, word2, ind1 - 2, ind2 - 2) + 1);
+
+    return res;
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:dameray_lev_rec_hash,caption=Функция нахождения расстояния Дамерау-Левенштейна рекурсивно c кешированием]
+int recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, mapT& dict) {
+
+    int key = ind1 + ind2 * (1 + word2.length());
+
+    if (dict[key])
+        return dict[key];
+
+    if (min(ind1, ind2) == 0)
+        return dict[key] = max(ind1, ind2);
+
+    int dif = (word1[ind1 - 1] == word2[ind2 - 1]) ? 0 : 1;
+
+    int res = min(recursiveCash(word1, word2, ind1 - 1, ind2 - 1, dict) + dif,
+                  min(recursiveCash(word1, word2, ind1 - 1, ind2, dict) + 1, 
+                      recursiveCash(word1, word2, ind1, ind2 - 1, dict) + 1));
+
+    if (ind1 > 1 && ind2 > 1 && word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
+        res = min(res, recursiveCash(word1, word2, ind1 - 2, ind2 - 2, dict) + 1);
+
+    dict[key] = res;
+
+    return dict[key];
+}
+\end{lstlisting}
+
+\clearpage
+
+\section{Функциональные тесты}
+
+В таблице \ref{tbl:func_tests} приведены функциональные тесты для алгоритмов вычисления расстояний Левенштейна и Дамерау—Левенштейна. Все тесты пройдены успешно.
+
+\begin{table}[ht]
+	\small
+	\begin{center}
+		\begin{threeparttable}
+		\caption{Функциональные тесты}
+		\label{tbl:func_tests}
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			\multicolumn{2}{|c|}{\bfseries Входные данные}
+			& \multicolumn{4}{c|}{\bfseries Расстояние и алгоритм} \\ 
+			\hline 
+			&
+			& \multicolumn{1}{c|}{\bfseries Левенштейна} 
+			& \multicolumn{3}{c|}{\bfseries Дамерау-Левенштейна} \\ \cline{3-6}
+			
+			\bfseries Строка 1 & \bfseries Строка 2 & \bfseries Итеративный & \bfseries Итеративный
+			
+			& \multicolumn{2}{c|}{\bfseries Рекурсивный} \\ \cline{5-6}
+			& & & & \bfseries Без кеша & \bfseries С кешом \\
+			\hline
+			a & b & 1 & 1 & 1 & 1 \\
+			\hline
+			a & a & 0 & 0 & 0 & 0 \\
+			\hline
+			кот & скат & 2 & 2 & 2 & 2 \\
+			\hline
+			кот & кто & 2 & 1 & 1 & 1 \\
+			\hline
+			Австралия & Австрия & 2 & 2 & 2 & 2 \\
+			\hline
+			кот & ток & 2 & 2 & 2 & 2 \\
+			\hline
+			слон & слоны & 1 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}	
+		\end{threeparttable}
+	\end{center}
+\end{table}
+
+\section*{Вывод}
+Были реализованы и протестированы алгоритмы поиска расстояния Левенштейна итеративно, а также поиска расстояния Дамерау–Левенштейна итеративно, рекурсивно и рекурсивного с кеширования. Проведено тестирование реализаций алгоритмов.

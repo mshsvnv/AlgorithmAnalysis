@@ -132,7 +132,7 @@ void timeMeasure(int maxLen, int iters) {
         }
 
         for (int j = 0; j < times.size(); ++j)
-            times[j] = times[j] / iters; 
+            times[j] /= iters; 
 
         // for (int j = 0; j < times.size(); ++j)
         //     wcout << times[j] << " "; 
@@ -158,49 +158,4 @@ void timeMeasure(int maxLen, int iters) {
 
     wcout << L"+-----------------------------------------------------------------------+\n";
     
-}
-
-int getNotRecursiveLev(int len) {
-    return (len + 1) * (len + 1) * sizeof(int) +
-           2 * sizeof(wchar_t) * len +
-           2 * sizeof(int) +
-           4 * sizeof(int) +
-           sizeof(int**) + (len + 1) * sizeof(int*);
-}
-
-int getNotRecursiveDamLev(int len) {
-    return getNotRecursiveLev(len);
-}
-
-int getRecursiveDam(int len) {
-    return (len + len) * (2 * sizeof(int) +
-                          2 * sizeof(wchar_t) * len);  
-}
-
-int getRecursiveDamCash(int len) {
-    return getRecursiveDam(len) + 
-           (len + 1) * (len + 1) * (2 * sizeof(int));
-}
-
-void memoryMeasure(int maxLen, int step) {
-
-    wcout << L"+-----------------------------------------------------------------------+\n";
-    wcout << L"|       |                    Размер (в байтах)                          |\n";
-    printAlgs();
-    wcout << L"+-----------------------------------------------------------------------+\n";
-    
-    
-    for (int i = 0; i <= maxLen; i += step) {
-
-        std::wprintf(L"| %5d | %13d | %13d | %13d | %13d |\n",
-                     i,
-                     getNotRecursiveLev(i),
-                     getNotRecursiveDamLev(i),
-                     getRecursiveDam(i),
-                     getRecursiveDamCash(i));
-    }
-
-    wcout << L"+-----------------------------------------------------------------------+\n";
-    
-
 }
