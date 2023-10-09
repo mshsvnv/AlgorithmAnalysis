@@ -48,7 +48,7 @@ with open('time.csv', 'r') as file:
 
 
     plt.legend(["Рекурсивный Дамерау-Левенштейн",
-                "Рекурсивный Дамерау-Левенштейн с кешом"])
+                "Рекурсивный Дамерау-Левенштейн с кешем"])
 
     plt.show()
 
@@ -56,15 +56,13 @@ with open('time.csv', 'r') as file:
     plt.xlabel("Длина, симв.")
     plt.ylabel("Время, нс.")
 
-    plt.plot(lens, lev, color = "magenta", marker = "+", linestyle = "-")
-    plt.plot(lens, dam_lev, color = "blue", marker = ".", linestyle = "-.")
+    plt.plot(lens[:11], lev[:11], color = "magenta", marker = "+", linestyle = "-")
+    plt.plot(lens[:11], dam_lev[:11], color = "blue", marker = ".", linestyle = "-.")
 
-    plt.plot(lens[:11], rec[:11], color = "red", marker = "1", linestyle = "-")
     plt.plot(lens[:11], rec_cash[:11], color = "green", marker = "2")
 
     plt.legend(["Нерекурсивный Левенштейн", 
                 "Нерекурсивный Дамерау-Левенштейн",
-                "Рекурсивный Дамерау-Левенштейн",
-                "Рекурсивный Дамерау-Левенштейн с кешом"])
+                "Рекурсивный Дамерау-Левенштейн с кешем"])
 
     plt.show()

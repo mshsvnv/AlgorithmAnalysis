@@ -2,14 +2,14 @@
 
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <algorithm>
 
 #include "matrix.h"
 
 using namespace std;
 
-using mapT = map<int, int>;
+using mapT = unordered_map<int, int>;
 
 using funcNotRecT = int(*)(wstring&, wstring&, bool);
 using funcRecT = int(*)(wstring&, wstring&, int, int);
