@@ -1,14 +1,10 @@
-#include <iostream>
-
-#include "inc/input.h"
-
-using namespace std;
+#include "inc/matrix.h"
 
 int menu() {
 
     int choice;
 
-    cout << L"\n\t\tМеню\n"
+    cout << "\n\t\tМеню\n"
     "1. Стандартный метод\n"
     "2. Алгоритм Винограда;\n"
     "3. Оптимизированный п. 2\n"
@@ -27,24 +23,14 @@ int main() {
     int choice = menu();
     int rc = 0;
 
-    int** mtr = nullptr;
-
     bool square = false;
 
-    while (choice) {
+    MatrixT mtr1("../code/data.txt");
 
-        if (choice) {
 
-            if (choice != 1)
-                square = true;
+    // while (choice) {
 
-            // rc = readMtr(square);
-            
-
-        }
-        else
-            wcout << L"Завершение!\n";
-
-        choice = menu();
-    }
+        
+    //     choice = menu();
+    // }
 }
