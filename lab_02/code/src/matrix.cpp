@@ -1,14 +1,13 @@
 #include "../inc/matrix.h"
 
-ostream& operator>>(ostream& out, const MatrixT& mtr) {
+ostream& operator<<(ostream& out, const MatrixT& mtr) {
 
     for (int i = 0; i < mtr.m_rows; ++i) {
         
         out << "\t";
 
-        for (int j = 0; j < mtr.m_columns; ++j) {
+        for (int j = 0; j < mtr.m_columns; ++j)
             out << mtr.m_matrix[i][j] << " ";
-        }
 
         out << endl;
     }
@@ -29,67 +28,38 @@ MatrixT::MatrixT(const char* fileName) {
     ifstream file(fileName);
     string line;
 
-    cout << fileName;
+    int rows = 0;
+
+    int curElem = 0, idx = 0;
 
     if (file.is_open() && file.good()) {
-
-        cout << "here\n";
     
-
         while (getline(file, line)) {
-            cout << line << endl;
+            
+            stringstream curRow(line);
+
+            vector<int> tmp;
+
+            while(1) {
+                curRow >> curElem;
+
+                if (!curRow)
+                    break;
+                
+                idx++;
+                tmp.emplace_back(curElem);
+            }
+            rows++;
+
+            m_matrix.emplace_back(tmp);
         }
     }
+
+    m_rows = rows;
+    m_columns = idx / m_rows;
 }
 
-
-// void inputSize(int& rows, int& columns) {
-//     cout << "Строк: ";
-//     cin >> rows;
-
-//     cout << "Столбцов: ";
-//     cin >> rows;
-// }
-
-// int fillMtr(int rows, int columns, matrixT& mtr) {
-
-//     try {
-//         rowT row;
-//         row.resize(columns);
-//         mtr.resize(rows, row);
-//     }
-//     catch(...) {
-//         cerr << "Неверный размер";
-//         return 1;
-//     }
-
-//     for (int i = 0; i < rows; ++i) {
-
-//         for (int j = 0; j < columns; ++j) {
-
-//             try {
-//                 cin >> mtr[i][j];
-//             }
-//             catch(...) {
-//                 cerr << "Неверное значение";
-//                 return 1;
-//             }
-//         }
-//     }
-// }
-
-
-// void printMtr(int rows, int columns, matrixT& mtr) {
-
-//     for (int i = 0; i < rows; ++i) {
-
-//         for (int j = 0; j < columns; ++j) {
-
-//             cout << mtr[i][j] << " ";
-//         }
-
-//         cout << endl;
-//     }
-// }
-
+int& MatrixT::operator()(const int& i, const int& j) {
+    return m_matrix[i][j];
+}
 

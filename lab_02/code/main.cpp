@@ -1,4 +1,9 @@
 #include "inc/matrix.h"
+#include "inc/multiply.h"
+#include "inc/measure.h"
+
+#define MAX_AMOUNT 1000
+#define ITERS 100
 
 int menu() {
 
@@ -25,12 +30,24 @@ int main() {
 
     bool square = false;
 
-    MatrixT mtr1("../code/data.txt");
+    MatrixT mtr1("../data.txt");
+    MatrixT mtr2("../data.txt");
 
+    vector<Multiply*> muls{new Standard, new Vinograd, new VinogradOpt};
 
-    // while (choice) {
+    while (choice) {
 
-        
-    //     choice = menu();
-    // }
+        if (choice == 4)
+            timeMeasure(ITERS, MAX_AMOUNT);
+        else {
+
+            MatrixT res = (muls[choice - 1])->multiply(mtr1, mtr2);
+
+            cout << "Первая матрица:\n" << mtr1 << endl;
+            cout << "Вторая матрица:\n" << mtr2 << endl;
+            cout << "Результирующая матрица:\n" << res << endl;
+        }
+
+        choice = menu();
+    }
 }

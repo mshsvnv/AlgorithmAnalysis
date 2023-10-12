@@ -7,4 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(app main.cpp
                inc/matrix.h src/matrix.cpp
+               inc/multiply.h src/multiply.cpp
+               inc/measure.h src/measure.cpp
 )
