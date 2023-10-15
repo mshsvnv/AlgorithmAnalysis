@@ -1,25 +1,31 @@
 #include "../inc/matrix.h"
 
-int** allocateMtr(int m, int n) {
+int** Matrix::allocate(int rows, int columns, bool fill) {
     
-    int** mtr = static_cast<int**>(malloc(m * sizeof(int *)));
+    int** mtr = static_cast<int**>(malloc(rows * sizeof(int *)));
 
     if (mtr) {
-        for (int i = 0; i < m; ++i) {
+        for (int i = 0; i < rows; ++i) {
 
-            int* ptr = static_cast<int*>(malloc(n * sizeof(int)));
+            int* ptr = static_cast<int*>(malloc(columns * sizeof(int)));
 
             if (ptr)
                 mtr[i] = ptr;
             else
-                freeMtr(mtr, m);
+                Matrix::release(mtr, rows);
         }
+    }
+
+    if (fill) {
+        for (int i = 0; i < rows; ++i)
+            for (int j = 0; j < columns; ++j)
+                mtr[i][j] = 0;
     }
 
     return mtr;
 }
 
-void freeMtr(int** mtr, int m) {
+void Matrix::release(int** mtr, int m) {
 
     if (*mtr) {
 
@@ -33,7 +39,7 @@ void freeMtr(int** mtr, int m) {
     }
 }
 
-void printMtr(int** mtr, wstring &word1, wstring &word2) {
+void Matrix::print(int** mtr, wstring &word1, wstring &word2) {
 
     int m = word1.length();
     int n = word2.length();

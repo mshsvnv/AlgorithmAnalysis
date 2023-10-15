@@ -1,11 +1,11 @@
 #include "../inc/algorithms.h"
 
-int notRecursiveLev(wstring &word1, wstring &word2, bool print) {
+int Algs::notRecursiveLev(wstring &word1, wstring &word2, bool print) {
     
     int len1 = word1.length();
     int len2 = word2.length();
 
-    int** mtr = allocateMtr(len2 + 1, len1 + 1);
+    int** mtr = Matrix::allocate(len2 + 1, len1 + 1);
 
     if (!mtr)
         return 0;
@@ -28,20 +28,20 @@ int notRecursiveLev(wstring &word1, wstring &word2, bool print) {
     }
 
     if (print)  
-        printMtr(mtr, word1, word2);
+        Matrix::print(mtr, word1, word2);
 
     int res = mtr[len2][len1];
-    freeMtr(mtr, len2 + 1);
+    Matrix::release(mtr, len2 + 1);
 
     return res;
 }
 
-int notRecursiveDamLev(wstring &word1, wstring &word2, bool print) {
+int Algs::notRecursiveDamLev(wstring &word1, wstring &word2, bool print) {
 
     int len1 = word1.length();
     int len2 = word2.length();
 
-    int** mtr = allocateMtr(len2 + 1, len1 + 1);
+    int** mtr = Matrix::allocate(len2 + 1, len1 + 1);
 
     if (!mtr)
         return 0;
@@ -67,15 +67,15 @@ int notRecursiveDamLev(wstring &word1, wstring &word2, bool print) {
     }
 
     if (print)  
-        printMtr(mtr, word1, word2);
+        Matrix::print(mtr, word1, word2);
 
     int res = mtr[len2][len1];
-    freeMtr(mtr, len2 + 1);
+    Matrix::release(mtr, len2 + 1);
 
     return res;
 }
 
-int recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
+int Algs::recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
 
     if (min(ind1, ind2) == 0)
         return max(ind1, ind2);
@@ -92,26 +92,44 @@ int recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
     return res;
 }
 
-int recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, mapT& dict) {
+int Algs::recursiveCash_Decor(wstring& word1, wstring& word2, bool print) {
 
-    int key = ind1 + ind2 * (1 + word2.length());
+    int len1 = word1.length();
+    int len2 = word2.length();
 
-    if (dict[key])
-        return dict[key];
+    int** cash = Matrix::allocate(len2 + 1, len1 + 1, true);
+
+    if (!cash)
+        return 0;
+
+    int res = recursiveCash(word1, word2, len1, len2, cash);
+
+    if (print)  
+        Matrix::print(cash, word1, word2);
+
+    Matrix::release(cash, len2 + 1);
+
+    return res;
+}
+
+int Algs::recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, int** cash) {
+
+    if (cash[ind2][ind1])
+        return cash[ind2][ind1];
 
     if (min(ind1, ind2) == 0)
-        return dict[key] = max(ind1, ind2);
+        return cash[ind2][ind1] = max(ind1, ind2);
 
     int dif = (word1[ind1 - 1] == word2[ind2 - 1]) ? 0 : 1;
 
-    int res = min(recursiveCash(word1, word2, ind1 - 1, ind2 - 1, dict) + dif,
-                  min(recursiveCash(word1, word2, ind1 - 1, ind2, dict) + 1, 
-                      recursiveCash(word1, word2, ind1, ind2 - 1, dict) + 1));
+    int res = min(recursiveCash(word1, word2, ind1 - 1, ind2 - 1, cash) + dif,
+                  min(recursiveCash(word1, word2, ind1 - 1, ind2, cash) + 1, 
+                      recursiveCash(word1, word2, ind1, ind2 - 1, cash) + 1));
 
     if (ind1 > 1 && ind2 > 1 && word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
-        res = min(res, recursiveCash(word1, word2, ind1 - 2, ind2 - 2, dict) + 1);
+        res = min(res, recursiveCash(word1, word2, ind1 - 2, ind2 - 2, cash) + 1);
 
-    dict[key] = res;
+    cash[ind2][ind1] = res;
 
-    return dict[key];
+    return res;
 }

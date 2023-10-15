@@ -6,7 +6,7 @@
 
 #define MAX_LEN 100
 #define STEP 10
-#define MAX_ITER 100
+#define MAX_ITER 1000
 
 int menu() {
 
@@ -41,8 +41,6 @@ int main() {
     int choice = menu();
     int res = 0, m, n;
 
-    mapT dict;
-
     while (choice) {
 
         if (choice == 1) {
@@ -58,19 +56,18 @@ int main() {
             n = word2.length();
 
             wcout << L"Минимальное кол-во операций:\n";
-            res = notRecursiveLev(word1, word2, true);
+            res = Algs::notRecursiveLev(word1, word2, true);
             wcout << L"   1) Нерекурсивный Левенштейна:                " << res << endl;
 
-            res = notRecursiveDamLev(word1, word2, true);
+            res = Algs::notRecursiveDamLev(word1, word2, true);
             wcout << L"   2) Нерекурсивный Дамерау-Левенштейна:        " << res << endl;
 
-            res = recursive(word1, word2, m, n);
+            res = Algs::recursive(word1, word2, m, n);
             wcout << L"   3) Рекурсивный Дамерау-Левенштейна без кэша: " << res << endl ;
-
-            res = recursiveCash(word1, word2, m, n, dict);
+            
+            res = Algs::recursiveCash_Decor(word1, word2, true);
             wcout << L"   4) Рекурсивный Дамерау-Левенштейна с кэшом:  " << res << endl;
 
-            dict.clear();
         }
         else if (choice == 2) 
             timeMeasure(200, 1000);

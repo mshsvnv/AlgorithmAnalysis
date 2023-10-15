@@ -26,11 +26,11 @@ int main() {
 
     // int choice = menu();
 
-    arrayT arr{10, 9, 8, 7, 6, 5, 4, 3, 2};
+    arrayT arr{1, 1, 1, 1};
     
     vector<Sort*> sorts{new Radix, new Comb, new Shell};
 
-    sorts[1]->execute(arr);
+    sorts[0]->execute(arr);
     
     // while (choice) {
     //     choice = menu();

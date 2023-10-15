@@ -17,7 +17,7 @@ wstring generateWord(int len) {
 }
 
 static double getTotalTime(long long startT, long long endT) {
-    return 1000000000LL * (double) (endT - startT) / CLOCKS_PER_SEC;
+    return (double) (endT - startT) / CLOCKS_PER_SEC;
 }
 
 static long long getThreadCpuTimeNs() {
@@ -32,7 +32,7 @@ static long long getThreadCpuTimeNs() {
     return t.tv_sec * 1000000000LL + t.tv_nsec;
 }
 
-auto getCPUTime(wstring& word1, wstring& word2, funcNotRecT fptr) {
+auto getCPUTime(wstring& word1, wstring& word2, Algs::funcT fptr) {
     
     long long startT, endT;
     double totalT;
@@ -40,20 +40,14 @@ auto getCPUTime(wstring& word1, wstring& word2, funcNotRecT fptr) {
     int len1 = word1.length();
     int len2 = word2.length();
 
-    // startT = getThreadCpuTimeNs();
-    auto start = chrono::high_resolution_clock::now(); 
+    startT = getThreadCpuTimeNs(); 
     int res = fptr(word1, word2, false);
-    auto end = chrono::high_resolution_clock::now();
-    // endT = getThreadCpuTimeNs();
+    endT = getThreadCpuTimeNs();
 
-    // return getTotalTime(startT, endT);
-    auto total = chrono::duration_cast<chrono::nanoseconds>(end - start);
-    // wcout << total << endl;
-
-    return total;
+    return getTotalTime(startT, endT);
 }
 
-auto getCPUTime(wstring& word1, wstring& word2, funcRecT fptr) {
+auto getCPUTime(wstring& word1, wstring& word2, Algs::funcRecT fptr) {
     
     long long startT, endT;
     double totalT;
@@ -61,92 +55,59 @@ auto getCPUTime(wstring& word1, wstring& word2, funcRecT fptr) {
     int len1 = word1.length();
     int len2 = word2.length();
 
-    // startT = getThreadCpuTimeNs();
-    auto start = chrono::high_resolution_clock::now(); 
+    startT = getThreadCpuTimeNs(); 
     int res = fptr(word1, word2, len1, len2);
-    auto end = chrono::high_resolution_clock::now();
-    // endT = getThreadCpuTimeNs();
+    endT = getThreadCpuTimeNs();
 
-    // return getTotalTime(startT, endT);
-    auto total = chrono::duration_cast<chrono::nanoseconds>(end - start);
-
-    return total;
+    return getTotalTime(startT, endT);
 }
 
-auto getCPUTime(wstring& word1, wstring& word2, funcRecCashT fptr) {
-    
-    long long startT, endT;
-    double totalT;
-    
-    mapT dict;
-    int len1 = word1.length();
-    int len2 = word2.length();
+void printHead() {
 
-    // startT = getThreadCpuTimeNs();
-    auto start = chrono::high_resolution_clock::now(); 
-    int res = fptr(word1, word2, len1, len2, dict);
-    auto end = chrono::high_resolution_clock::now();
-    // endT = getThreadCpuTimeNs();
-
-    // return getTotalTime(startT, endT);
-    auto total = chrono::duration_cast<chrono::nanoseconds>(end - start);
-
-    return total;
-}
-
-void printAlgs() {
-
+    wcout << L"+-----------------------------------------------------------------------+\n";
+    wcout << L"|       |                            Время(нс)                          |\n";
     wcout << L"| Длина |  Левенштейн   |                Дамерау-Левенштейн             |\n";
     wcout << L"|(симв.)|  Итеративный  |  Итеративный  |             Рекурсивный       |\n";
     wcout << L"|       |               |               |    Без кэша    |     С кэшом  |\n";
+    wcout << L"+-----------------------------------------------------------------------+\n";
 }
 
 void timeMeasure(int maxLen, int iters) {
     
-    wcout << L"+-----------------------------------------------------------------------+\n";
-    wcout << L"|       |                            Время(нс)                          |\n";
-    printAlgs();
-    wcout << L"+-----------------------------------------------------------------------+\n";
-    
+    printHead();
+    srand(time(NULL));
+
     wstring word1, word2;
-
-    vector<chrono::nanoseconds> times;
-    times.resize(4);
-
-    for (int j = 0; j < times.size(); ++j)
-        times[j] = (chrono::nanoseconds)0; 
 
     for (int i = 0; i <= maxLen;) {
 
         word1 = generateWord(i);
         word2 = generateWord(i);
 
+        vector<double> times(4, 0);
+
         for (int j = 0; j < iters; ++j) {
             
-            times[0] += getCPUTime(word1, word2, notRecursiveLev);
-            times[1] += getCPUTime(word1, word2, notRecursiveDamLev);
+            times[0] += getCPUTime(word1, word2, Algs::notRecursiveLev);
+            times[1] += getCPUTime(word1, word2, Algs::notRecursiveDamLev);
+            times[3] += getCPUTime(word1, word2, Algs::recursiveCash_Decor);
 
             if (i < 11)
-                times[2] += getCPUTime(word1, word2, recursive);
-                times[3] += getCPUTime(word1, word2, recursiveCash);
+                times[2] += getCPUTime(word1, word2, Algs::recursive);
+                // times[3] += getCPUTime(word1, word2, Algs::recursiveCash_Decor);
         }
 
         for (int j = 0; j < times.size(); ++j)
-            times[j] /= iters; 
+            times[j] /= (double)iters; 
 
-        // for (int j = 0; j < times.size(); ++j)
-        //     wcout << times[j] << " "; 
-        // wcout << endl;
-
-        std::wprintf(L"| %5d | %13d | %13d ", i, times[0],times[1]);
+        std::wprintf(L"| %5d | %13g | %13g ", i, times[0],times[1]);
 
         if (i < 11)
-            std::wprintf(L"| %13d | %13d |\n", times[2], times[3]);
+            std::wprintf(L"| %13g | %13g |\n", times[2], times[3]);
         else
-            std::wprintf(L"| %10s    | %10s    |\n", "-", "-");
-
-        for (int j = 0; j < times.size(); ++j)
-            times[j] = (chrono::nanoseconds)0; 
+            // std::wprintf(L"| %10s    | %10s    |\n", "-", "-");
+            std::wprintf(L"| %10s    | %13g |\n", "-", times[3]);
+            
 
         if (i < 10)
             i++;
@@ -157,5 +118,4 @@ void timeMeasure(int maxLen, int iters) {
     }
 
     wcout << L"+-----------------------------------------------------------------------+\n";
-    
 }

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ public:
 class Radix : public Sort {
 public:
     void execute(arrayT& arr) override;
+    arrayT countSort(arrayT& arr);
 };
 
 class Comb : public Sort {

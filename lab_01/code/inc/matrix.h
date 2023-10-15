@@ -4,6 +4,8 @@
 
 using namespace std;
 
-void freeMtr(int** mtr, int m);
-int** allocateMtr(int m, int n);
-void printMtr(int** mtr, wstring& word1, wstring& word2);
+namespace Matrix {
+    void release(int** mtr, int rows);
+    int** allocate(int rows, int columns, bool fill = false);
+    void print(int** mtr, wstring& word1, wstring& word2);
+}
