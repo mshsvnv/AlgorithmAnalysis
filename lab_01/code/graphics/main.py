@@ -1,107 +1,84 @@
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
+import re
 
-def readFile(fileName):
+class Graph:
 
-    with open(fileName, 'r') as file:
-        csv_reader = csv.reader(file)
+    def __init__(self):
 
-        lens = []
-        lev = []
-        dam_lev = []
-        rec = []
-        rec_cash = []
+        self.lens = np.array([])
+        self.Lev = np.array([])
+        self.DamLev = np.array([])
+        self.Rec = np.array([])
+        self.RecCash = np.array([])
 
-        i = 0
+    def readFile(self, fileName):
 
-        for row in csv_reader:
-            i += 1
+        with open(fileName, 'r') as file:
+            
+            for line in file:
 
-            if i == 1:
-                continue
-            else:
-                row = list(map(int, row))
+                values = re.findall(r'\b\d+\.?\d*\b', line)
 
-                lens.append(row[0])
-                lev.append(row[1])
-                dam_lev.append(row[2])
-                rec.append(row[3])
-                rec_cash.append(row[4])
+                self.lens = np.append(self.lens, int(values[0]))
 
-def buildRecursive():
-    
-    plt.grid()
-    plt.xlabel("Длина, симв.")
-    plt.ylabel("Время, нс.")
+                self.Lev = np.append(self.Lev, float(values[1]))
+                self.DamLev = np.append(self.DamLev, float(values[2]))
+            
+                if self.lens[-1] >= 20:
+                    self.RecCash= np.append(self.RecCash, float(values[3]))
+                else:
+                    self.Rec = np.append(self.Rec, float(values[3]))
+                    self.RecCash= np.append(self.RecCash, float(values[4]))
 
-    plt.plot(lens[:11], rec[:11], color = "red", marker = "+", linestyle = "-")
-    plt.plot(lens[:11], rec_cash[:11], color = "green", marker = ".", linestyle = ":")
+    def buildRecursive(self):
+        
+        plt.grid()
+        plt.xlabel("Длина, симв.")
+        plt.ylabel("Время, нс.")
 
+        plt.plot(np.log(self.lens[:11]), np.log(self.Rec), color = "red", marker = "+", linestyle = "-")
+        plt.plot(np.log(self.lens[:11]), np.log(self.RecCash[:11]), color = "green", marker = ".", linestyle = ":")
 
-    plt.legend(["Рекурсивный Дамерау-Левенштейн",
-                "Рекурсивный Дамерау-Левенштейн с кешем"])
+        plt.legend(["Рекурсивный Дамерау-Левенштейн",
+                    "Рекурсивный Дамерау-Левенштейн с кешем"])
 
-    plt.show()
+        plt.show()
 
-def buildNonRecursive():
-    
-    plt.grid()
-    plt.xlabel("Длина, симв.")
-    plt.ylabel("Время, нс.")
+    def buildNonRecursive(self):
+        
+        plt.grid()
+        plt.xlabel("Длина, симв.")
+        plt.ylabel("Время, нс.")
 
-    plt.plot(lens, lev, color = "magenta", marker = "+", linestyle = "-")
-    plt.plot(lens, dam_lev, color = "blue", marker = ".", linestyle = ":")
+        plt.plot(self.lens, self.Lev, color = "magenta", marker = "+", linestyle = "-")
+        plt.plot(self.lens, self.DamLev, color = "blue", marker = ".", linestyle = ":")
 
-    plt.legend(["Нерекурсивный Левенштейн", 
-                "Нерекурсивный Дамерау-Левенштейн"])
-    
-    plt.show()
+        plt.legend(["Нерекурсивный Левенштейн", 
+                    "Нерекурсивный Дамерау-Левенштейн"])
+        
+        plt.show()
 
-def buildExtra():
+    def buildExtra(self):
 
-    plt.grid()
-    plt.xlabel("Длина, симв.")
-    plt.ylabel("Время, нс.")
+        plt.grid()
+        plt.xlabel("Длина, симв.")
+        plt.ylabel("Время, нс.")
 
-    plt.plot(lens[:11], lev[:11], color = "magenta", marker = "+", linestyle = "-")
-    plt.plot(lens[:11], dam_lev[:11], color = "blue", marker = ".", linestyle = "-.")
+        plt.plot(self.lens, self.DamLev, color = "blue", marker = ".", linestyle = "-.")
+        plt.plot(self.lens, self.RecCash, color = "green", marker = "2")
 
-    plt.plot(lens[:11], rec_cash[:11], color = "green", marker = "2")
+        plt.legend(["Нерекурсивный Дамерау-Левенштейн",
+                    "Рекурсивный Дамерау-Левенштейн с кешем"])
 
-    plt.legend(["Нерекурсивный Левенштейн", 
-                "Нерекурсивный Дамерау-Левенштейн",
-                "Рекурсивный Дамерау-Левенштейн с кешем"])
-
-    plt.show()
-
-with open('time.csv', 'r') as file:
-    csv_reader = csv.reader(file)
-
-    headers = []
-    lens = []
-    lev = []
-    dam_lev = []
-    rec = []
-    rec_cash = []
-
-    i = 0
-
-    for row in csv_reader:
-        i += 1
-
-        if i == 1:
-            continue
-        else:
-            lens.append(int(row[0]))
-            lev.append(float(row[1]))
-            dam_lev.append(float(row[2]))
-            rec.append(float(row[3]))
-            rec_cash.append(float(row[4]))
+        plt.show()
 
 if __name__ == "__main__":
 
-    readFile('time.csv')
-    buildRecursive()
-    buildNonRecursive()
-    buildExtra()
+    graph = Graph();
+
+    graph.readFile('time.txt')
+    graph.buildRecursive()
+    graph.buildNonRecursive()
+    graph.buildExtra()

@@ -1,4 +1,3 @@
-#include <io.h>
 #include <fcntl.h>
 
 #include "inc/algorithms.h"
@@ -30,11 +29,7 @@ int menu() {
 
 int main() {
 
-    // setbuf(stdin, nullptr);
-
-    _setmode(_fileno(stdout), _O_U16TEXT);
-    _setmode(_fileno(stdin),  _O_U16TEXT);
-    _setmode(_fileno(stderr), _O_U16TEXT);
+    std::setlocale(LC_ALL, "ru_RU.UTF-8");
 
     wstring word1, word2;
 

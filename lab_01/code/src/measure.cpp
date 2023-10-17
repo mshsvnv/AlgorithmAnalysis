@@ -1,4 +1,5 @@
 #include "../inc/measure.h"
+#include <iomanip>
 
 wstring generateWord(int len) {
 
@@ -64,12 +65,12 @@ auto getCPUTime(wstring& word1, wstring& word2, Algs::funcRecT fptr) {
 
 void printHead() {
 
-    wcout << L"+-----------------------------------------------------------------------+\n";
-    wcout << L"|       |                            Время(нс)                          |\n";
-    wcout << L"| Длина |  Левенштейн   |                Дамерау-Левенштейн             |\n";
-    wcout << L"|(симв.)|  Итеративный  |  Итеративный  |             Рекурсивный       |\n";
-    wcout << L"|       |               |               |    Без кэша    |     С кэшом  |\n";
-    wcout << L"+-----------------------------------------------------------------------+\n";
+    wcout << L"+----------------------------------------------------------------------+\n";
+    wcout << L"|       |                            Время(нс)                         |\n";
+    wcout << L"| Длина |  Левенштейн   |                Дамерау-Левенштейн            |\n";
+    wcout << L"|(симв.)|  Итеративный  |  Итеративный  |            Рекурсивный       |\n";
+    wcout << L"|       |               |               |    Без кэша    |   С кэшом   |\n";
+    wcout << L"+----------------------------------------------------------------------+\n";
 }
 
 void timeMeasure(int maxLen, int iters) {
@@ -94,19 +95,21 @@ void timeMeasure(int maxLen, int iters) {
 
             if (i < 11)
                 times[2] += getCPUTime(word1, word2, Algs::recursive);
-                // times[3] += getCPUTime(word1, word2, Algs::recursiveCash_Decor);
         }
 
         for (int j = 0; j < times.size(); ++j)
             times[j] /= (double)iters; 
 
-        std::wprintf(L"| %5d | %13.2g | %13.2g ", i, times[0],times[1]);
+        wcout << L"| " << setw(5) << i << L" │ "
+        << fixed << setprecision(2) << setw(13) << times[0] << L" │ "
+        << fixed << setprecision(2) << setw(13) << times[1] << L" │ ";
 
         if (i < 11)
-            std::wprintf(L"| %13.2g | %13.2g |\n", times[2], times[3]);
+            wcout << fixed << setprecision(2) << setw(13) << times[2] << L" │ ";
         else
-            // std::wprintf(L"| %10s    | %10s    |\n", "-", "-");
-            std::wprintf(L"| %10s    | %13.2g |\n", "-", times[3]);
+            wcout << fixed << setprecision(2) << setw(13) << '-' << L" │ ";\
+
+        wcout << fixed << setprecision(2) << setw(13) << times[3] << L" |\n";
             
         if (i < 10)
             i++;
@@ -116,5 +119,5 @@ void timeMeasure(int maxLen, int iters) {
             i += 100;
     }
 
-    wcout << L"+-----------------------------------------------------------------------+\n";
+    wcout << L"+----------------------------------------------------------------------+\n";
 }
