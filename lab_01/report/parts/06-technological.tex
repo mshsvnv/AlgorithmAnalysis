@@ -4,7 +4,7 @@
 
 \section{Средства реализации}
 
-Для реализации данной лабораторной работы был выбран язык $C++$~\cite{cpp-lang}, так как в нем есть стандартная библиотека $ctime$, которая позволяет производить замеры процессорного времени выполнения программы; тип данных $std::wstring$, позволяющий хранить как кириллические символы, так и латинские;
+Для реализации данной лабораторной работы был выбран язык\break$C++$~\cite{cpp-lang}, так как в нем есть стандартная библиотека $ctime$~\cite{cpp-lang-time}, которая позволяет производить замеры процессорного времени выполнения программы; тип данных $std::wstring$, позволяющий хранить как кириллические символы, так и латинские;
 В качестве среды разработки был выбран $Visual Studio Code$: он является кроссплатформенным и предоставляет полный функционал для проектирования и отладки кода.
  
 \section{Сведения о модулях программы}
@@ -13,14 +13,14 @@
 
 \begin{itemize}
 	\item \texttt{main.cpp}~--- файл, содержащий точку входа в программу, из которой происходит вызов алгоритмов по разработанному интерфейсу;
-	\item \texttt{algorithms.cpp}~--- файл содержит функции поиска расстояния Левенштейна и Дамерау\,--\,Левенштейна;
+	\item \texttt{algorithms.cpp}~--- файл содержит функции поиска расстояния Левенштейна и \break Дамерау\,--\,Левенштейна;
 	\item \texttt{matrix.cpp}~--- файл содержит функции динамического выделения и очищения памяти для матрицы, а так же ее вывод на экран;
 	\item \texttt{measure.cpp}~--- файл содержит функции, замеряющее процессорное время для алгоритмов поиска расстояния Левенштейна и Дамерау\,--\,Левенштейна;
 \end{itemize}
 
 \section{Реализация алгоритмов}
 
-В листингах \ref{lst:lev_mtr}--\ref{lst:dameray_lev_rec_hash} приведены реализации алгоритмов поиска расстояний Левенштейна (только нерекурсивный алгоритм) и Дамерау\,--\,Левенштейна (нерекурсивный, рекурсивный и рекурсивный с кешированием).
+В листингах \ref{lst:lev_mtr}--\ref{lst:dameray_lev_rec_hash} приведены реализации алгоритмов поиска расстояний Левенштейна (только нерекурсивный алгоритм) и \break Дамерау\,--\,Левенштейна (нерекурсивный, рекурсивный и рекурсивный с кешированием).
 
 \begin{lstlisting}[label=lst:lev_mtr,caption=Функция нахождения расстояния Левенштейна с использованием матрицы (начало)]
 int Algs::notRecursiveLev(wstring &word1, wstring &word2, bool print) {
@@ -49,7 +49,9 @@ int Algs::notRecursiveLev(wstring &word1, wstring &word2, bool print) {
             }
         }
     }
+\end{lstlisting}
 
+\begin{lstlisting}[label=lst:lev_mtr,caption=Функция нахождения расстояния Левенштейна с использованием матрицы (конец)]
     if (print)  
         Matrix::print(mtr, word1, word2);
 
@@ -84,7 +86,9 @@ int Algs::notRecursiveDamLev(wstring &word1, wstring &word2, bool print) {
 
                 mtr[i][j] = min(mtr[i - 1][j] + 1, 
                                 min(mtr[i][j - 1] + 1, mtr[i - 1][j - 1] + dif));
+\end{lstlisting}
 
+\begin{lstlisting}[label=lst:dameray_lev_rec,caption=Функция нахождения расстояния Дамерау\,--\,Левенштейна с использованием матрицы (конец)]
                 if (word1[j - 2] == word2[i - 1] && word1[j - 1] == word2[i - 2]) 
                     mtr[i][j] = min(mtr[i][j], mtr[i - 2][j - 2] + 1);
             }
@@ -124,7 +128,7 @@ int Algs::recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
 
 \clearpage
 
-\begin{lstlisting}[label=lst:dameray_lev_rec_hash,caption=Функция нахождения расстояния Дамерау\,--\,Левенштейна рекурсивно c кешированием]
+\begin{lstlisting}[label=lst:dameray_lev_rec_hash,caption=Функция вызова рекурсивного алгоритма c кешированием для поиска расстояния Дамерау\,--\,Левенштейна]
 int Algs::recursiveCash_Decor(wstring& word1, wstring& word2, bool print) {
 
     int len1 = word1.length();
@@ -144,7 +148,11 @@ int Algs::recursiveCash_Decor(wstring& word1, wstring& word2, bool print) {
 
     return res;
 }
+\end{lstlisting}
 
+\clearpage
+
+\begin{lstlisting}[label=lst:dameray_lev_rec_hash,caption=Функция нахождения расстояния Дамерау\,--\,Левенштейна рекурсивно c кешированием]
 int Algs::recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, int** cash) {
 
     if (cash[ind2][ind1])

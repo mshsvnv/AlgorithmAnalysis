@@ -38,11 +38,14 @@ class Graph:
         plt.xlabel("Длина, симв.")
         plt.ylabel("Время, нс.")
 
-        plt.plot(np.log(self.lens[:11]), np.log(self.Rec), color = "red", marker = "+", linestyle = "-")
-        plt.plot(np.log(self.lens[:11]), np.log(self.RecCash[:11]), color = "green", marker = ".", linestyle = ":")
+        plt.plot(self.lens[:11], self.Rec, color = "red", marker = "+", linestyle = "-")
+        plt.plot(self.lens[:11], self.RecCash[:11], color = "green", marker = ".", linestyle = ":")
 
         plt.legend(["Рекурсивный Дамерау-Левенштейн",
                     "Рекурсивный Дамерау-Левенштейн с кешем"])
+        
+        plt.semilogx()
+        plt.semilogy()
 
         plt.show()
 
@@ -76,7 +79,7 @@ class Graph:
 
 if __name__ == "__main__":
 
-    graph = Graph();
+    graph = Graph()
 
     graph.readFile('time.txt')
     graph.buildRecursive()
