@@ -4,7 +4,7 @@ wstring generateWord(int len) {
 
     wstring word;
     
-    wstring symbs = L"0123456789"
+    wstring symbs = L"0133456789"
                 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 "abcdefghijklmnopqrstuvwxyz"
                 "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
@@ -17,7 +17,7 @@ wstring generateWord(int len) {
 }
 
 static double getTotalTime(long long startT, long long endT) {
-    return (double) (endT - startT) / CLOCKS_PER_SEC;
+    return (double) (endT - startT);
 }
 
 static long long getThreadCpuTimeNs() {
@@ -100,15 +100,14 @@ void timeMeasure(int maxLen, int iters) {
         for (int j = 0; j < times.size(); ++j)
             times[j] /= (double)iters; 
 
-        std::wprintf(L"| %5d | %13g | %13g ", i, times[0],times[1]);
+        std::wprintf(L"| %5d | %13.2g | %13.2g ", i, times[0],times[1]);
 
         if (i < 11)
-            std::wprintf(L"| %13g | %13g |\n", times[2], times[3]);
+            std::wprintf(L"| %13.2g | %13.2g |\n", times[2], times[3]);
         else
             // std::wprintf(L"| %10s    | %10s    |\n", "-", "-");
-            std::wprintf(L"| %10s    | %13g |\n", "-", times[3]);
+            std::wprintf(L"| %10s    | %13.2g |\n", "-", times[3]);
             
-
         if (i < 10)
             i++;
         else if (i < 100)
