@@ -1,0 +1,51 @@
+\begin{thebibliography}{1}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\language\csname l@#1\endcsname\fi}
+\ifx\undefined\url\def\url#1{{\small #1}}\else\fi
+\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi
+\ifx\undefined\BibAnnote\long\def\BibAnnote#1{(#1)}\else\fi
+\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi
+
+\bibitem{vinograd-haskell}
+\selectlanguageifdefined{russian}
+С.~Анисимов~Н., В.~Строганов~Ю. Реализация
+  умножения матриц по Винограду на языке
+  Haskell.~// Новые информационные технологии в
+  автоматизированных системах.
+\newblock 2018. URL:  --- Режим доступа:
+  \url{https://cyberleninka.ru/article/n/realizatsiya-algoritma-umnozheniya-matrits-po-vinogradu-na-yazyke-haskell}
+  (дата обращения 22.10.2023).
+
+\bibitem{matrix}
+\selectlanguageifdefined{russian}
+Н.~Канатников~А., П.~Крищенко~А.
+  Аналитическая геометрия. Конспект лекций.
+\newblock 2009.
+\newblock Т.~132.
+
+\bibitem{vinograd-alg}
+\selectlanguageifdefined{russian}
+Головашкин~Д.~Л. Векторные алгоритмы
+  вычислительной линейной алгебры: учеб.
+  пособие.
+\newblock --- Самара: Изд-во Самарского
+  университета, 2019.
+\newblock {--- С.}~28--35.
+
+\bibitem{cpp-lang}
+\selectlanguageifdefined{russian}
+Документация по Microsoft C++ [Электронный
+  ресурс].
+\newblock --- Режим доступа:
+  \url{https://learn.microsoft.com/ru-ru/cpp/?view=msvc-170&viewFallbackFrom=vs-2017}
+  (дата обращения: 25.09.2023).
+
+\bibitem{cpp-lang-time}
+\selectlanguageifdefined{russian}
+C library function clock() [Электронный ресурс].
+\newblock --- Режим доступа:
+  \url{https://www.tutorialspoint.com/c_standard_library/c_function_clock.htm}
+  (дата обращения: 25.09.2023).
+
+\end{thebibliography}
