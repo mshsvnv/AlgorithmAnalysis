@@ -4,7 +4,6 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
-#include <memory>
 
 using namespace std;
 
@@ -17,7 +16,9 @@ public:
     friend ostream& operator<<(ostream& out, const MatrixT& mtr);
 
     int& operator()(const int&, const int&);
-// private:
+
+    void randomFill();
+
     int m_rows, m_columns;
     vector<vector<int>> m_matrix; 
 };

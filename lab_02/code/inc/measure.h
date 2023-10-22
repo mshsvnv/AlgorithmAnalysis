@@ -1,5 +1,11 @@
 #pragma once
+#include <iomanip>
 
-#include <chrono>
+#include "multiply.h"
+
+auto getCPUTime(MatrixT& , MatrixT& , Multiply*);
+long long getThreadCpuTimeNs();
+double getTotalTime(long long startT, long long endT);
 
 void timeMeasure(int iters, int maxAmount);
+

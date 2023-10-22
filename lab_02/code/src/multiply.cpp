@@ -39,7 +39,7 @@ MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
         ratioB.emplace_back(0);
 
         for (int j = 0; j < m2.m_columns / 2; ++j) 
-            ratioA[i] = ratioA[i] +  m2(2 * j, i) * m2(2 * j + 1, i);
+            ratioB[i] = ratioB[i] +  m2(2 * j, i) * m2(2 * j + 1, i);
         
     }
 

@@ -36,7 +36,6 @@ static long long getThreadCpuTimeNs() {
 auto getCPUTime(wstring& word1, wstring& word2, Algs::funcT fptr) {
     
     long long startT, endT;
-    double totalT;
 
     int len1 = word1.length();
     int len2 = word2.length();
@@ -51,7 +50,6 @@ auto getCPUTime(wstring& word1, wstring& word2, Algs::funcT fptr) {
 auto getCPUTime(wstring& word1, wstring& word2, Algs::funcRecT fptr) {
     
     long long startT, endT;
-    double totalT;
 
     int len1 = word1.length();
     int len2 = word2.length();

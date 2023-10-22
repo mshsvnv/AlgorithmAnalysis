@@ -56,10 +56,22 @@ MatrixT::MatrixT(const char* fileName) {
     }
 
     m_rows = rows;
-    m_columns = idx / m_rows;
+
+    if (m_rows)
+        m_columns = idx / m_rows;
 }
 
 int& MatrixT::operator()(const int& i, const int& j) {
     return m_matrix[i][j];
 }
 
+void MatrixT::randomFill() {
+
+    for (int i = 0; i < m_rows; ++i) {
+
+        for (int j = 0; j < m_columns; ++j) {
+            
+            m_matrix[i][j] = rand() % 1000 - 1000;
+        }
+    }
+}
