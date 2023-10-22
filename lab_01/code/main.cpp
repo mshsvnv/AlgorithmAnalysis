@@ -1,4 +1,5 @@
 #include <fcntl.h>
+#include <io.h>
 
 #include "inc/algorithms.h"
 #include "inc/measure.h"
@@ -29,7 +30,10 @@ int menu() {
 
 int main() {
 
-    std::setlocale(LC_ALL, "ru_RU.UTF-8");
+    // std::setlocale(LC_ALL, "ru_RU.UTF-8");
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdin), _O_U16TEXT);
+
 
     wstring word1, word2;
 

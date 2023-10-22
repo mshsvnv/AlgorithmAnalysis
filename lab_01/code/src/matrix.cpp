@@ -19,7 +19,7 @@ int** Matrix::allocate(int rows, int columns, bool fill) {
     if (fill) {
         for (int i = 0; i < rows; ++i)
             for (int j = 0; j < columns; ++j)
-                mtr[i][j] = 0;
+                mtr[i][j] = -1;
     }
 
     return mtr;

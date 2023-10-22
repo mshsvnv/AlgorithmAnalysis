@@ -114,7 +114,7 @@ int Algs::recursiveCash_Decor(wstring& word1, wstring& word2, bool print) {
 
 int Algs::recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, int** cash) {
 
-    if (cash[ind2][ind1])
+    if (cash[ind2][ind1] >= 0)
         return cash[ind2][ind1];
 
     if (min(ind1, ind2) == 0)
