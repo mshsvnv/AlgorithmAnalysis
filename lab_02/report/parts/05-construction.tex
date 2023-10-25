@@ -17,19 +17,17 @@
 \end{itemize}
 
 \section{Разработка алгоритмов}
-TODO
+На рисунке \ref{fig:Stand} представлена схема алгоритма для стандартного умножения.
 
-На вход алгоритмов подаются строки $S_1$ и $S_2$.
+На рисунках \ref{fig:Vinograd1}--\ref{fig:Vinograd2} представлены схемы алгоритма умножения методом Винограда.
 
-На рисунке \ref{fig:Liter} представлена схема алгоритма поиска расстояния Левенштейна.
-
-На рисунках \ref{fig:DLiter}--\ref{fig:DLrechash} представлены схемы алгоритмов поиска Дамерау~---~Левенштейна.
+На рисунках \ref{fig:VinogradOpt1}--\ref{fig:VinogradOpt2} представлены схемы оптимизированного алгоритма умножения методом Винограда.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[height=0.7\textheight, page=1]{img/algorithms.pdf}
-	\caption{Схема нерекурсивного алгоритма нахождения расстояния Левенштейна}
-	\label{fig:Liter}
+	\includegraphics[height=0.9\textheight, page=1]{img/algorithms.pdf}
+	\caption{Схема стандартного алгоритма умножения матриц}
+	\label{fig:Stand}
 \end{figure}
 
 \clearpage
@@ -37,8 +35,8 @@ TODO
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=0.9\textheight, page=2]{img/algorithms.pdf}
-	\caption{Схема нерекурсивного алгоритма нахождения расстояния Дамерау~---~Левенштейна}
-	\label{fig:DLiter}
+	\caption{Схема алгоритма умножения матриц методом Винограда (начало)}
+	\label{fig:Vinograd1}
 \end{figure}
 
 \clearpage
@@ -46,8 +44,8 @@ TODO
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=0.9\textheight, page=3]{img/algorithms.pdf}
-	\caption{Схема рекурсивного алгоритма нахождения расстояния Дамерау~---~Левенштейна}
-	\label{fig:DLrec}
+	\caption{Схема алгоритма умножения матриц методом Винограда (конец)}
+	\label{fig:Vinograd2}
 \end{figure}
 
 \clearpage
@@ -55,21 +53,20 @@ TODO
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=0.9\textheight, page=4]{img/algorithms.pdf}
-	\caption{Схема алгоритма вызова рекурсивного алгоритма нахождения расстояния Дамерау~---~Левенштейна с кешированием}
-	\label{fig:DLrechashDecor}
+	\caption{Схема оптимизированного алгоритма умножения матриц методом Винограда (начало)}
+	\label{fig:VinogradOpt1}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=0.9\textheight, page=5]{img/algorithms.pdf}
-	\caption{Схема рекурсивного алгоритма нахождения расстояния Дамерау~---~Левенштейна с кешированием}
-	\label{fig:DLrechash}
+	\caption{Схема оптимизированного алгоритма умножения матриц методом Винограда (конец)}
+	\label{fig:VinogradOpt2}
 \end{figure}
 
 \clearpage
 
 \section{Описание используемых типов данных}
-
 При реализации алгоритмов будут использованы следующие структуры данных:
 
 \begin{itemize}
@@ -79,6 +76,24 @@ TODO
 \end{itemize}
 
 \section{Модель вычислений для проведения оценки трудоемкости алгоритмов}
+Для последующего вычисления трудоемкости необходимо ввести модель вичислений:
+
+\begin{enumerate}
+	\item операции из списка %\ref{eq:operations1} имеют трудоемкость \textbf{1};
+	\begin{equation}
+		\label{eq:operations1}
+		\begin{gathered}
+			+, -, =, +=, -=, ==, !=, <, >, <=, >=, [], \\ ++, --, \&\&, >>, <<, ||, \&, |
+		\end{gathered}
+	\end{equation}
+	\item операции из списка %\ref{eq:operations1} имеют трудоемкость \textbf{2};
+	% \begin{equation}
+	% 	\label{eq:operations2}
+	% 	*, /, %, *=, /=, %=
+	% \end{equation}
+	\item Трудоемкость условного оператора:
+	\item Трудоемкость цикла:
+\end{enumerate}
 
 \section{Трудоемкость алгоритмов}
 
