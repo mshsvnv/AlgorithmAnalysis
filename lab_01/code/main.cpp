@@ -1,10 +1,10 @@
 #include <fcntl.h>
-// #include <io.h>
+#include <io.h>
 
 #include "inc/algorithms.h"
 #include "inc/measure.h"
 
-#define MAX_LEN 100
+#define MAX_LEN 200
 #define STEP 10
 #define MAX_ITER 1000
 
@@ -30,9 +30,9 @@ int menu() {
 
 int main() {
 
-    std::setlocale(LC_ALL, "ru_RU.UTF-8");
-    // _setmode(_fileno(stdout), _O_U16TEXT);
-    // _setmode(_fileno(stdin), _O_U16TEXT);
+    // std::setlocale(LC_ALL, "ru_RU.UTF-8");
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdin), _O_U16TEXT);
 
 
     wstring word1, word2;
@@ -69,7 +69,7 @@ int main() {
 
         }
         else if (choice == 2) 
-            timeMeasure(200, 1000);
+            timeMeasure(MAX_LEN, MAX_ITER);
         else
             wcout << L"Завершение!\n";
 
