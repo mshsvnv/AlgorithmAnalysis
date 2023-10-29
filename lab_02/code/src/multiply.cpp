@@ -10,7 +10,7 @@ MatrixT Standard::multiply(MatrixT& m1, MatrixT& m2) {
             
             for (int k = 0; k < m1.m_columns; ++k) {
 
-                res(i, j) += m1(i, k) * m2(k, j);
+                res(i, j) = res(i, j) + m1(i, k) * m2(k, j);
             }
         }
     }
@@ -20,26 +20,26 @@ MatrixT Standard::multiply(MatrixT& m1, MatrixT& m2) {
 
 MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
 
-    vector<int> ratioA;
-    vector<int> ratioB;
+    vector<int> mulH;
+    vector<int> mulV;
 
     MatrixT res{m1.m_rows, m2.m_columns};
 
     for (int i = 0; i < m1.m_rows; ++i) {
 
-        ratioA.emplace_back(0);
+        mulH.emplace_back(0);
 
         for (int j = 0; j < m1.m_columns / 2; ++j) 
-            ratioA[i] = ratioA[i] + m1(i, 2 * j) * m1(i, 2 * j + 1); 
+            mulH[i] = mulH[i] + m1(i, 2 * j) * m1(i, 2 * j + 1); 
         
     }
 
     for (int i = 0; i < m1.m_rows; ++i) {
 
-        ratioB.emplace_back(0);
+        mulV.emplace_back(0);
 
         for (int j = 0; j < m2.m_columns / 2; ++j) 
-            ratioB[i] = ratioB[i] +  m2(2 * j, i) * m2(2 * j + 1, i);
+            mulV[i] = mulV[i] +  m2(2 * j, i) * m2(2 * j + 1, i);
         
     }
 
@@ -47,7 +47,7 @@ MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
 
         for (int j = 0; j < m2.m_columns; ++j) {
             
-            res(i, j) = -ratioA[i] - ratioB[j];
+            res(i, j) = -mulH[i] - mulV[j];
 
             for (int k = 0; k < m1.m_columns / 2; ++k) {
 
@@ -78,26 +78,26 @@ MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
 
     int stepHalf = m1.m_columns / 2;
 
-    vector<int> ratioA;
-    vector<int> ratioB;
+    vector<int> mulH;
+    vector<int> mulV;
 
     MatrixT res{m1.m_rows, m2.m_columns};
 
     for (int i = 0; i < m1.m_rows; ++i) {
 
-        ratioA.emplace_back(0);
+        mulH.emplace_back(0);
 
         for (int j = 0; j < stepHalf; ++j) 
-            ratioA[i] += m1(i, j << 1) * m1(i, (j << 1) + 1); 
+            mulH[i] += m1(i, j << 1) * m1(i, (j << 1) + 1); 
         
     }
 
     for (int i = 0; i < m2.m_rows; ++i) {
 
-        ratioB.emplace_back(0);
+        mulV.emplace_back(0);
 
         for (int j = 0; j < stepHalf; ++j) 
-            ratioB[i] += m2(j << 1, i) * m2((j << 1) + 1, i);
+            mulV[i] += m2(j << 1, i) * m2((j << 1) + 1, i);
         
     }
 
@@ -105,12 +105,12 @@ MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
 
         for (int j = 0; j < m2.m_columns; ++j) {
             
-            int buf = -ratioA[i] - ratioB[j];
+            int buf = -mulH[i] - mulV[j];
 
             for (int k = 0; k < stepHalf; ++k) {
                 
                 int curK = k << 1;
-                
+
                 buf += (m1(i, curK) + m2(curK + 1, j)) * 
                              (m1(i, curK + 1) + m2(curK, j));
             

@@ -37,16 +37,16 @@ auto getCPUTime(MatrixT& mtr1, MatrixT& mtr2, Multiply* mul) {
 }
 
 
-void timeMeasure(int iters, int maxAmount) {
+void timeMeasure(int step, int iters, int maxAmount) {
 
     printHead();
     srand(time(NULL));
 
-    int step = 1, base = 10;
+    int base = 10;
 
     vector<Multiply*> muls{new Standard, new Vinograd, new VinogradOpt};
 
-    for (int i = step; i < maxAmount;) {
+    for (int i = step; i <= step + maxAmount;) {
 
         vector<double> times(3, 0);
 
@@ -72,9 +72,6 @@ void timeMeasure(int iters, int maxAmount) {
 
         cout << "+-------------------------------------------------------------------+\n";
 
-        if (i >= step * base) 
-            step *= base;
-        
-        i += step;   
+        i += base;   
     }
 }

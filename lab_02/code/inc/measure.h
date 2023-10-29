@@ -7,5 +7,5 @@ auto getCPUTime(MatrixT& , MatrixT& , Multiply*);
 long long getThreadCpuTimeNs();
 double getTotalTime(long long startT, long long endT);
 
-void timeMeasure(int iters, int maxAmount);
+void timeMeasure(int step, int iters, int maxAmount);
 

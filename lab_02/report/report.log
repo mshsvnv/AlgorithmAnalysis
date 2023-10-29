@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  29 OCT 2023 14:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  29 OCT 2023 21:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -896,17 +896,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count340
 \l__pdf_internal_box=\box80
-) (report.aux (parts/01-title.aux) (parts/02-contents.aux) (parts/03-introduction.aux) (parts/04-analysis.aux) (parts/05-construction.aux) (parts/06-technological.aux
-
-LaTeX Warning: Label `lst:lev_mtr' multiply defined.
-
-
-LaTeX Warning: Label `lst:dameray_lev_rec' multiply defined.
-
-
-LaTeX Warning: Label `lst:dameray_lev_rec_hash' multiply defined.
-
-) (parts/07-research.aux) (parts/08-conclusion.aux) (parts/lib.aux))
+) (report.aux (parts/01-title.aux) (parts/02-contents.aux) (parts/03-introduction.aux) (parts/04-analysis.aux) (parts/05-construction.aux) (parts/06-technological.aux) (parts/07-research.aux) (parts/08-conclusion.aux) (parts/lib.aux))
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -1039,7 +1029,7 @@ Package geometry Warning: `pdftex': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<img/mgtu_logo.png, id=103, 2007.5pt x 2368.85pt>
+<img/mgtu_logo.png, id=107, 2007.5pt x 2368.85pt>
 File: img/mgtu_logo.png Graphic file (type png)
 <use img/mgtu_logo.png>
 Package pdftex.def Info: img/mgtu_logo.png  used on input line 10.
@@ -1174,7 +1164,7 @@ File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=217, page=1, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=222, page=1, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 1>
 Package pdftex.def Info: img/algorithms.pdf , page1 used on input line 28.
@@ -1190,7 +1180,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ] [9 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=251, page=2, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=256, page=2, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 2>
 Package pdftex.def Info: img/algorithms.pdf , page2 used on input line 37.
@@ -1201,7 +1191,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [10 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=276, page=3, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=281, page=3, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 3>
 Package pdftex.def Info: img/algorithms.pdf , page3 used on input line 46.
@@ -1212,7 +1202,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [11 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=290, page=4, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=295, page=4, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 4>
 Package pdftex.def Info: img/algorithms.pdf , page4 used on input line 55.
@@ -1223,7 +1213,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [12 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=315, page=5, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=320, page=5, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 5>
 Package pdftex.def Info: img/algorithms.pdf , page5 used on input line 64.
@@ -1247,63 +1237,77 @@ Overfull \hbox (14.8093pt too wide) in paragraph at lines 126--128
 []\T2A/cmr/m/n/14.4 При вы-чис-ле-нии тру-до-ем-ко-сти ал-го-рит-ма Ви-но-гра-да необ-хо-ди-мо учесть
  []
 
-[15]) [16]
+[15] [16])
+Overfull \hbox (2.8517pt too wide) in paragraph at lines 225--12
+\T2A/cmr/m/n/14.4 ана-ли-ти-че-ском раз-де-ле, бы-ли по-стро-е-ны схе-мы ал-го-рит-мов умно-же-ния мат-
+ []
+
+[17] [18]
 \openout2 = `parts/06-technological.aux'.
 
  (parts/06-technological.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 3.
 
-Overfull \hbox (7.21185pt too wide) in paragraph at lines 7--8
+Overfull \hbox (7.21185pt too wide) in paragraph at lines 14--15
 []\T2A/cmr/m/n/14.4 Для ре-а-ли-за-ции дан-ной ла-бо-ра-тор-ной ра-бо-ты был вы-бран язык \T2A/cmtt/m/n/14.4 C++ \T2A/cmr/m/n/14.4 [[]],
  []
 
-[17
+[19
 
 
 
 
 ]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 26.
-LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 26.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 36.
+LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 36.
  (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmss.fd
 File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
-LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 32.
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 44.
  (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [18{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [19] [20] [21
+) [20{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [21
 
 ] [22
 
 ] [23
 
-])
-Overfull \hbox (8.36989pt too wide) in paragraph at lines 225--13
+]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[24
+
+] [25])
+Overfull \hbox (8.36989pt too wide) in paragraph at lines 351--13
 \T2A/cmr/m/n/14.4 Ле-вен-штей-на ите-ра-тив-но, а так-же по-ис-ка рас-сто-я-ния Да-ме-рау^^UЛевенштейна
  []
 
-[24
+[26
 
 ]
 \openout2 = `parts/07-research.aux'.
 
  (parts/07-research.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 4.
-[25
+[27
 
 
 
 
 ]
-<img/prog_work.png, id=550, 323.70938pt x 489.83pt>
+<img/prog_work.png, id=548, 323.70938pt x 489.83pt>
 File: img/prog_work.png Graphic file (type png)
 <use img/prog_work.png>
 Package pdftex.def Info: img/prog_work.png  used on input line 21.
 (pdftex.def)             Requested size: 338.27982pt x 511.86285pt.
- [26
+ [28
 
  <./img/prog_work.png>]
-<img/figures.pdf, id=557, page=1, 462.52798pt x 346.89601pt>
+<img/figures.pdf, id=555, page=1, 462.52798pt x 346.89601pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 1>
 Package pdftex.def Info: img/figures.pdf , page1 used on input line 41.
@@ -1313,7 +1317,7 @@ Overfull \hbox (18.0473pt too wide) in paragraph at lines 41--42
  [][] 
  []
 
-<img/figures.pdf, id=559, page=2, 510.22621pt x 354.12299pt>
+<img/figures.pdf, id=557, page=2, 510.22621pt x 354.12299pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 2>
 Package pdftex.def Info: img/figures.pdf , page2 used on input line 49.
@@ -1323,10 +1327,10 @@ Overfull \hbox (57.35297pt too wide) in paragraph at lines 49--50
  [][] 
  []
 
-[27
+[29
 
  <./img/figures.pdf>]
-<img/figures.pdf, id=605, page=3, 462.52798pt x 346.89601pt>
+<img/figures.pdf, id=603, page=3, 462.52798pt x 346.89601pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 3>
 Package pdftex.def Info: img/figures.pdf , page3 used on input line 57.
@@ -1336,7 +1340,7 @@ Overfull \hbox (18.0473pt too wide) in paragraph at lines 57--58
  [][] 
  []
 
-[28 <./img/figures.pdf>] [29 <./img/figures.pdf>]
+[30 <./img/figures.pdf>] [31 <./img/figures.pdf>]
 
 LaTeX Warning: Command \cyrb invalid in math mode on input line 91.
 
@@ -1353,10 +1357,10 @@ Missing character: There is no б in font cmr12!
 Missing character: There is no а in font cmr12!
 Missing character: There is no й in font cmr12!
 Missing character: There is no т in font cmr12!
-[30]) [31]
+[32]) [33]
 \openout2 = `parts/08-conclusion.aux'.
 
- (parts/08-conclusion.tex) [32
+ (parts/08-conclusion.tex) [34
 
 
 
@@ -1369,7 +1373,7 @@ Overfull \hbox (86.51028pt too wide) in paragraph at lines 12--19
 \T2A/cmtt/m/n/14.4 realizatsiya-[]algoritma-[]umnozheniya-[]matrits-[]po-[]vinogradu-[]na-[]yazyke-[]haskell$[] 
  []
 
-)) [33
+)) [35
 
 
 
@@ -1381,25 +1385,21 @@ enddocument/afterlastpage: lastpage setting LastPage.
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 980CF05D3BEDA416D2C2A72F390A92C5;5675.
+(rerunfilecheck)             Checksum: AF87DEA3163C52563D530A251F6104F2;5850.
  ) 
 Here is how much of TeX's memory you used:
- 39310 strings out of 475247
- 916423 string characters out of 5757792
- 2017785 words of memory out of 5000000
- 59833 multiletter control sequences out of 15000+600000
+ 39274 strings out of 475247
+ 915801 string characters out of 5757792
+ 2021785 words of memory out of 5000000
+ 59814 multiletter control sequences out of 15000+600000
  577459 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,14n,106p,866b,2083s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,15n,106p,866b,1550s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on report.pdf (33 pages, 1254211 bytes).
+Output written on report.pdf (35 pages, 1255051 bytes).
 PDF statistics:
- 858 PDF objects out of 1000 (max. 8388607)
- 256 named destinations out of 1000 (max. 500000)
- 275 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 852 PDF objects out of 1000 (max. 8388607)
+ 239 named destinations out of 1000 (max. 500000)
+ 283 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -5,75 +5,345 @@
 К программе предъявлен ряд требований:
 \begin{itemize}
     \item входными данными являются две матрицы, каждя из которых хранится в файле, с расширением \texttt{*.txt};
-    \item результат выполнения программы~---матрица, полученная в результате умножения введенных матриц;
+    \item результат выполнения программы~--- матрица, полученная в результате умножения введенных матриц;
     \item возможность произвести замеры процессорного времени выполнения реализованных алгоритмов.
 \end{itemize}
 
 \section{Средства реализации}
-
 Для реализации данной лабораторной работы был выбран язык \texttt{C++}~\cite{cpp-lang}, так как в нем есть стандартная библиотека \texttt{ctime}~\cite{cpp-lang-time}, которая позволяет производить замеры процессорного времени выполнения программы;
 
 В качестве среды разработки был выбран \textit{Visual Studio Code}: он является кроссплатформенным и предоставляет полный функционал для проектирования и отладки кода.
  
 \section{Сведения о модулях программы}
-
 Данная программа разбита на следующие модули:
 
 \begin{itemize}
-	\item \texttt{main.cpp}~--- файл, содержащий точку входа в программу, из которой происходит вызов алгоритмов по разработанному интерфейсу;
-	\item \texttt{algorithms.cpp}~--- файл содержит функции поиска расстояния Левенштейна и Дамерау~---~Левенштейна;
-	\item \texttt{matrix.cpp}~--- файл содержит функции динамического выделения и очищения памяти для матрицы, а так же ее вывод на экран;
+	\item \texttt{main.cpp}~--- файл содержит точку входа в программу, из которой происходит вызов алгоритмов по разработанному интерфейсу;
+	\item \texttt{matrix.cpp}~--- файл содержит реализацию класса \texttt{MatrixT};
+	\item \texttt{multiply.cpp}~--- файл содержит функции умножения матриц;
 	\item \texttt{measure.cpp}~--- файл содержит функции, замеряющие процессорное время выполнения алгоритмов поиска расстояния Левенштейна и Дамерау~---~Левенштейна;
 \end{itemize}
 
 \section{Реализация алгоритмов}
+В листинге \ref{lst:std} приведена реализация алгоритма стандартного умножения матриц.
 
-В листингах \ref{}--\ref{} приведены реализации алгоритма стандартного умножения матриц.
+В листинге \ref{lst:vin_1}--\ref{lst:vin_2} приведена реализация алгоритма умножения матриц методом Винограда.
 
-В листингах \ref{}--\ref{} приведены реализации алгоритма умножения матриц методом Винограда.
+В листингу \ref{lst:vin_opt_1}--\ref{lst:vin_opt_2} приведена реализация оптимизированного алгоритма умножения матриц методом Винограда.
 
-В листингах \ref{}--\ref{} приведены реализации оптимизированного алгоритма умножения матриц методом Винограда.
+\begin{lstlisting}[label=lst:std, caption=Функция стандартного умножения матриц]
+MatrixT Standard::multiply(MatrixT& m1, MatrixT& m2) {
+
+    MatrixT res{m1.m_rows, m2.m_columns};
+
+    for (int i = 0; i < m1.m_rows; ++i) {
+        for (int j = 0; j < m2.m_columns; ++j) {
+            for (int k = 0; k < m1.m_columns; ++k) {
+                res(i, j) += m1(i, k) * m2(k, j);
+            }
+        }
+    }
+
+    return res;
+}    
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:vin_1, caption=Функция умножения матриц методом Винограда (часть 1)]
+MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
+
+    vector<int> mulH;
+    vector<int> mulV;
+    MatrixT res{m1.m_rows, m2.m_columns};
+
+    for (int i = 0; i < m1.m_rows; ++i) {
+        mulH.emplace_back(0);
+
+        for (int j = 0; j < m1.m_columns / 2; ++j) 
+            mulH[i] = mulH[i] + m1(i, 2 * j) * m1(i, 2 * j + 1); 
+    }
+
+    for (int i = 0; i < m1.m_rows; ++i) {
+        mulV.emplace_back(0);
+
+        for (int j = 0; j < m2.m_columns / 2; ++j) 
+            mulV[i] = mulV[i] +  m2(2 * j, i) * m2(2 * j + 1, i);
+        
+    }
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:vin_2, caption=Функция умножения матриц методом Винограда (часть 2)]
+
+    for (int i = 0; i < m1.m_rows; ++i) {
+        for (int j = 0; j < m2.m_columns; ++j) {
+
+            res(i, j) = -mulH[i] - mulV[j];
+
+            for (int k = 0; k < m1.m_columns / 2; ++k) {
+                res(i, j) = res(i, j) + (m1(i, 2 * k) + m2(2 * k + 1, j)) * (m1(i, 2 * k + 1) + m2(2 * k, j));
+            
+            }
+        }
+    }
+
+    if (m1.m_rows % 2) {
+        for (int i = 0; i < m1.m_rows; ++i) {
+            for (int j = 0; j < m2.m_columns; ++j) {  
+                res(i, j) = res(i, j) + m1(i, m1.m_columns - 1) * m2(m2.m_rows - 1, j);
+            }
+        }
+    }
+
+    return res;    
+}
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:vin_opt_1, caption=Функция умножения матриц оптимизированным методом Винограда (часть 1)]
+MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
+
+    int stepHalf = m1.m_columns / 2;
+
+    vector<int> mulH;
+    vector<int> mulV;
+    MatrixT res{m1.m_rows, m2.m_columns};
+
+    for (int i = 0; i < m1.m_rows; ++i) {
+        mulH.emplace_back(0);
+
+        for (int j = 0; j < stepHalf; ++j) 
+            mulH[i] += m1(i, j << 1) * m1(i, (j << 1) + 1); 
+    }
+
+    for (int i = 0; i < m2.m_rows; ++i) {
+        mulV.emplace_back(0);
+
+        for (int j = 0; j < stepHalf; ++j) 
+            mulV[i] += m2(j << 1, i) * m2((j << 1) + 1, i);
+        
+    }
+\end{lstlisting}
+
+\clearpage
+
+\begin{lstlisting}[label=lst:vin_opt_2, caption=Функция умножения матриц оптимизированным методом Винограда (часть 2)]
+
+    for (int i = 0; i < m1.m_rows; ++i) {
+        for (int j = 0; j < m2.m_columns; ++j) {
+
+            int buf = -mulH[i] - mulV[j];
+            for (int k = 0; k < stepHalf; ++k) {
+
+                int curK = k << 1;
+                buf += (m1(i, curK) + m2(curK + 1, j)) * (m1(i, curK + 1) + m2(curK, j));
+            }
+            res(i, j) = buf;
+        }
+    }
+
+    if (m1.m_rows % 2) {
+        for (int i = 0; i < m1.m_rows; ++i) {
+            for (int j = 0; j < m2.m_columns; ++j) {                 
+                res(i, j) += m1(i, m1.m_columns - 1) * m2(m2.m_rows - 1, j);
+            }
+        }
+    }
+
+    return res;
+} 
+\end{lstlisting}
 
 \section{Функциональные тесты}
+В таблице \ref{tbl:func_test_std} приведены тесты для функции, реализующей алгоритм стандартного умножения матриц.
 
-\begin{table}[ht]
-	\small
-	\begin{center}
-		\begin{threeparttable}
-		\caption{Функциональные тесты}
-		\label{tbl:func_tests}
-		\begin{tabular}{|c|c|c|c|c|c|}
-			\hline
-			\multicolumn{2}{|c|}{\bfseries Входные данные}
-			& \multicolumn{4}{c|}{\bfseries Расстояние и алгоритм} \\ 
-			\hline 
-			&
-			& \multicolumn{1}{c|}{\bfseries Левенштейна} 
-			& \multicolumn{3}{c|}{\bfseries Дамерау~---~Левенштейна} \\ \cline{3-6}
-			
-			\bfseries Строка 1 & \bfseries Строка 2 & \bfseries Итеративный & \bfseries Итеративный
-			
-			& \multicolumn{2}{c|}{\bfseries Рекурсивный} \\ \cline{5-6}
-			& & & & \bfseries Без кеша & \bfseries С кешем \\
-			\hline
-			a & b & 1 & 1 & 1 & 1 \\
-			\hline
-			a & a & 0 & 0 & 0 & 0 \\
-			\hline
-			кот & скат & 2 & 2 & 2 & 2 \\
-			\hline
-			кот & кто & 2 & 1 & 1 & 1 \\
-			\hline
-			Австралия & Австрия & 2 & 2 & 2 & 2 \\
-			\hline
-			кот & ток & 2 & 2 & 2 & 2 \\
-			\hline
-			слон & слоны & 1 & 1 & 1 & 1 \\
-			\hline
-		\end{tabular}	
-		\end{threeparttable}
-	\end{center}
+В таблице \ref{tbl:func_test_vin} приведены тесты для функциq, реализующих алгоритмы умножения матриц методом Винограда.
+
+\begin{table}[h!]
+    \caption{Функциональные тесты для стандартного алгоритма умножения матриц}
+    \label{tbl:func_test_std}
+    \centering
+        \begin{tabular}{||c c c||} 
+        \hline
+        Матрица 1& Матрица 2& Ожидаемый результат \\
+        \hline\hline
+        $\begin{pmatrix}
+            1 & 2\\
+            3 & 4\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            &
+        \end{pmatrix}$
+        &
+        \textit{Неверный размер} \\
+        \hline
+        $\begin{pmatrix}
+            1 & 2\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            3 & 4\\
+        \end{pmatrix}$
+        &
+        \textit{Неверный размер} \\
+        \hline
+        $\begin{pmatrix}
+            1
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1
+        \end{pmatrix}$
+        &
+        $\begin{pmatrix}
+            1
+        \end{pmatrix}$ \\
+        \hline
+        $\begin{pmatrix}
+            1 & 1 & 1\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1\\
+            1\\
+            1\\
+        \end{pmatrix}$
+        &
+        $\begin{pmatrix}
+            3
+        \end{pmatrix}$ \\
+        \hline
+        $\begin{pmatrix}
+            5 & 6 & 7\\
+            4 & 9 & 8\\
+            3 & 2 & 1\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1 & 0 & 0\\
+            0 & 1 & 0\\
+            0 & 0 & 1\\
+        \end{pmatrix}$
+        &
+        $\begin{pmatrix}
+            5 & 6 & 7\\
+            4 & 9 & 8\\
+            3 & 2 & 1\\
+        \end{pmatrix}$ \\
+        \hline
+        $\begin{pmatrix}
+            5 & 6 & 7\\
+            4 & 9 & 8\\
+            3 & 2 & 1\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1 & 0\\
+            0 & 1\\
+            0 & 0\\
+        \end{pmatrix}$
+        &
+        $\begin{pmatrix}
+            5 & 6\\
+            4 & 9\\
+            3 & 2\\
+        \end{pmatrix}$ \\
+        \hline
+        \end{tabular}
 \end{table}
 
+\begin{table}[h!]
+    \caption{Функциональные тесты для алгоритма умножения матриц методом Винограда}
+    \label{tbl:func_test_vin}
+    \centering
+        \begin{tabular}{||c c c||} 
+        \hline
+        Матрица 1& Матрица 2& Ожидаемый результат \\
+        \hline\hline
+        $\begin{pmatrix}
+            1 & 2\\
+            3 & 4\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            &
+        \end{pmatrix}$
+        &
+        \textit{Неверный размер} \\
+        \hline
+        $\begin{pmatrix}
+            1 & 2\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            3 & 4\\
+        \end{pmatrix}$
+        &
+        \textit{Неверный размер} \\
+        \hline
+        $\begin{pmatrix}
+            1
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1
+        \end{pmatrix}$
+        &
+        $\begin{pmatrix}
+            1
+        \end{pmatrix}$ \\
+        \hline
+        $\begin{pmatrix}
+            1 & 1 & 1\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1\\
+            1\\
+            1\\
+        \end{pmatrix}$
+        & \textit{Неверный размер} \\
+        \hline
+        $\begin{pmatrix}
+            5 & 6 & 7\\
+            4 & 9 & 8\\
+            3 & 2 & 1\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1 & 0 & 0\\
+            0 & 1 & 0\\
+            0 & 0 & 1\\
+        \end{pmatrix}$
+        &
+        $\begin{pmatrix}
+            5 & 6 & 7\\
+            4 & 9 & 8\\
+            3 & 2 & 1\\
+        \end{pmatrix}$ \\
+        \hline
+        $\begin{pmatrix}
+            5 & 6 & 7\\
+            4 & 9 & 8\\
+            3 & 2 & 1\\
+        \end{pmatrix}$ 
+        &  
+        $\begin{pmatrix}
+            1 & 0\\
+            0 & 1\\
+            0 & 0\\
+        \end{pmatrix}$
+        & \textit{Неверный размер} \\
+        \hline
+        \end{tabular}
+\end{table}
+
+\clearpage
+
 \section*{Вывод}
-Были реализованы и протестированы алгоритмы поиска расстояния Левенштейна итеративно, а также поиска расстояния Дамерау–Левенштейна итеративно, рекурсивно и рекурсивного с кеширования. Проведено тестирование реализаций алгоритмов.
+Были представлены листинги функций, реализующих стандартный алгоритм умножения матриц, алгоритм Винограда и оптимизированный алгоритм Винограда.
+Также в данном разделе была представлена информация о выбранных средствах для разработки алгоритмов.

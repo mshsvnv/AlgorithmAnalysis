@@ -2,7 +2,7 @@
 #include "inc/multiply.h"
 #include "inc/measure.h"
 
-#define MAX_AMOUNT 1000
+#define MAX_AMOUNT 100
 #define ITERS 100
 
 int menu() {
@@ -31,30 +31,34 @@ int main() {
 
     while (choice) {
 
-        bool mul = false;
+        bool mul = true;
 
-        if (choice == 4)
-            timeMeasure(ITERS, MAX_AMOUNT);
+        if (choice == 4) {
+            timeMeasure(0, ITERS, MAX_AMOUNT);
+            timeMeasure(1, ITERS, MAX_AMOUNT);
+        }
         else {
-            MatrixT mtr1("../data/mtr1.txt");
-            MatrixT mtr2("../data/mtr2.txt");
+            MatrixT mtr1("../code/data/mtr1.txt");
+            MatrixT mtr2("../code/data/mtr2.txt");
 
             if (mtr1.m_columns * mtr1.m_rows * mtr2.m_columns * mtr2.m_rows == 0) {
                 cout << "Некорректный размер матрицы!" << endl;
             }
             else if (choice == 1) {
 
-                if (mtr1.m_columns != mtr2.m_rows) 
+                if (mtr1.m_columns != mtr2.m_rows) { 
                     cout << "Количество столбцов первой матрицы не совпадает с количеством строк второй!";
+                    mul = false;
+                }
             }
             else if (choice == 2 || choice == 3) {
              
-                if (!(mtr1.m_rows == mtr1.m_columns && mtr2.m_rows == mtr2.m_columns && mtr1.m_rows == mtr2.m_columns)) 
+                if (!(mtr1.m_rows == mtr1.m_columns && mtr2.m_rows == mtr2.m_columns && mtr1.m_rows == mtr2.m_columns)) {
                     cout << "Методом Винограда можно умножать только квадратные матрицы!";
+                    mul = false;
+                }
             }
-            else
-                mul = true;
-
+            
             if (mul) {
                 MatrixT res = (muls[choice - 1])->multiply(mtr1, mtr2);
 
