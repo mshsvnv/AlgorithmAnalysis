@@ -60,7 +60,7 @@ int Algs::notRecursiveDamLev(wstring &word1, wstring &word2, bool print) {
                 mtr[i][j] = min(mtr[i - 1][j] + 1, 
                                 min(mtr[i][j - 1] + 1, mtr[i - 1][j - 1] + dif));
 
-                if (word1[j - 2] == word2[i - 1] && word1[j - 1] == word2[i - 2]) 
+                if (i > 1 && j > 1 && word1[j - 2] == word2[i - 1] && word1[j - 1] == word2[i - 2]) 
                     mtr[i][j] = min(mtr[i][j], mtr[i - 2][j - 2] + 1);
             }
         }
