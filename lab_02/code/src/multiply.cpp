@@ -105,14 +105,18 @@ MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
 
         for (int j = 0; j < m2.m_columns; ++j) {
             
-            res(i, j) = -ratioA[i] - ratioB[j];
+            int buf = -ratioA[i] - ratioB[j];
 
             for (int k = 0; k < stepHalf; ++k) {
-
-                res(i, j) += (m1(i, k << 1) + m2((k << 1) + 1, j)) * 
-                             (m1(i, (k << 1) + 1) + m2(k << 1, j));
+                
+                int curK = k << 1;
+                
+                buf += (m1(i, curK) + m2(curK + 1, j)) * 
+                             (m1(i, curK + 1) + m2(curK, j));
             
             }
+
+            res(i, j) = buf;
         }
     }
 

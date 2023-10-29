@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  23 OCT 2023 10:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  29 OCT 2023 14:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1039,7 +1039,7 @@ Package geometry Warning: `pdftex': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<img/mgtu_logo.png, id=107, 2007.5pt x 2368.85pt>
+<img/mgtu_logo.png, id=103, 2007.5pt x 2368.85pt>
 File: img/mgtu_logo.png Graphic file (type png)
 <use img/mgtu_logo.png>
 Package pdftex.def Info: img/mgtu_logo.png  used on input line 10.
@@ -1174,7 +1174,7 @@ File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=222, page=1, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=217, page=1, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 1>
 Package pdftex.def Info: img/algorithms.pdf , page1 used on input line 28.
@@ -1190,7 +1190,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 ] [9 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=256, page=2, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=251, page=2, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 2>
 Package pdftex.def Info: img/algorithms.pdf , page2 used on input line 37.
@@ -1201,7 +1201,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [10 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=281, page=3, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=276, page=3, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 3>
 Package pdftex.def Info: img/algorithms.pdf , page3 used on input line 46.
@@ -1212,7 +1212,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [11 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=295, page=4, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=290, page=4, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 4>
 Package pdftex.def Info: img/algorithms.pdf , page4 used on input line 55.
@@ -1220,28 +1220,34 @@ Package pdftex.def Info: img/algorithms.pdf , page4 used on input line 55.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
+[12 <./img/algorithms.pdf>]
 
 pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=296, page=5, 597.19106pt x 846.0408pt>
+<img/algorithms.pdf, id=315, page=5, 597.19106pt x 846.0408pt>
 File: img/algorithms.pdf Graphic file (type pdf)
 <use img/algorithms.pdf, page 5>
-Package pdftex.def Info: img/algorithms.pdf , page5 used on input line 62.
+Package pdftex.def Info: img/algorithms.pdf , page5 used on input line 64.
 (pdftex.def)             Requested size: 464.54965pt x 658.10779pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12 <./img/algorithms.pdf>] [13 <./img/algorithms.pdf>]
-Overfull \hbox (30.09239pt too wide) in paragraph at lines 78--78
+[13 <./img/algorithms.pdf>]
+Overfull \hbox (30.09239pt too wide) in paragraph at lines 71--71
  |[]\T2A/cmr/bx/n/20.74 Модель вы-чис-ле-ний для про-ве-де-ния оцен-
  []
 
-) [14
+[14
 
 
 
 
-] [15]
+
+]
+Overfull \hbox (14.8093pt too wide) in paragraph at lines 126--128
+[]\T2A/cmr/m/n/14.4 При вы-чис-ле-нии тру-до-ем-ко-сти ал-го-рит-ма Ви-но-гра-да необ-хо-ди-мо учесть
+ []
+
+[15]) [16]
 \openout2 = `parts/06-technological.aux'.
 
  (parts/06-technological.tex
@@ -1251,7 +1257,7 @@ Overfull \hbox (7.21185pt too wide) in paragraph at lines 7--8
 []\T2A/cmr/m/n/14.4 Для ре-а-ли-за-ции дан-ной ла-бо-ра-тор-ной ра-бо-ты был вы-бран язык \T2A/cmtt/m/n/14.4 C++ \T2A/cmr/m/n/14.4 [[]],
  []
 
-[16
+[17
 
 
 
@@ -1265,39 +1271,39 @@ File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 32.
  (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [17{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [18] [19] [20
-
-] [21
+) [18{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [19] [20] [21
 
 ] [22
+
+] [23
 
 ])
 Overfull \hbox (8.36989pt too wide) in paragraph at lines 225--13
 \T2A/cmr/m/n/14.4 Ле-вен-штей-на ите-ра-тив-но, а так-же по-ис-ка рас-сто-я-ния Да-ме-рау^^UЛевенштейна
  []
 
-[23
+[24
 
 ]
 \openout2 = `parts/07-research.aux'.
 
  (parts/07-research.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 4.
-[24
+[25
 
 
 
 
 ]
-<img/prog_work.png, id=532, 323.70938pt x 489.83pt>
+<img/prog_work.png, id=550, 323.70938pt x 489.83pt>
 File: img/prog_work.png Graphic file (type png)
 <use img/prog_work.png>
 Package pdftex.def Info: img/prog_work.png  used on input line 21.
 (pdftex.def)             Requested size: 338.27982pt x 511.86285pt.
- [25
+ [26
 
  <./img/prog_work.png>]
-<img/figures.pdf, id=540, page=1, 462.52798pt x 346.89601pt>
+<img/figures.pdf, id=557, page=1, 462.52798pt x 346.89601pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 1>
 Package pdftex.def Info: img/figures.pdf , page1 used on input line 41.
@@ -1307,7 +1313,7 @@ Overfull \hbox (18.0473pt too wide) in paragraph at lines 41--42
  [][] 
  []
 
-<img/figures.pdf, id=542, page=2, 510.22621pt x 354.12299pt>
+<img/figures.pdf, id=559, page=2, 510.22621pt x 354.12299pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 2>
 Package pdftex.def Info: img/figures.pdf , page2 used on input line 49.
@@ -1317,10 +1323,10 @@ Overfull \hbox (57.35297pt too wide) in paragraph at lines 49--50
  [][] 
  []
 
-[26
+[27
 
  <./img/figures.pdf>]
-<img/figures.pdf, id=588, page=3, 462.52798pt x 346.89601pt>
+<img/figures.pdf, id=605, page=3, 462.52798pt x 346.89601pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 3>
 Package pdftex.def Info: img/figures.pdf , page3 used on input line 57.
@@ -1330,7 +1336,7 @@ Overfull \hbox (18.0473pt too wide) in paragraph at lines 57--58
  [][] 
  []
 
-[27 <./img/figures.pdf>] [28 <./img/figures.pdf>]
+[28 <./img/figures.pdf>] [29 <./img/figures.pdf>]
 
 LaTeX Warning: Command \cyrb invalid in math mode on input line 91.
 
@@ -1347,10 +1353,10 @@ Missing character: There is no б in font cmr12!
 Missing character: There is no а in font cmr12!
 Missing character: There is no й in font cmr12!
 Missing character: There is no т in font cmr12!
-[29]) [30]
+[30]) [31]
 \openout2 = `parts/08-conclusion.aux'.
 
- (parts/08-conclusion.tex) [31
+ (parts/08-conclusion.tex) [32
 
 
 
@@ -1363,7 +1369,7 @@ Overfull \hbox (86.51028pt too wide) in paragraph at lines 12--19
 \T2A/cmtt/m/n/14.4 realizatsiya-[]algoritma-[]umnozheniya-[]matrits-[]po-[]vinogradu-[]na-[]yazyke-[]haskell$[] 
  []
 
-)) [32
+)) [33
 
 
 
@@ -1380,20 +1386,20 @@ L3 programming layer <2023-08-29>
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 41C710B4CEDFFBF5D5A9944069FC7B12;6002.
+(rerunfilecheck)             Checksum: 980CF05D3BEDA416D2C2A72F390A92C5;5675.
  ) 
 Here is how much of TeX's memory you used:
- 39294 strings out of 475247
- 916191 string characters out of 5757792
+ 39310 strings out of 475247
+ 916423 string characters out of 5757792
  2017785 words of memory out of 5000000
- 59829 multiletter control sequences out of 15000+600000
+ 59833 multiletter control sequences out of 15000+600000
  577459 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,12n,106p,866b,2083s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on report.pdf (32 pages, 1229954 bytes).
+ 106i,14n,106p,866b,2083s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
+Output written on report.pdf (33 pages, 1254211 bytes).
 PDF statistics:
- 835 PDF objects out of 1000 (max. 8388607)
- 244 named destinations out of 1000 (max. 500000)
- 283 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 858 PDF objects out of 1000 (max. 8388607)
+ 256 named destinations out of 1000 (max. 500000)
+ 275 words of extra memory for PDF output out of 10000 (max. 10000000)
 

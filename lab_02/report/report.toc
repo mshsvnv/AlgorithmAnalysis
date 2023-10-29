@@ -8,19 +8,18 @@
 \contentsline {chapter}{\numberline {2}Конструкторская часть}{8}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Требования к программному обеспечению}{8}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Разработка алгоритмов}{8}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Описание используемых типов данных}{14}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Модель вычислений для проведения оценки трудоемкости алгоритмов}{14}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Трудоемкость алгоритмов}{15}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Технологическая часть}{16}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Средства реализации}{16}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Сведения о модулях программы}{16}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Реализация алгоритмов}{17}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Функциональные тесты}{23}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Исследовательская часть}{24}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Технические характеристики}{24}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Демонстрация работы программы}{24}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Временные характеристики}{26}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Характеристики по памяти}{28}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Вывод}{30}{section.4.5}%
-\contentsline {chapter}{Заключение}{31}{chapter*.15}%
-\contentsline {chapter}{Список использованных источников}{32}{Item.20}%
+\contentsline {section}{\numberline {2.3}Модель вычислений для проведения оценки трудоемкости алгоритмов}{14}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Трудоемкость алгоритмов}{14}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Технологическая часть}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Средства реализации}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Сведения о модулях программы}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Реализация алгоритмов}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Функциональные тесты}{24}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Исследовательская часть}{25}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Технические характеристики}{25}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Демонстрация работы программы}{25}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Временные характеристики}{27}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Характеристики по памяти}{29}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Вывод}{31}{section.4.5}%
+\contentsline {chapter}{Заключение}{32}{chapter*.15}%
+\contentsline {chapter}{Список использованных источников}{33}{Item.21}%

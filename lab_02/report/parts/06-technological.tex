@@ -1,10 +1,17 @@
 \chapter{Технологическая часть}
+В данном разделе будут приведены требования к программному обеспечению, средства реализации, листинг кода и функциональные тесты.
 
-В данном разделе будут приведены средства реализации, листинг кода и функциональные тесты.
+\section{Требования к ПО}
+К программе предъявлен ряд требований:
+\begin{itemize}
+    \item входными данными являются две матрицы, каждя из которых хранится в файле, с расширением \texttt{*.txt};
+    \item результат выполнения программы~---матрица, полученная в результате умножения введенных матриц;
+    \item возможность произвести замеры процессорного времени выполнения реализованных алгоритмов.
+\end{itemize}
 
 \section{Средства реализации}
 
-Для реализации данной лабораторной работы был выбран язык \texttt{C++}~\cite{cpp-lang}, так как в нем есть стандартная библиотека \texttt{ctime}~\cite{cpp-lang-time}, которая позволяет производить замеры процессорного времени выполнения программы; тип данных \texttt{std::wstring}, позволяющий хранить как кириллические символы, так и латинские;
+Для реализации данной лабораторной работы был выбран язык \texttt{C++}~\cite{cpp-lang}, так как в нем есть стандартная библиотека \texttt{ctime}~\cite{cpp-lang-time}, которая позволяет производить замеры процессорного времени выполнения программы;
 
 В качестве среды разработки был выбран \textit{Visual Studio Code}: он является кроссплатформенным и предоставляет полный функционал для проектирования и отладки кода.
  
@@ -21,164 +28,11 @@
 
 \section{Реализация алгоритмов}
 
-В листингах \ref{lst:lev_mtr}--\ref{lst:dameray_lev_rec_hash} приведены реализации алгоритмов поиска расстояний Левенштейна (только нерекурсивный алгоритм) и Дамерау~---~Левенштейна (нерекурсивный, рекурсивный и рекурсивный с кешированием).
+В листингах \ref{}--\ref{} приведены реализации алгоритма стандартного умножения матриц.
 
-\begin{lstlisting}[label=lst:lev_mtr,caption=Функция нахождения расстояния Левенштейна с использованием матрицы (начало)]
-int Algs::notRecursiveLev(wstring &word1, wstring &word2, bool print) {
-    
-    int len1 = word1.length();
-    int len2 = word2.length();
+В листингах \ref{}--\ref{} приведены реализации алгоритма умножения матриц методом Винограда.
 
-    int** mtr = Matrix::allocate(len2 + 1, len1 + 1);
-
-    if (!mtr)
-        return 0;
-
-    for (int i = 0; i <= len2; ++i) {
-
-        for (int j = 0; j <= len1; ++j) {
-
-            if (i == 0)
-                mtr[i][j] = j;
-            else if (j == 0)
-                mtr[i][j] = i;
-            else {
-                int dif = (word1[j - 1] == word2[i - 1]) ? 0 : 1;
-
-                mtr[i][j] = min(mtr[i - 1][j] + 1, 
-                               min(mtr[i][j - 1] + 1, mtr[i - 1][j - 1] + dif));
-            }
-        }
-    }
-\end{lstlisting}
-
-\begin{lstlisting}[label=lst:lev_mtr,caption=Функция нахождения расстояния Левенштейна с использованием матрицы (конец)]
-    if (print)  
-        Matrix::print(mtr, word1, word2);
-
-    int res = mtr[len2][len1];
-    Matrix::release(mtr, len2 + 1);
-
-    return res;
-}
-\end{lstlisting}
-
-\begin{lstlisting}[label=lst:dameray_lev_rec,caption=Функция нахождения расстояния Дамерау~---~Левенштейна с использованием матрицы (начало)]
-int Algs::notRecursiveDamLev(wstring &word1, wstring &word2, bool print) {
-
-    int len1 = word1.length();
-    int len2 = word2.length();
-
-    int** mtr = Matrix::allocate(len2 + 1, len1 + 1);
-
-    if (!mtr)
-        return 0;
-
-    for (int i = 0; i <= len2; ++i) {
-
-        for (int j = 0; j <= len1; ++j) {
-
-            if (i == 0)
-                mtr[i][j] = j;
-            else if (j == 0)
-                mtr[i][j] = i;
-            else {
-
-                int dif = (word1[j - 1] == word2[i - 1]) ? 0 : 1;
-
-                mtr[i][j] = min(mtr[i - 1][j] + 1, 
-                                min(mtr[i][j - 1] + 1, mtr[i - 1][j - 1] + dif));
-\end{lstlisting}
-
-\begin{lstlisting}[label=lst:dameray_lev_rec,caption=Функция нахождения расстояния Дамерау~---~Левенштейна с использованием матрицы (конец)]
-                if (word1[j - 2] == word2[i - 1] && word1[j - 1] == word2[i - 2]) 
-                    mtr[i][j] = min(mtr[i][j], mtr[i - 2][j - 2] + 1);
-            }
-        }
-    }
-
-    if (print)  
-        Matrix::print(mtr, word1, word2);
-
-    int res = mtr[len2][len1];
-    Matrix::release(mtr, len2 + 1);
-
-    return res;
-}
-\end{lstlisting}
-
-\clearpage
-
-\begin{lstlisting}[label=lst:dameray_lev_mtr,caption=Функция нахождения расстояния Дамерау~---~Левенштейна рекурсивно]
-int Algs::recursive(wstring &word1, wstring &word2, int ind1, int ind2) {
-
-    if (min(ind1, ind2) == 0)
-        return max(ind1, ind2);
-
-    int dif = (word1[ind1 - 1] == word2[ind2 - 1]) ? 0 : 1;
-
-    int res = min(recursive(word1, word2, ind1 - 1, ind2 - 1) + dif,
-                  min(recursive(word1, word2, ind1 - 1, ind2) + 1, 
-                      recursive(word1, word2, ind1, ind2 - 1) + 1));
-
-    if (ind1 > 1 && ind2 > 1 && word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
-        res = min(res, recursive(word1, word2, ind1 - 2, ind2 - 2) + 1);
-
-    return res;
-}
-\end{lstlisting}
-
-\clearpage
-
-\begin{lstlisting}[label=lst:dameray_lev_rec_hash,caption=Функция вызова рекурсивного алгоритма c кешированием для поиска расстояния Дамерау~---~Левенштейна]
-int Algs::recursiveCash_Decor(wstring& word1, wstring& word2, bool print) {
-
-    int len1 = word1.length();
-    int len2 = word2.length();
-
-    int** cash = Matrix::allocate(len2 + 1, len1 + 1, true);
-
-    if (!cash)
-        return 0;
-
-    int res = recursiveCash(word1, word2, len1, len2, cash);
-
-    if (print)  
-        Matrix::print(cash, word1, word2);
-
-    Matrix::release(cash, len2 + 1);
-
-    return res;
-}
-\end{lstlisting}
-
-\clearpage
-
-\begin{lstlisting}[label=lst:dameray_lev_rec_hash,caption=Функция нахождения расстояния Дамерау~---~Левенштейна рекурсивно c кешированием]
-int Algs::recursiveCash(wstring &word1, wstring &word2, int ind1, int ind2, int** cash) {
-
-    if (cash[ind2][ind1])
-        return cash[ind2][ind1];
-
-    if (min(ind1, ind2) == 0)
-        return cash[ind2][ind1] = max(ind1, ind2);
-
-    int dif = (word1[ind1 - 1] == word2[ind2 - 1]) ? 0 : 1;
-
-    int res = min(recursiveCash(word1, word2, ind1 - 1, ind2 - 1, cash) + dif,
-                  min(recursiveCash(word1, word2, ind1 - 1, ind2, cash) + 1, 
-                      recursiveCash(word1, word2, ind1, ind2 - 1, cash) + 1));
-
-    if (ind1 > 1 && ind2 > 1 && word1[ind1 - 1] == word2[ind2 - 2] && word1[ind1 - 2] == word2[ind2 - 1])
-        res = min(res, recursiveCash(word1, word2, ind1 - 2, ind2 - 2, cash) + 1);
-
-    cash[ind2][ind1] = res;
-
-    return res;
-}
-\end{lstlisting}
-
-\clearpage
+В листингах \ref{}--\ref{} приведены реализации оптимизированного алгоритма умножения матриц методом Винограда.
 
 \section{Функциональные тесты}
 

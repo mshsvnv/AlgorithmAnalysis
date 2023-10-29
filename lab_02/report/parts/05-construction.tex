@@ -1,5 +1,5 @@
 \chapter{Конструкторская часть}
-В данном разделе будут реализованы схемы алгоритмов умножения матриц, приведено описание используемых типов данных, а также описана структура программного обеспечения.
+В данном разделе будут реализованы схемы алгоритмов умножения матриц.
 
 \section{Требования к программному обеспечению}\label{section:requirements_1}
 К программе предъявлен ряд функциональных требований:
@@ -57,6 +57,8 @@
 	\label{fig:VinogradOpt1}
 \end{figure}
 
+\clearpage
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[height=0.9\textheight, page=5]{img/algorithms.pdf}
@@ -66,41 +68,159 @@
 
 \clearpage
 
-\section{Описание используемых типов данных}
-При реализации алгоритмов будут использованы следующие структуры данных:
-
-\begin{itemize}
-	\item \textit{строка}~--- массив символов типа $wchar{\_}t$;
-	\item \textit{длина строки}~--- целое число типа $int$;
-	\item \textit{матрица}~--- двумерный массив значений типа $int$.
-\end{itemize}
-
 \section{Модель вычислений для проведения оценки трудоемкости алгоритмов}
-Для последующего вычисления трудоемкости необходимо ввести модель вичислений:
+Для последующего вычисления трудоемкости необходимо ввести модель вычислений:
 
 \begin{enumerate}
-	\item операции из списка %\ref{eq:operations1} имеют трудоемкость \textbf{1};
+	\item операции из списка \ref{eq:operations1} имеют трудоемкость \textbf{1};
 	\begin{equation}
 		\label{eq:operations1}
 		\begin{gathered}
 			+, -, =, +=, -=, ==, !=, <, >, <=, >=, [], \\ ++, --, \&\&, >>, <<, ||, \&, |
 		\end{gathered}
 	\end{equation}
-	\item операции из списка %\ref{eq:operations1} имеют трудоемкость \textbf{2};
-	% \begin{equation}
-	% 	\label{eq:operations2}
-	% 	*, /, %, *=, /=, %=
-	% \end{equation}
-	\item Трудоемкость условного оператора:
-	\item Трудоемкость цикла:
+	\item операции из списка \ref{eq:operations2} имеют трудоемкость \textbf{2};
+	\begin{equation}
+		\label{eq:operations2}
+		*, /, \%, *=, /=, \%=
+	\end{equation}
+	\item трудоемкость условного оператора \texttt{if условие then A else B} рассчитывается как \ref{eq:if};
+	\begin{equation}
+		\label{eq:if}
+		f_{if} = f_{\text{условия}} + 
+		\begin{cases}
+			f_{A}, & \text{в случае выполнеия условия,}\\
+			f_{B}, & \text{иначе}.
+		\end{cases}
+	\end{equation}
+	\item трудоемкость цикла рассчитывается как \ref{eq:for}
+	\begin{equation}
+		\label{eq:for}
+		\begin{gathered}
+			f_{for} = f_{\text{инициализация}} + f_{\text{сравнения}} + M_{\text{итераций}} \cdot (f_{\text{тело}} +\\
+			+ f_{\text{инкремент}} + f_{\text{сравнения}});
+		\end{gathered}
+	\end{equation}
+	\item трудоемкость вызова функции равна 0.
 \end{enumerate}
 
 \section{Трудоемкость алгоритмов}
+В следующих частях будут приведены рассчеты трудоемкостей алгоритмов для умножения матриц.
 
-\subsection*{Классический алгоритм}
+\subsection*{Стандартный алгоритм}
+Трудоемкость стандартного алгоритма умножения матриц состоит из:
+\begin{itemize}
+	\item внешнего цикла по $i \in [1 \ldots M]$ , трудоёмкость которого: $f = 2 + M \cdot (2 + f_{body})$;
+	\item цикла по $j \in [1 \ldots N]$ , трудоёмкость которого: $f = 2 + N \cdot (2 + f_{body})$;
+	\item цикла по $k \in [1 \ldots P]$ , трудоёмкость которого: $f = 2 + 1K \cdot (2 + 12)$;
+\end{itemize}
+Так как трудоемкость стандартного алгоритма равно трудоемкости внешнего цикла~---можно вычислить ее, подставив циклы тела:
+\begin{equation}
+	\begin{gathered}
+		f_{standart} = 2 + M \cdot (2 + 2 + N \cdot (2 + 2 + P \cdot (2 + 8 + 1 + 1 + 2))) = \\
+		= 2 + 4M + 4MN + 14MNP \approx 14MNP = O(N^3).
+	\end{gathered}
+\end{equation}
+
 \subsection*{Алгоритм Винограда}
-\subsection*{Оптимизированный алгоритм Винограда}
-	
-\section*{Вывод}
+При вычислении трудоемкости алгоритма Винограда необходимо учесть следующее:
+\begin{itemize}
+	\item трудоемкость создания и инициализации массивов \textit{MulH} и \textit{MulV}:
+	\begin{equation}
+		f_{init} = f_{MulH} + f_{MulV};
+	\end{equation}
+	\item трудоемкость заполнения массива \textit{MulH}:
+	\begin{equation}
+		\begin{gathered}
+		f_{MulH} = 2 + M \cdot (2 + 4 + \frac{P}{2} \cdot (4 + 6 + 1 + 2 + 3 \cdot 2)) = \\
+		= 2 + 6M + \frac{19MP}{2};
+		\end{gathered}
+	\end{equation}
+	\item трудоемкость заполнение массива \textit{MulV}:
+	\begin{equation}
+		\begin{gathered}
+		f_{MulV} = 2 + N \cdot (2 + 4 + \frac{P}{2} \cdot (4 + 6 + 1 + 2 + 3 \cdot 2)) = \\
+		= 2 + 6N + \frac{19NP}{2};
+		\end{gathered}
+	\end{equation}
+	\item трудоемкость цикла заполения для четных размеров:
+	\begin{equation}
+		\begin{gathered}
+			f_{cycle} = 2 + M \cdot (4 + N \cdot (2 + 7 + 4 + \frac{P}{2} \cdot (4 + 28))) = \\
+			= 2 + 4M + 13MN + \frac{32MNP}{2}  = 2 + 4M + 13MN + 16MNP;
+		\end{gathered}
+	\end{equation}
+	\item трудоемкость дополнитеоьного цикла, в случае нечетного размера матрицы:
+	\begin{equation}
+		\begin{gathered}
+			f_{check} = 3 + 
+			\begin{cases}
+				0, & \text{чётная} \\
+				2 + M \cdot (4 + N \cdot (2 + 14)), & \text{иначе};
+			\end{cases}
+		\end{gathered}  
+	\end{equation}
+\end{itemize}
+В итоге, для худшего случая (т. е. когда размер матрицы нечетный) получаем следующую трудоемкость:
+\begin{equation}
+	f_{worst} = f_{MulH} + f_{MulV} + f_{cycle} + f_{check} \approx 16MNP = O(N^3).
+\end{equation}
+Для лучшего случая (т. е. когда размер матрицы четный):
+\begin{equation}
+	f_{best} = f_{MulH} + f_{MulV} + f_{cycle} + f_{check} \approx 16MNP = O(N^3).
+\end{equation}
 
-В данном разделе на основе теоретических данных были перечислены требования к ПО, а также были построены схемы требуемых алгоритмов на основе теоретических данных, полученных на этапе анализа.
+\subsection*{Оптимизированный алгоритм Винограда}
+Оптимизация алгоритма Винограда осуществляется за счет следующего набора действий:
+\begin{itemize}
+	\item замены операции $x = x + k$ на $x += k$;
+	\item замены $\cdot 2$ на $<<$;
+	\item предвычисления некоторых слагаемых для алгоритма.
+\end{itemize}
+Итоговая трудоемкость оптимизированного алгоритма Винограда состоит из:
+\begin{itemize}
+	\item трудоемкости кеширования значения $\frac{P}{2}$~---3;
+	\item трудоемкость заполнения массива \textit{MulH}:
+	\begin{equation}
+		\begin{gathered}
+			f_{MulH} = 2 + M \cdot (2 + 2 + \frac{P}{2} \cdot (2 + 5 + 1 + 2 + 3)) = \\
+			= 2 + 2M + \frac{13MP}{2};
+		\end{gathered}
+	\end{equation}
+	\item трудоемкость заполнение массива \textit{MulV}:
+	\begin{equation}
+		\begin{gathered}
+			f_{MulV} = 2 + N \cdot (2 + 2 + \frac{P}{2} \cdot (2 + 5 + 1 + 2 + 3)) = \\
+			= 2 + 2N + \frac{13NP}{2};
+		\end{gathered}
+	\end{equation}
+	\item трудоемкость цикла заполения для четных размеров:
+	\begin{equation}
+		\begin{gathered}
+			f_{cycle} = 2 + M \cdot (4 + N \cdot (2 + 10 + 2 + \frac{P}{2} \cdot 19)) = \\
+			= 2 + 4M + 14MN + \frac{19MNP}{2};
+		\end{gathered}
+	\end{equation}
+	\item трудоемкость дополнитеоьного цикла, в случае нечетного размера матрицы:
+	\begin{equation}
+		\begin{gathered}
+			f_{check} = 3 + 
+			\begin{cases}
+				0, & \text{чётная} \\
+				2 + M \cdot (4 + N \cdot (2 + 11)), & \text{иначе}.
+			\end{cases}
+		\end{gathered}  
+	\end{equation}
+\end{itemize}
+В итоге, для худшего случая (т. е. когда размер матрицы нечетный) получаем следующую трудоемкость:
+\begin{equation}
+	f_{worst} = f_{MulH} + f_{MulV} + f_{cycle} + f_{check} \approx \frac{19MNP}{2} = O(N^3).
+\end{equation}
+Для лучшего случая (т. е. когда размер матрицы четный):
+\begin{equation}
+	f_{best} = f_{MulH} + f_{MulV} + f_{cycle} + f_{check} \approx \frac{19MNP}{2} = O(N^3).
+\end{equation}
+
+\section*{Вывод}
+В данном разделе на основе теоретических данных, полученных в аналитическом разделе, были построены схемы алгоритмов умножения матриц. Оценены отрудоемкости в лучшем и худшем случаях. 
+Так же теоретический расчет показал, что трудоемкость оптимизированного алгоритма Винограда в 1.6 меньше, чем у неоптимизированного алгоритма Винограда.
