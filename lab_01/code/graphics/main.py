@@ -27,19 +27,19 @@ class Graph:
                 self.DamLev = np.append(self.DamLev, float(values[2]))
             
                 if self.lens[-1] >= 20:
-                    self.RecCash= np.append(self.RecCash, float(values[3]))
+                    self.RecCash = np.append(self.RecCash, float(values[3]))
                 else:
                     self.Rec = np.append(self.Rec, float(values[3]))
-                    self.RecCash= np.append(self.RecCash, float(values[4]))
+                    self.RecCash = np.append(self.RecCash, float(values[4]))
 
     def buildRecursive(self):
         
         plt.grid()
         plt.xlabel("Длина, симв.")
-        plt.ylabel("Время, нс.")
+        plt.ylabel("Время, мкс.")
 
-        plt.plot(self.lens[:11], self.Rec, color = "red", marker = "+", linestyle = "-")
-        plt.plot(self.lens[:11], self.RecCash[:11], color = "green", marker = ".", linestyle = ":")
+        plt.plot(self.lens[:11], self.Rec / 1000, color = "red", marker = "+", linestyle = "-")
+        plt.plot(self.lens[:11], self.RecCash[:11] / 1000, color = "green", marker = ".", linestyle = ":")
 
         plt.legend(["Рекурсивный Дамерау-Левенштейн",
                     "Рекурсивный Дамерау-Левенштейн с кешем"])
@@ -53,25 +53,24 @@ class Graph:
         
         plt.grid()
         plt.xlabel("Длина, симв.")
-        plt.ylabel("Время, нс.")
+        plt.ylabel("Время, мкс.")
 
-        plt.plot(self.lens, self.Lev, color = "magenta", marker = "+", linestyle = "-")
-        plt.plot(self.lens, self.DamLev, color = "blue", marker = ".", linestyle = ":")
+        plt.plot(self.lens, self.Lev / 1000, color = "magenta", marker = "+", linestyle = "-")
+        plt.plot(self.lens, self.DamLev / 1000, color = "blue", marker = ".", linestyle = ":")
 
         plt.legend(["Нерекурсивный Левенштейн", 
                     "Нерекурсивный Дамерау-Левенштейн"])
         
         plt.show()
-        print(self.Lev, self.lens)
 
     def buildExtra(self):
 
         plt.grid()
         plt.xlabel("Длина, симв.")
-        plt.ylabel("Время, нс.")
+        plt.ylabel("Время, мкс.")
 
-        plt.plot(self.lens, self.DamLev, color = "blue", marker = ".", linestyle = "-.")
-        plt.plot(self.lens, self.RecCash, color = "green", marker = "2")
+        plt.plot(self.lens, self.DamLev / 1000, color = "blue", marker = ".", linestyle = "-.")
+        plt.plot(self.lens, self.RecCash / 1000, color = "green", marker = "2")
 
         plt.legend(["Нерекурсивный Дамерау-Левенштейн",
                     "Рекурсивный Дамерау-Левенштейн с кешем"])
