@@ -19,8 +19,6 @@
 \contentsline {chapter}{\numberline {4}Исследовательская часть}{27}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Технические характеристики}{27}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Демонстрация работы программы}{27}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Временные характеристики}{29}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Характеристики по памяти}{31}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Вывод}{33}{section.4.5}%
-\contentsline {chapter}{Заключение}{34}{chapter*.15}%
-\contentsline {chapter}{Список использованных источников}{35}{Item.21}%
+\contentsline {section}{\numberline {4.3}Временные характеристики}{28}{section.4.3}%
+\contentsline {chapter}{Заключение}{31}{chapter*.16}%
+\contentsline {chapter}{Список использованных источников}{32}{Item.18}%
