@@ -33,12 +33,12 @@ class Graph:
     def buildGraph(self):
         
         plt.grid()
-        plt.xlabel("Длина, симв.")
+        plt.xlabel("Размер, эл.")
         plt.ylabel("Время, мкс.")
 
-        plt.plot(self.lens / 1000, self.Std, color = "red", marker = "+", linestyle = "-")
-        plt.plot(self.lens / 1000, self.Vin, color = "green", marker = ".", linestyle = ":")
-        plt.plot(self.lens / 1000, self.VinOpt, color = "blue", marker = "*", linestyle = "-.")
+        plt.plot(self.lens, self.Std, color = "red", marker = "+", linestyle = "-")
+        plt.plot(self.lens, self.Vin, color = "green", marker = ".", linestyle = ":")
+        plt.plot(self.lens, self.VinOpt, color = "blue", marker = "*", linestyle = "-.")
 
         plt.legend(["Стандартный алгоритм умножения",
                     "Алгоритм Винограда",
