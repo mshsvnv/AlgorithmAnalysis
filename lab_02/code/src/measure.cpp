@@ -21,8 +21,8 @@ long long getThreadCpuTimeNs() {
         perror("clock_gettime");
         return 0;
     }
-
-    return t.tv_sec * 1000000000LL + t.tv_nsec;
+    
+    return (t.tv_sec * 1000000000LL + t.tv_nsec) / 1000;
 }
 
 auto getCPUTime(MatrixT& mtr1, MatrixT& mtr2, Multiply* mul) {
