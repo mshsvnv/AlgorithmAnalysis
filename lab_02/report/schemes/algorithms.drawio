@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-10-30T07:46:50.962Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="bnUY8optP-6J-ggaoIkq" version="22.0.2" type="device" pages="5">
+<mxfile host="Electron" modified="2023-10-31T21:46:48.200Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="UVKNhGC7h__9NoEENNmM" version="22.0.2" type="device" pages="5">
   <diagram id="Tdkf1bd7mpuJth67Tkuw" name="Стандартное умн.">
-    <mxGraphModel dx="1567" dy="1183" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="940" dy="710" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -57,7 +57,7 @@
         <mxCell id="lofQyspLM1PIbv91pcCX-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;hachureGap=4;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=16;" parent="1" source="nYEDLvNbdfZxFh9tLNZu-9" target="lofQyspLM1PIbv91pcCX-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="nYEDLvNbdfZxFh9tLNZu-9" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;C[i][j] += A[i][k] * B[k][j]&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=1;" parent="1" vertex="1">
+        <mxCell id="nYEDLvNbdfZxFh9tLNZu-9" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;C[i][j] = C[i][j] +&lt;br&gt;&amp;nbsp;A[i][k] * B[k][j]&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=1;" parent="1" vertex="1">
           <mxGeometry x="339" y="698" width="150" height="50" as="geometry" />
         </mxCell>
         <mxCell id="nYEDLvNbdfZxFh9tLNZu-10" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Конец&lt;/span&gt;" style="strokeWidth=1;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" parent="1" vertex="1">
