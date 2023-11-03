@@ -2,6 +2,8 @@
 
 #include "matrix.h"
 
+bool isDegree(int num);
+
 class Multiply {
 public:
     virtual ~Multiply() = default;
@@ -22,4 +24,11 @@ public:
 class VinogradOpt : public Multiply {
 public:
     MatrixT multiply(MatrixT& m1, MatrixT& m2) override;
+};
+
+class Strassen : public Multiply {
+public:
+    MatrixT multiply(MatrixT& m1, MatrixT& m2) override;
+
+    MatrixT bruteForce(MatrixT& m1, MatrixT& m2);
 };

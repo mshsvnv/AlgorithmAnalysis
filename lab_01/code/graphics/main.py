@@ -61,6 +61,8 @@ class Graph:
         plt.legend(["Нерекурсивный Левенштейн", 
                     "Нерекурсивный Дамерау-Левенштейн"])
         
+        plt.semilogy()
+        
         plt.show()
 
     def buildExtra(self):
@@ -74,6 +76,8 @@ class Graph:
 
         plt.legend(["Нерекурсивный Дамерау-Левенштейн",
                     "Рекурсивный Дамерау-Левенштейн с кешем"])
+        
+        plt.semilogy()
 
         plt.show()
 

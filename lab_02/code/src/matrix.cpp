@@ -61,7 +61,24 @@ MatrixT::MatrixT(const char* fileName) {
         m_columns = idx / m_rows;
 }
 
+MatrixT MatrixT::copy(int begRow, int endRow, int begCol, int endCol) {
+    
+    MatrixT res{endRow - begRow, endCol - begCol};
+
+    for (int i = begRow; i < endRow; ++i) {
+
+        for (int j = begCol; j < endCol; ++j)
+            res(i - begRow, j - begCol) = (*this)(i, j);
+    }
+
+    return res;
+}
+
 int& MatrixT::operator()(const int& i, const int& j) {
+    return m_matrix[i][j];
+}
+
+int MatrixT::operator()(const int& i, const int& j) const {
     return m_matrix[i][j];
 }
 
@@ -71,7 +88,49 @@ void MatrixT::randomFill() {
 
         for (int j = 0; j < m_columns; ++j) {
             
-            m_matrix[i][j] = rand() % 1000 - 1000;
+            (*this)(i, j) = rand() % 1000 - 1000;
         }
     }
 }
+
+MatrixT MatrixT::operator+(const MatrixT& other) {
+
+    MatrixT res{m_rows, m_columns};
+
+    for (int i = 0; i < m_rows; ++i) {
+
+        for (int j = 0; j < m_columns; ++j)
+            res(i, j) = (*this)(i, j) + other(i, j);
+    }
+
+    return res;
+}
+
+MatrixT MatrixT::operator-(const MatrixT& other) {
+
+    MatrixT res{m_rows, m_columns};
+
+    for (int i = 0; i < m_rows; ++i) {
+
+        for (int j = 0; j < m_columns; ++j)
+            res(i, j) = (*this)(i, j) - other(i, j);
+    }
+
+    return res;
+}
+
+void MatrixT::merge(const MatrixT& c11, const MatrixT& c12, const MatrixT& c21, const MatrixT& c22) {
+
+    int n = m_rows / 2;
+
+    for (int i = 0; i < n; ++i) {
+
+        for (int j = 0; j < n; ++j) {
+            (*this)(i, j) = c11(i, j);
+            (*this)(i, n + j) = c12(i, j);
+            (*this)(n + i, j) = c21(i, j);
+            (*this)(n + i, n + j) = c22(i, j);
+        }
+    }
+}
+
