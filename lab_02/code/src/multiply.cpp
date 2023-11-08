@@ -66,8 +66,7 @@ MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
 
             for (int k = 0; k < rows / 2; ++k) {
 
-                res(i, j) = res(i, j) + (m1(i, 2 * k) + m2(2 * k + 1, j)) * 
-                                        (m1(i, 2 * k + 1) + m2(2 * k, j));
+                res(i, j) = res(i, j) + (m1(i, 2 * k) + m2(2 * k + 1, j)) * (m1(i, 2 * k + 1) + m2(2 * k, j));
             
             }
         }
@@ -79,8 +78,7 @@ MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
 
             for (int j = 0; j < rows; ++j) {       
                             
-                res(i, j) = res(i, j) + m1(i, rows - 1) * 
-                                        m2(rows - 1, j);
+                res(i, j) = res(i, j) + m1(i, rows - 1) * m2(rows - 1, j);
 
             }
         }
@@ -104,23 +102,13 @@ MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
 
         for (int j = 0; j < stepHalf; ++j) 
             mulH[i] += m1(i, j << 1) * m1(i, (j << 1) + 1); 
-
-        cout << "i: " << mulH[i] << endl;
     }
-
-    cout << endl;
 
     for (int i = 0; i < rows; ++i) {
 
-        cout << mulV[i] << endl ;
-
         for (int j = 0; j < stepHalf; ++j) 
             mulV[i] += m2(j << 1, i) * m2((j << 1) + 1, i);
-
-        cout << mulV[i] << " ";
     }
-
-    cout << endl;
 
     for (int i = 0; i < rows; ++i) {
 
@@ -133,7 +121,6 @@ MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
                 int curK = k << 1;
 
                 buf += (m1(i, curK) + m2(curK + 1, j)) * (m1(i, curK + 1) + m2(curK, j));
-            
             }
 
             res(i, j) = buf;
@@ -160,7 +147,7 @@ MatrixT Strassen::multiply(MatrixT& m1, MatrixT& m2) {
     
     int rows = m1.getRows();
 
-    if (rows <= 2)
+    if (rows <= 32)
         return bruteForce(m1, m2);
 
     int n = rows / 2;

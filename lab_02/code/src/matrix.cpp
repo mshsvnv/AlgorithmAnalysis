@@ -87,7 +87,6 @@ void MatrixT::randomFill() {
     for (int i = 0; i < m_rows; ++i) {
 
         for (int j = 0; j < m_columns; ++j) {
-            
             (*this)(i, j) = rand() % 1000 - 1000;
         }
     }

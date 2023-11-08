@@ -1,14 +1,5 @@
 #include "../inc/measure.h"
 
-void printHead() {
-
-    cout << "+-------------------------------------------------------------------+\n";
-    cout << "|       |                      Время(нс)                            |\n";
-    cout << "| Длина |  Стандартное  |             Алгоритм Винограда            |\n";
-    cout << "|(элем.)|               |  Неоптимизированный  |  Оптимизированный  |\n";
-    cout << "+-------------------------------------------------------------------+\n";
-}
-
 double getTotalTime(long long startT, long long endT) {
     return (double) (endT - startT);
 }
@@ -36,19 +27,41 @@ auto getCPUTime(MatrixT& mtr1, MatrixT& mtr2, Multiply* mul) {
     return getTotalTime(startT, endT);
 }
 
+void printHead(int num) {
+
+    if (num != 2) {
+        cout << "+-------------------------------------------------------------------+\n";
+        cout << "|       |                      Время(нс)                            |\n";
+        cout << "| Длина |  Стандартное  |             Алгоритм Винограда            |\n";
+        cout << "|(элем.)|               |  Неоптимизированный  |  Оптимизированный  |\n";
+        cout << "+-------------------------------------------------------------------+\n";
+    }
+    else {
+        cout << "+----------------------------------------------------------------------------------------+\n";
+        cout << "|       |                      Время(нс)                                                 |\n";
+        cout << "| Длина |  Стандартное  |             Алгоритм Винограда            | Алгоритм Штрассена |\n";
+        cout << "|(элем.)|               |  Неоптимизированный  |  Оптимизированный  |                    |\n";
+        cout << "+----------------------------------------------------------------------------------------+\n";
+    }
+}
 
 void timeMeasure(int step, int iters, int maxAmount) {
 
-    printHead();
+    printHead(step);
     srand(time(NULL));
 
-    int base = 10;
+    int base = (step == 2) ? step : 10;
 
     vector<Multiply*> muls{new Standard, new Vinograd, new VinogradOpt};
 
+    if (step == 2)
+        muls.emplace_back(new Strassen);
+    
+    int len = muls.size();
+
     for (int i = step; i <= step + maxAmount;) {
 
-        vector<double> times(3, 0);
+        vector<double> times(len, 0);
 
         MatrixT mtr1(i, i);
         mtr1.randomFill();
@@ -58,20 +71,27 @@ void timeMeasure(int step, int iters, int maxAmount) {
 
         for (int j = 0; j < iters; ++j) {
 
-            for (int k = 0; k < 3; ++k)
+            for (int k = 0; k < len; ++k)
                 times[k] += getCPUTime(mtr1, mtr2, muls[k]);
         }
 
-        for (int k = 0; k < 3; ++k)
+        for (int k = 0; k < len; ++k)
             times[k] /= (double)iters;
 
         cout << "| " << setw(5) << i << " │ "
         << fixed << setprecision(2) << setw(13) << times[0] << " │ "
         << fixed << setprecision(2) << setw(20) << times[1] << " │ "
-        << fixed << setprecision(2) << setw(18) << times[2] << " │ " << endl;
+        << fixed << setprecision(2) << setw(18) << times[2] << " │ ";
 
-        cout << "+-------------------------------------------------------------------+\n";
+        if (len == 4)
+            cout << fixed << setprecision(2) << setw(18) << times[3] << " │ "
+            << "\n+----------------------------------------------------------------------------------------+\n";
+        else
+            cout << "\n+-------------------------------------------------------------------+\n";
 
-        i += base;   
+        if (step == 2)
+            i *= step;
+        else
+            i += base;   
     }
 }

@@ -2,7 +2,9 @@
 #include "inc/multiply.h"
 #include "inc/measure.h"
 
-#define MAX_AMOUNT 100
+#define MAX_AMOUNT_ORD 100
+#define MAX_AMOUNT_EXT 512
+
 #define ITERS 100
 
 int menu() {
@@ -36,8 +38,9 @@ int main() {
         bool mul = true;
 
         if (choice == 5) {
-            timeMeasure(0, ITERS, MAX_AMOUNT);
-            timeMeasure(1, ITERS, MAX_AMOUNT);
+            timeMeasure(0, ITERS, MAX_AMOUNT_ORD);
+            timeMeasure(1, ITERS, MAX_AMOUNT_ORD);
+            timeMeasure(2, ITERS, MAX_AMOUNT_EXT);
         }
         else {
             MatrixT mtr1("../code/data/mtr1.txt");
