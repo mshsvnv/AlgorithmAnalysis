@@ -76,11 +76,8 @@ MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
 
         for (int i = 0; i < rows; ++i) {
 
-            for (int j = 0; j < rows; ++j) {       
-                            
+            for (int j = 0; j < rows; ++j) 
                 res(i, j) = res(i, j) + m1(i, rows - 1) * m2(rows - 1, j);
-
-            }
         }
     }
 
@@ -131,12 +128,8 @@ MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
         
         for (int i = 0; i < rows; ++i) {
 
-            for (int j = 0; j < rows; ++j) {       
-                            
-                res(i, j) += m1(i, rows - 1) * 
-                             m2(rows - 1, j);
-
-            }
+            for (int j = 0; j < rows; ++j) 
+                res(i, j) += m1(i, rows - 1) * m2(rows - 1, j);
         }
     }
 

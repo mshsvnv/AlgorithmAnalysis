@@ -23,11 +23,15 @@ Reallocating 'name_of_file' (item size: 1) to 19 items.
 The style file: parts/utf8gost705u.bst
 Reallocating 'name_of_file' (item size: 1) to 14 items.
 Database file #1: parts/lib.bib
+I was expecting a `,' or a `}'---line 65 of file parts/lib.bib
+ :  url="--- Режим доступа: " 
+ :                                        \
+I'm skipping whatever remains of this entry
 Warning--empty booktitle in matrix
 Warning--empty booktitle in vinograd-alg
 You've used 5 entries,
             2958 wiz_defined-function locations,
-            703 strings with 6908 characters,
+            703 strings with 6815 characters,
 and the built_in function-call counts, 1293 in all, are:
 = -- 172
 > -- 33
@@ -66,4 +70,4 @@ warning$ -- 2
 while$ -- 6
 width$ -- 6
 write$ -- 79
-(There were 2 warnings)
+(There was 1 error message)

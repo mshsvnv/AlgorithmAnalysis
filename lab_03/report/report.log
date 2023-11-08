@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  8 NOV 2023 14:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  8 NOV 2023 02:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1256,12 +1256,12 @@ Overfull \hbox (14.8093pt too wide) in paragraph at lines 117--119
 []\T2A/cmr/m/n/14.4 ѕри вы-чис-ле-нии тру-до-ем-ко-сти ал-го-рит-ма ¬и-но-гра-да необ-хо-ди-мо учесть
  []
 
-[16] [17] [18])
-Overfull \hbox (2.8517pt too wide) in paragraph at lines 254--12
+[16] [17])
+Overfull \hbox (2.8517pt too wide) in paragraph at lines 218--12
 \T2A/cmr/m/n/14.4 ана-ли-ти-че-ском раз-де-ле, бы-ли по-стро-е-ны схе-мы ал-го-рит-мов умно-же-ни€ мат-
  []
 
-[19] [20]
+[18] [19]
 \openout2 = `parts/06-technological.aux'.
 
  (parts/06-technological.tex
@@ -1271,46 +1271,41 @@ Overfull \hbox (7.21185pt too wide) in paragraph at lines 13--14
 []\T2A/cmr/m/n/14.4 ƒл€ ре-а-ли-за-ции дан-ной ла-бо-ра-тор-ной ра-бо-ты был вы-бран €зык \T2A/cmtt/m/n/14.4 C++ \T2A/cmr/m/n/14.4 [[]],
  []
 
-[21
+[20
 
 
 
 
 ]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 36.
-LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 36.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 34.
+LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 34.
  (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmss.fd
 File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) (../code/src/multiply.cpp
-LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 30.
+)
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 45.
  (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)) [22{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (../code/src/multiply.cpp [23
+) [21{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [22
 
-]) [24] (../code/src/multiply.cpp [25
+] [23
 
-]) [26] (../code/src/multiply.cpp [27
+] [24
 
-]) [28]
+] [25
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+] [26]) [27
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [29
-
-] [30]
+]
 \openout2 = `parts/07-research.aux'.
 
  (parts/07-research.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 4.
-<img/prog_work.png, id=634, 202.25563pt x 414.54875pt>
+<img/prog_work.png, id=566, 202.25563pt x 414.54875pt>
 File: img/prog_work.png Graphic file (type png)
 <use img/prog_work.png>
 Package pdftex.def Info: img/prog_work.png  used on input line 17.
 (pdftex.def)             Requested size: 107.0283pt x 219.37297pt.
-[31
+[28
 
 
 
@@ -1319,21 +1314,21 @@ Package pdftex.def Info: img/prog_work.png  used on input line 17.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/figures.pdf, id=646, page=1, 462.52798pt x 346.89601pt>
+<img/figures.pdf, id=577, page=1, 462.52798pt x 346.89601pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 1>
 Package pdftex.def Info: img/figures.pdf , page1 used on input line 61.
 (pdftex.def)             Requested size: 390.00294pt x 292.48987pt.
-[32]
-<img/figures.pdf, id=655, page=2, 462.52798pt x 346.89601pt>
+[29]
+<img/figures.pdf, id=586, page=2, 462.52798pt x 346.89601pt>
 File: img/figures.pdf Graphic file (type pdf)
 <use img/figures.pdf, page 2>
 Package pdftex.def Info: img/figures.pdf , page2 used on input line 68.
 (pdftex.def)             Requested size: 390.00294pt x 292.48987pt.
- [33 <./img/figures.pdf>] [34 <./img/figures.pdf>]) [35]
+ [30 <./img/figures.pdf>]) [31 <./img/figures.pdf>] [32]
 \openout2 = `parts/08-conclusion.aux'.
 
- (parts/08-conclusion.tex) [36
+ (parts/08-conclusion.tex) [33
 
 
 
@@ -1346,7 +1341,7 @@ Overfull \hbox (86.51028pt too wide) in paragraph at lines 12--19
 \T2A/cmtt/m/n/14.4 realizatsiya-[]algoritma-[]umnozheniya-[]matrits-[]po-[]vinogradu-[]na-[]yazyke-[]haskell$[] 
  []
 
-)) [37
+)) [34
 
 
 
@@ -1359,20 +1354,20 @@ LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 211BF2DA6CB2D8B1E3ABFAD20DF8C470;5939.
+(rerunfilecheck)             Checksum: 79E76BD16E50874646F65D830007E156;5939.
  ) 
 Here is how much of TeX's memory you used:
- 40035 strings out of 475247
- 934219 string characters out of 5757792
- 2055785 words of memory out of 5000000
- 60473 multiletter control sequences out of 15000+600000
+ 39895 strings out of 475247
+ 932098 string characters out of 5757792
+ 2014785 words of memory out of 5000000
+ 60401 multiletter control sequences out of 15000+600000
  577459 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 103i,15n,106p,866b,2100s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on report.pdf (37 pages, 1251670 bytes).
+ 103i,15n,106p,866b,1550s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
+Output written on report.pdf (34 pages, 1226257 bytes).
 PDF statistics:
- 918 PDF objects out of 1000 (max. 8388607)
- 311 named destinations out of 1000 (max. 500000)
+ 835 PDF objects out of 1000 (max. 8388607)
+ 254 named destinations out of 1000 (max. 500000)
  270 words of extra memory for PDF output out of 10000 (max. 10000000)
 

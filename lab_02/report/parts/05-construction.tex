@@ -216,10 +216,10 @@
 Если $M(n)$~--- количество умножений, выполняемых алгоритмом для умножения двух матриц размером $n \times n$ (где $n$~--- степень двойки), то получим следующее рекурретное соотношение для $M(n)$:
 \begin{equation}
 	\begin{gathered}
-		M(n) = 7M(\frac{n}{2}) при n > 1, M(1) = 1.
+		M(n) = 7M(\frac{n}{2}).
 	\end{gathered}
 \end{equation}
-Поскольку $n = 2^{k}$,
+При $n > 1, M(1) = 1$. Поскольку $n = 2^{k}$,
 \begin{equation}
 	\begin{gathered}
 		M(2^{k}) = 7M(2^{k - 1}) = 7 \cdot [7M(2^{k - 2})] = 7^{2}M(2^{k - 2}) = \dots = \\ = 7^{i}M(2^{k - i}) = \dots = 7^{k}M(2^{k - k}) = 7^{k}.
@@ -238,9 +238,10 @@
 Это сводится к следующему реккурентному уравнению:
 \begin{equation}
 	\begin{gathered}
-		A(n) = 7 \cdot A \cdot \fraq{n}{2} + 18 \cdot (\fraq{n}{2})^{2} при n > 1, A(1) = 0.
+		A(n) = 7 \cdot A \cdot \frac{n}{2} + 18 \cdot (\frac{n}{2})^{2}.
 	\end{gathered}
 \end{equation}
+При $ n > 1, A(1) = 0$.
 
 Итоговую трудоемкость можно рассчитать как:
 \begin{equation}
