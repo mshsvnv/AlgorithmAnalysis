@@ -140,7 +140,7 @@ MatrixT Strassen::multiply(MatrixT& m1, MatrixT& m2) {
     
     int rows = m1.getRows();
 
-    if (rows <= 32)
+    if (rows <= 2)
         return bruteForce(m1, m2);
 
     int n = rows / 2;

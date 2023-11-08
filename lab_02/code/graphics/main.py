@@ -31,7 +31,7 @@ class Graph:
                 self.Vin = np.append(self.Vin, float(values[2]))
                 self.VinOpt = np.append(self.VinOpt, float(values[3]))
 
-                if len(values) == 4:
+                if len(values) == 5:
                     self.Str = np.append(self.Str, float(values[4]))
             
     def buildGraph(self):
@@ -48,7 +48,7 @@ class Graph:
                     "Алгоритм Винограда",
                     "Оптимизированный алгоритм Винограда"]
 
-        if self.Str:
+        if len(self.Str):
             plt.plot(self.lens, self.Str, color = "magenta", marker = "h", linestyle = "--")
             legend.append("Алгоритм Штрассена")
 

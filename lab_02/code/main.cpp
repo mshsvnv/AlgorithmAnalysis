@@ -3,7 +3,7 @@
 #include "inc/measure.h"
 
 #define MAX_AMOUNT_ORD 100
-#define MAX_AMOUNT_EXT 512
+#define MAX_AMOUNT_EXT 128
 
 #define ITERS 100
 
@@ -16,7 +16,6 @@ int menu() {
     "2. Алгоритм Винограда;\n"
     "3. Оптимизированный п. 2;\n"
     "4. Алгоритм Штрассена;\n"
-
     "5. Замерить время;\n"
     "0. Выход.\n\n"
     "Выберете пункт (0-5): ";
