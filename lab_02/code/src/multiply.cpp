@@ -48,14 +48,12 @@ MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
 
         for (int j = 0; j < rows / 2; ++j) 
             mulH[i] = mulH[i] + m1(i, 2 * j) * m1(i, 2 * j + 1); 
-        
     }
 
     for (int i = 0; i < rows; ++i) {
 
         for (int j = 0; j < rows / 2; ++j) 
             mulV[i] = mulV[i] +  m2(2 * j, i) * m2(2 * j + 1, i);
-        
     }
 
     for (int i = 0; i < rows; ++i) {
@@ -64,11 +62,8 @@ MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
             
             res(i, j) = -mulH[i] - mulV[j];
 
-            for (int k = 0; k < rows / 2; ++k) {
-
+            for (int k = 0; k < rows / 2; ++k) 
                 res(i, j) = res(i, j) + (m1(i, 2 * k) + m2(2 * k + 1, j)) * (m1(i, 2 * k + 1) + m2(2 * k, j));
-            
-            }
         }
     }
 
@@ -201,10 +196,8 @@ MatrixT Strassen::bruteForce(MatrixT& m1, MatrixT& m2) {
 
         for (int j = 0; j < rows; ++j) {
             
-            for (int k = 0; k < rows; ++k) {
-
+            for (int k = 0; k < rows; ++k)
                 res(i, j) = res(i, j) + m1(i, k) * m2(k, j);
-            }
         }
     }
 

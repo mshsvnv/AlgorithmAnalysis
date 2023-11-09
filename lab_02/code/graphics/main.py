@@ -1,7 +1,7 @@
 import csv
 import matplotlib.pyplot as plt
 import numpy as np
-import re
+from matplotlib.backends.backend_pdf import PdfPages
 
 class Graph:
 
@@ -34,38 +34,43 @@ class Graph:
                 if len(values) == 5:
                     self.Str = np.append(self.Str, float(values[4]))
             
-    def buildGraph(self):
-        
+    def buildGraph(self, pdf: PdfPages):
+    
         plt.grid()
         plt.xlabel("Размер, эл.")
         plt.ylabel("Время, мкс.")
 
-        plt.plot(self.lens, self.Std, color = "red", marker = "+", linestyle = "-")
-        plt.plot(self.lens, self.Vin, color = "green", marker = ".", linestyle = ":")
-        plt.plot(self.lens, self.VinOpt, color = "blue", marker = "*", linestyle = "-.")
+        plt.plot(self.lens, self.Std / 1000, color = "red", marker = "+", linestyle = "-")
+        plt.plot(self.lens, self.Vin / 1000, color = "green", marker = ".", linestyle = ":")
+        plt.plot(self.lens, self.VinOpt / 1000, color = "blue", marker = "*", linestyle = "-.")
 
         legend = ["Стандартный алгоритм умножения",
                     "Алгоритм Винограда",
                     "Оптимизированный алгоритм Винограда"]
 
         if len(self.Str):
-            plt.plot(self.lens, self.Str, color = "magenta", marker = "h", linestyle = "--")
+            plt.plot(self.lens, self.Str / 1000, color = "magenta", marker = "h", linestyle = "--")
             legend.append("Алгоритм Штрассена")
 
         plt.legend(legend)
 
-        plt.show()
+        pdf.savefig()
+
+        plt.close()
 
 if __name__ == "__main__":
 
-    graph = Graph()
-    graph.readFile('time_even.csv')
-    graph.buildGraph()
-  
-    graph = Graph()
-    graph.readFile('time_odd.csv')
-    graph.buildGraph()
+    pdf = PdfPages('./figures.pdf')
 
-    graph = Graph()
-    graph.readFile('time_ext.csv')
-    graph.buildGraph()
+    files = ['time_even.csv',
+             'time_odd.csv',
+             'time_ext.csv']
+    
+    with PdfPages('../../report/img/figures.pdf') as pdf:
+        
+        for file in files:
+
+            graph = Graph()
+            graph.readFile(file)
+            graph.buildGraph(pdf)
+  
