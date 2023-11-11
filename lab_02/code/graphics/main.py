@@ -50,6 +50,8 @@ class Graph:
 
         if len(self.Str):
             plt.plot(self.lens, self.Str / 1000, color = "magenta", marker = "h", linestyle = "--")
+            
+            plt.semilogy()
             legend.append("Алгоритм Штрассена")
 
         plt.legend(legend)
@@ -59,8 +61,6 @@ class Graph:
         plt.close()
 
 if __name__ == "__main__":
-
-    pdf = PdfPages('./figures.pdf')
 
     files = ['time_even.csv',
              'time_odd.csv',
