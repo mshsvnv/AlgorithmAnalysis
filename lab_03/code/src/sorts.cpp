@@ -6,7 +6,7 @@ static void swap(int& left, int& right) {
     right = tmp;
 }
 
-static int findMax(arrayT& arr) {
+static int findMax(ArrayT& arr) {
 
     int max = arr[0], size = arr.size();
 
@@ -14,62 +14,78 @@ static int findMax(arrayT& arr) {
 
         if (arr[i] > max) 
             max = arr[i];
-
     }
 
     return max;
 }
 
-arrayT Radix::countSort(arrayT& arr) {
+static int mod(int a, int b) {
+
+    if (a >= 0)
+        return a % b;
+    else {
+        while (a < 0)
+            a += b;
+        return a;
+    }
+}
+
+ArrayT Radix::countSort(ArrayT& arr) {
     
-    static int base = 10;
-    int step = 10;
-    vector<int> ends(10, 0);
+    ArrayT ends(_base, 0);
 
     int size = arr.size();
-    arrayT arrNew;
-    arrNew.resize(size);
+    ArrayT arrNew(size);
 
-    for (int i = 0; i < size; ++i)
-        ends[arr[i] % base]++;
+    for (int i = 0; i < size; ++i) 
+        ends[mod(arr[i], _base)]++;
 
     for (int i = 1; i < ends.size(); ++i)
         ends[i] += ends[i - 1];
 
     for (int i = 0; i < size; ++i) {
-
-        int& j = ends[arr[i] % base];
+        int& j = ends[mod(arr[i], _base)];
         --j;
         arrNew[j] = arr[i];
-
     }
-
-    base *= step;
-
-    for (auto elem : ends) 
-        cout << elem << " ";
-    cout << endl;
 
     return arrNew;
 }
 
-void Radix::execute(arrayT& arr) {
+void Radix::execute(ArrayT& arr) {
 
     int size = arr.size();
     int maxElem = findMax(arr);
 
+    ArrayT neg, pos;
+    
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] < 0)
+            neg.append(arr[i]);
+        else
+            pos.append(arr[i]);
+    }
+
+    _step = 10;
+    _base = _step;
+
     while (maxElem) {
-        arr = countSort(arr);
+        pos = countSort(pos);
+        neg = countSort(neg);
+
+        _base *= _step;
+    
         maxElem /= 10;
     }
+
+    arr = neg + pos;
 }
 
-void Comb::execute(arrayT& arr) {
+void Comb::execute(ArrayT& arr) {
 
     double koef = 1.247;
 
     int step = static_cast<int>(arr.size() / koef);
-    int buf;
 
     while (step >= 1) {
 
@@ -82,7 +98,7 @@ void Comb::execute(arrayT& arr) {
     }           
 }
 
-void Shell::execute(arrayT& arr) {
+void Shell::execute(ArrayT& arr) {
 
     int size = arr.size();
     int gap = size / 2;
@@ -97,6 +113,5 @@ void Shell::execute(arrayT& arr) {
                     swap(arr[j - 1], arr[j]);
             }
         }
-
     }
 }

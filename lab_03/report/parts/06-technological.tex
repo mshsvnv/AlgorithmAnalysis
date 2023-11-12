@@ -27,156 +27,28 @@
 \section{Реализация алгоритмов}
 В листинге \ref{lst:std} приведена реализация алгоритма стандартного умножения матриц.
 
-В листинге \ref{lst:vin_1}--\ref{lst:vin_2} приведена реализация алгоритма умножения матриц методом Винограда.
+В листинге \ref{lst:vin} приведена реализация алгоритма умножения матриц методом Винограда.
 
-В листингу \ref{lst:vin_opt_1}--\ref{lst:vin_opt_2} приведена реализация оптимизированного алгоритма умножения матриц методом Винограда.
+В листинге \ref{lst:vin_opt} приведена реализация оптимизированного алгоритма умножения матриц методом Винограда.
 
-\begin{lstlisting}[label=lst:std, caption=Функция стандартного умножения матриц]
-MatrixT Standard::multiply(MatrixT& m1, MatrixT& m2) {
+В листинге \ref{lst:strassen} приведена реализация алгоритма умножения матриц методом Штрассена.
 
-    MatrixT res{m1.m_rows, m2.m_columns};
-
-    for (int i = 0; i < m1.m_rows; ++i) {
-
-        for (int j = 0; j < m2.m_columns; ++j) {
-
-            for (int k = 0; k < m1.m_columns; ++k) {
-
-                res(i, j) += m1(i, k) * m2(k, j);
-            }
-        }
-    }
-
-    return res;
-}    
-\end{lstlisting}
+\lstinputlisting[label=lst:std, caption=Функция стандартного умножения матриц, firstline=16,lastline=36]{../code/src/multiply.cpp}
 
 \clearpage
 
-\begin{lstlisting}[label=lst:vin_1, caption=Функция умножения матриц методом Винограда (часть 1)]
-MatrixT Vinograd::multiply(MatrixT& m1, MatrixT& m2) {
-
-    vector<int> mulH;
-    vector<int> mulV;
-
-    MatrixT res{m1.m_rows, m2.m_columns};
-
-    for (int i = 0; i < m1.m_rows; ++i) {
-
-        mulH.emplace_back(0);
-
-        for (int j = 0; j < m1.m_columns / 2; ++j) 
-
-            mulH[i] = mulH[i] + m1(i, 2 * j) * m1(i, 2 * j + 1); 
-    }
-
-    for (int i = 0; i < m1.m_rows; ++i) {
-
-        mulV.emplace_back(0);
-
-        for (int j = 0; j < m2.m_columns / 2; ++j) 
-
-            mulV[i] = mulV[i] +  m2(2 * j, i) * m2(2 * j + 1, i); 
-    }
-\end{lstlisting}
+\lstinputlisting[label=lst:vin, caption=Функция умножения матриц методом Винограда, firstline=38,lastline=80]{../code/src/multiply.cpp}
 
 \clearpage
 
-\begin{lstlisting}[label=lst:vin_2, caption=Функция умножения матриц методом Винограда (часть 2)]
-
-    for (int i = 0; i < m1.m_rows; ++i) {
-
-        for (int j = 0; j < m2.m_columns; ++j) {
-
-            res(i, j) = -mulH[i] - mulV[j];
-
-            for (int k = 0; k < m1.m_columns / 2; ++k) {
-
-                res(i, j) = res(i, j) + (m1(i, 2 * k) + m2(2 * k + 1, j)) * (m1(i, 2 * k + 1) + m2(2 * k, j));
-            }
-        }
-    }
-
-    if (m1.m_rows % 2) {
-
-        for (int i = 0; i < m1.m_rows; ++i) {
-
-            for (int j = 0; j < m2.m_columns; ++j) {  
-
-                res(i, j) = res(i, j) + m1(i, m1.m_columns - 1) * m2(m2.m_rows - 1, j);
-            }
-        }
-    }
-
-    return res;    
-}
-\end{lstlisting}
+\lstinputlisting[label=lst:vin_opt, caption=Оптимизированная функция умножения матриц методом Винограда, firstline=82,lastline=132]{../code/src/multiply.cpp}
 
 \clearpage
 
-\begin{lstlisting}[label=lst:vin_opt_1, caption=Функция умножения матриц оптимизированным методом Винограда (часть 1)]
-MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
-
-    int stepHalf = m1.m_columns / 2;
-
-    vector<int> mulH;
-    vector<int> mulV;
-
-    MatrixT res{m1.m_rows, m2.m_columns};
-
-    for (int i = 0; i < m1.m_rows; ++i) {
-
-        mulH.emplace_back(0);
-
-        for (int j = 0; j < stepHalf; ++j) 
-
-            mulH[i] += m1(i, j << 1) * m1(i, (j << 1) + 1); 
-    }
-
-    for (int i = 0; i < m2.m_rows; ++i) {
-
-        mulV.emplace_back(0);
-
-        for (int j = 0; j < stepHalf; ++j) 
-
-            mulV[i] += m2(j << 1, i) * m2((j << 1) + 1, i);
-    }
-\end{lstlisting}
+\lstinputlisting[label=lst:strassen, caption=Функция умножения матриц методом Штрассена, firstline=134,lastline=187]{../code/src/multiply.cpp}
 
 \clearpage
 
-\begin{lstlisting}[label=lst:vin_opt_2, caption=Функция умножения матриц оптимизированным методом Винограда (часть 2)]
-
-    for (int i = 0; i < m1.m_rows; ++i) {
-
-        for (int j = 0; j < m2.m_columns; ++j) {
-
-            int buf = -mulH[i] - mulV[j];
-
-            for (int k = 0; k < stepHalf; ++k) {
-
-                int curK = k << 1;
-                buf += (m1(i, curK) + m2(curK + 1, j)) * (m1(i, curK + 1) + m2(curK, j));
-            }
-
-            res(i, j) = buf;
-        }
-    }
-
-    if (m1.m_rows % 2) {
-
-        for (int i = 0; i < m1.m_rows; ++i) {
-
-            for (int j = 0; j < m2.m_columns; ++j) { 
-
-                res(i, j) += m1(i, m1.m_columns - 1) * m2(m2.m_rows - 1, j);
-            }
-        }
-    }
-
-    return res;
-} 
-\end{lstlisting}
 
 \section{Функциональные тесты}
 В таблице \ref{tbl:func_test_std} приведены тесты для функции, реализующей алгоритм стандартного умножения матриц.
@@ -467,6 +339,7 @@ MatrixT VinogradOpt::multiply(MatrixT& m1, MatrixT& m2) {
             9 & 10 & 11 & 12\\
             13 & 14 & 14 & 16
         \end{pmatrix}$ \\
+        \hline
         \end{tabular}
 \end{table}
 

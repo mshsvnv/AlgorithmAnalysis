@@ -1,32 +1,31 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include "array.h"
 
 using namespace std;
-
-using arrayT = vector<int>;
 
 class Sort {
 public:
     virtual ~Sort() = default;
 
-    virtual void execute(arrayT& arr) = 0;
+    virtual void execute(ArrayT& arr) = 0;
 };
 
 class Radix : public Sort {
+    int _base;
+    int _step;
 public:
-    void execute(arrayT& arr) override;
-    arrayT countSort(arrayT& arr);
+    void execute(ArrayT& arr) override;
+    ArrayT countSort(ArrayT& arr);
 };
 
 class Comb : public Sort {
 public:
-    void execute(arrayT& arr) override;
+    void execute(ArrayT& arr) override;
 };
 
 class Shell : public Sort {
 public:
-    void execute(arrayT& arr) override;
+    void execute(ArrayT& arr) override;
 };

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  8 NOV 2023 02:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.7)  12 NOV 2023 03:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/mshsv/OneDrive/Р Р°Р±РѕС‡РёР№ СЃС‚РѕР»/studying/5_sem/Algorithm Analysis/lab_02/report/report.tex"
-(c:/Users/mshsv/OneDrive/Р Р°Р±РѕС‡РёР№ СЃС‚РѕР»/studying/5_sem/Algorithm Analysis/lab_02/report/report.tex
+**"c:/Users/mshsv/OneDrive/Р Р°Р±РѕС‡РёР№ СЃС‚РѕР»/studying/5_sem/Algorithm Analysis/lab_03/report/report.tex"
+(c:/Users/mshsv/OneDrive/Р Р°Р±РѕС‡РёР№ СЃС‚РѕР»/studying/5_sem/Algorithm Analysis/lab_03/report/report.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
 (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/extsizes\extreport.cls
@@ -912,7 +912,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
 \Hy@SectionHShift=\skip63
-)) (report.aux (parts/01-title.aux) (parts/02-contents.aux) (parts/03-introduction.aux) (parts/04-analysis.aux) (parts/05-construction.aux) (parts/06-technological.aux) (parts/07-research.aux) (parts/08-conclusion.aux) (parts/lib.aux))
+)) (report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -1003,13 +1003,12 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
  on input line 5.
 
 Package hyperref Info: Link coloring OFF on input line 5.
-(report.out) (report.out)
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
 \openout2 = `parts/01-title.aux'.
 
- (parts/01-title.tex
+(parts/01-title.tex
 
 Package geometry Warning: `pdftex': not available in `\newgeometry'; skipped.
 
@@ -1045,7 +1044,7 @@ Package geometry Warning: `pdftex': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<img/mgtu_logo.png, id=103, 2007.5pt x 2368.85pt>
+<img/mgtu_logo.png, id=7, 2007.5pt x 2368.85pt>
 File: img/mgtu_logo.png Graphic file (type png)
 <use img/mgtu_logo.png>
 Package pdftex.def Info: img/mgtu_logo.png  used on input line 10.
@@ -1122,7 +1121,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--24
 {C:/Users/mshsv/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-t2a.enc} <./img/mgtu_logo.png>])
 \openout2 = `parts/02-contents.aux'.
 
- (parts/02-contents.tex (report.toc)
+ (parts/02-contents.tex
+No file report.toc.
 \tf@toc=\write6
 \openout6 = `report.toc'.
 
@@ -1135,7 +1135,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--24
 ]
 \openout2 = `parts/03-introduction.aux'.
 
- (parts/03-introduction.tex) [3
+ (parts/03-introduction.tex
+
+LaTeX Warning: Citation `vinograd-haskell' on page 3 undefined on input line 4.
+
+) [3
 
 
 
@@ -1145,12 +1149,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--24
 
  (parts/04-analysis.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 1.
+
+LaTeX Warning: Citation `matrix' on page 4 undefined on input line 6.
+
+
+LaTeX Warning: Citation `matrix' on page 4 undefined on input line 22.
+
 [4
 
 
 
 
-] [5]
+]
+
+LaTeX Warning: Reference `eq:classic_1' on page 5 undefined on input line 34.
+
+
+LaTeX Warning: Citation `vinograd-haskell' on page 5 undefined on input line 37.
+
+
+LaTeX Warning: Reference `eq:scalar_prod' on page 5 undefined on input line 57.
+
+
+LaTeX Warning: Reference `eq:vinograd_2' on page 5 undefined on input line 62.
+
+[5]
+
+LaTeX Warning: Reference `eq:vinograd_1' on page 6 undefined on input line 68.
+
+
+LaTeX Warning: Citation `vinograd-alg' on page 6 undefined on input line 69.
+
+
 Overfull \hbox (2.65909pt too wide) in paragraph at lines 73--73
  |[]\T2A/cmr/bx/n/20.74 Оптимизированный ал-го-ритм Ви-но-гра-
  []
@@ -1175,19 +1205,49 @@ Missing character: There is no С in font cmr12!
 LaTeX Warning: Command \CYRS invalid in math mode on input line 128.
 
 Missing character: There is no С in font cmr12!
+
+LaTeX Warning: Citation `strassen' on page 7 undefined on input line 144.
+
 [7]) [8]
 \openout2 = `parts/05-construction.aux'.
 
  (parts/05-construction.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 2.
 
+LaTeX Warning: Reference `fig:Stand' on page 9 undefined on input line 5.
 
-pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=224, page=1, 597.19106pt x 846.0408pt>
-File: img/algorithms.pdf Graphic file (type pdf)
-<use img/algorithms.pdf, page 1>
-Package pdftex.def Info: img/algorithms.pdf , page1 used on input line 13.
-(pdftex.def)             Requested size: 464.54965pt x 658.10779pt.
+
+LaTeX Warning: Reference `fig:Vinograd1' on page 9 undefined on input line 7.
+
+
+LaTeX Warning: Reference `fig:Vinograd2' on page 9 undefined on input line 7.
+
+
+LaTeX Warning: Reference `fig:VinogradOpt1' on page 9 undefined on input line 9.
+
+
+LaTeX Warning: Reference `fig:VinogradOpt2' on page 9 undefined on input line 9.
+
+
+LaTeX Warning: File `img/algorithms.pdf' not found on input line 13.
+
+
+parts/05-construction.tex:13: Package pdftex.def Error: File `img/algorithms.pdf' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ....9\textheight, page=1]{img/algorithms.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (188.81873pt too wide) in paragraph at lines 13--14
+ [][] 
+ []
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1196,54 +1256,118 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
-] [10 <./img/algorithms.pdf>]
+] [10]
 
-pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=258, page=2, 597.19106pt x 846.0408pt>
-File: img/algorithms.pdf Graphic file (type pdf)
-<use img/algorithms.pdf, page 2>
-Package pdftex.def Info: img/algorithms.pdf , page2 used on input line 22.
-(pdftex.def)             Requested size: 464.54965pt x 658.10779pt.
+LaTeX Warning: File `img/algorithms.pdf' not found on input line 22.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11 <./img/algorithms.pdf>]
+parts/05-construction.tex:22: Package pdftex.def Error: File `img/algorithms.pdf' not found: using draft setting.
 
-pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=283, page=3, 597.19106pt x 846.0408pt>
-File: img/algorithms.pdf Graphic file (type pdf)
-<use img/algorithms.pdf, page 3>
-Package pdftex.def Info: img/algorithms.pdf , page3 used on input line 31.
-(pdftex.def)             Requested size: 464.54965pt x 658.10779pt.
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.22 ....9\textheight, page=2]{img/algorithms.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
 
-[12 <./img/algorithms.pdf>]
+Overfull \hbox (188.81873pt too wide) in paragraph at lines 22--23
+ [][] 
+ []
 
-pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=297, page=4, 597.19106pt x 846.0408pt>
-File: img/algorithms.pdf Graphic file (type pdf)
-<use img/algorithms.pdf, page 4>
-Package pdftex.def Info: img/algorithms.pdf , page4 used on input line 40.
-(pdftex.def)             Requested size: 464.54965pt x 658.10779pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13 <./img/algorithms.pdf>]
+[11]
 
-pdfTeX warning: pdflatex (file ./img/algorithms.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<img/algorithms.pdf, id=323, page=5, 597.19106pt x 846.0408pt>
-File: img/algorithms.pdf Graphic file (type pdf)
-<use img/algorithms.pdf, page 5>
-Package pdftex.def Info: img/algorithms.pdf , page5 used on input line 49.
-(pdftex.def)             Requested size: 464.54965pt x 658.10779pt.
+LaTeX Warning: File `img/algorithms.pdf' not found on input line 31.
+
+
+parts/05-construction.tex:31: Package pdftex.def Error: File `img/algorithms.pdf' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 ....9\textheight, page=3]{img/algorithms.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (188.81873pt too wide) in paragraph at lines 31--32
+ [][] 
+ []
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14 <./img/algorithms.pdf>]
+[12]
+
+LaTeX Warning: File `img/algorithms.pdf' not found on input line 40.
+
+
+parts/05-construction.tex:40: Package pdftex.def Error: File `img/algorithms.pdf' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40 ....9\textheight, page=4]{img/algorithms.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (188.81873pt too wide) in paragraph at lines 40--41
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13]
+
+LaTeX Warning: File `img/algorithms.pdf' not found on input line 49.
+
+
+parts/05-construction.tex:49: Package pdftex.def Error: File `img/algorithms.pdf' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.49 ....9\textheight, page=5]{img/algorithms.pdf}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (188.81873pt too wide) in paragraph at lines 49--50
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14]
 Overfull \hbox (30.09239pt too wide) in paragraph at lines 56--56
  |[]\T2A/cmr/bx/n/20.74 Модель вы-чис-ле-ний для про-ве-де-ния оцен-
  []
+
+
+LaTeX Warning: Reference `eq:operations1' on page 15 undefined on input line 60.
+
+
+LaTeX Warning: Reference `eq:operations2' on page 15 undefined on input line 67.
+
+
+LaTeX Warning: Reference `eq:if' on page 15 undefined on input line 72.
+
+
+LaTeX Warning: Reference `eq:for' on page 15 undefined on input line 81.
 
 [15
 
@@ -1256,118 +1380,66 @@ Overfull \hbox (14.8093pt too wide) in paragraph at lines 117--119
 []\T2A/cmr/m/n/14.4 При вы-чис-ле-нии тру-до-ем-ко-сти ал-го-рит-ма Ви-но-гра-да необ-хо-ди-мо учесть
  []
 
-[16] [17])
-Overfull \hbox (2.8517pt too wide) in paragraph at lines 218--12
+[16] [17] [18])
+Overfull \hbox (2.8517pt too wide) in paragraph at lines 254--12
 \T2A/cmr/m/n/14.4 ана-ли-ти-че-ском раз-де-ле, бы-ли по-стро-е-ны схе-мы ал-го-рит-мов умно-же-ния мат-
  []
 
-[18] [19]
+[19] [20]
 \openout2 = `parts/06-technological.aux'.
 
  (parts/06-technological.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 3.
 
-Overfull \hbox (7.21185pt too wide) in paragraph at lines 13--14
+LaTeX Warning: Citation `cpp-lang' on page 21 undefined on input line 13.
+
+
+LaTeX Warning: Citation `cpp-lang' on page 21 undefined on input line 13.
+
+
+Overfull \hbox (7.83655pt too wide) in paragraph at lines 13--14
 []\T2A/cmr/m/n/14.4 Для ре-а-ли-за-ции дан-ной ла-бо-ра-тор-ной ра-бо-ты был вы-бран язык \T2A/cmtt/m/n/14.4 C++ \T2A/cmr/m/n/14.4 [[]],
  []
 
-[20
+[21
 
 
 
 
 ]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 34.
-LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 34.
- (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmss.fd
-File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-)
-LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 45.
- (C:\Users\mshsv\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmss.fd
-File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [21{C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [22
 
-] [23
-
-] [24
-
-] [25
-
-] [26]) [27
-
-]
-\openout2 = `parts/07-research.aux'.
-
- (parts/07-research.tex
-{\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 4.
-<img/prog_work.png, id=566, 202.25563pt x 414.54875pt>
-File: img/prog_work.png Graphic file (type png)
-<use img/prog_work.png>
-Package pdftex.def Info: img/prog_work.png  used on input line 17.
-(pdftex.def)             Requested size: 107.0283pt x 219.37297pt.
-[28
+LaTeX Warning: Reference `lst:std' on page 22 undefined on input line 28.
 
 
+LaTeX Warning: Reference `lst:vin' on page 22 undefined on input line 30.
 
 
- <./img/prog_work.png>]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<img/figures.pdf, id=577, page=1, 462.52798pt x 346.89601pt>
-File: img/figures.pdf Graphic file (type pdf)
-<use img/figures.pdf, page 1>
-Package pdftex.def Info: img/figures.pdf , page1 used on input line 61.
-(pdftex.def)             Requested size: 390.00294pt x 292.48987pt.
-[29]
-<img/figures.pdf, id=586, page=2, 462.52798pt x 346.89601pt>
-File: img/figures.pdf Graphic file (type pdf)
-<use img/figures.pdf, page 2>
-Package pdftex.def Info: img/figures.pdf , page2 used on input line 68.
-(pdftex.def)             Requested size: 390.00294pt x 292.48987pt.
- [30 <./img/figures.pdf>]) [31 <./img/figures.pdf>] [32]
-\openout2 = `parts/08-conclusion.aux'.
-
- (parts/08-conclusion.tex) [33
+LaTeX Warning: Reference `lst:vin_opt' on page 22 undefined on input line 32.
 
 
+LaTeX Warning: Reference `lst:strassen' on page 22 undefined on input line 34.
 
 
-]
-\openout2 = `parts/lib.aux'.
+! Package Listings Error: File `../code/src/multiply(.cpp)' not found.
 
- (parts/lib.tex (report.bbl
-Overfull \hbox (86.51028pt too wide) in paragraph at lines 12--19
-\T2A/cmtt/m/n/14.4 realizatsiya-[]algoritma-[]umnozheniya-[]matrits-[]po-[]vinogradu-[]na-[]yazyke-[]haskell$[] 
- []
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cpp)
 
-)) [34
+Enter file name: 
+parts/06-technological.tex:36: Emergency stop.
+<read *> 
+         
+l.36 ...=16,lastline=36]{../code/src/multiply.cpp}
+                                                  ^^M
+*** (cannot \read from terminal in nonstop modes)
 
-
-
-
-] 
-enddocument/afterlastpage: lastpage setting LastPage.
-(report.aux (parts/01-title.aux) (parts/02-contents.aux) (parts/03-introduction.aux) (parts/04-analysis.aux) (parts/05-construction.aux) (parts/06-technological.aux) (parts/07-research.aux) (parts/08-conclusion.aux) (parts/lib.aux))
- ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
- ***********
-Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 79E76BD16E50874646F65D830007E156;5939.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 39895 strings out of 475247
- 932098 string characters out of 5757792
- 2014785 words of memory out of 5000000
- 60401 multiletter control sequences out of 15000+600000
- 577459 words of font info for 73 fonts, out of 8000000 for 9000
+ 38973 strings out of 475247
+ 916032 string characters out of 5757792
+ 1935785 words of memory out of 5000000
+ 59713 multiletter control sequences out of 15000+600000
+ 575467 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 103i,15n,106p,866b,1550s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2074.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfbx2488.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm0800.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1000.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfrm1728.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfss1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfsx1200.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sfti1440.pfb><C:/Users/mshsv/AppData/Local/Programs/MiKTeX/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on report.pdf (34 pages, 1226257 bytes).
-PDF statistics:
- 835 PDF objects out of 1000 (max. 8388607)
- 254 named destinations out of 1000 (max. 500000)
- 270 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 103i,14n,106p,866b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+parts/06-technological.tex:36:  ==> Fatal error occurred, no output PDF file produced!

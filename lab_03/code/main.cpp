@@ -1,7 +1,8 @@
 #include "inc/sorts.h"
 #include "inc/measure.h"
+#include "inc/array.h"
 
-#define MAX_AMOUNT 1000
+#define MAX_AMOUNT 100
 #define ITERS 100
 
 int menu() {
@@ -11,32 +12,45 @@ int menu() {
     cout << "\n\t\tМеню\n"
     "1. Radix sort\n"
     "2. Comb sort;\n"
-    "3. Shell sort\n"
+    "3. Shell sort\n\n"
     "4. Замерить время\n"
+    "5. Замерить память\n"
     "0. Выход\n\n"
     "Выберете пункт (0-4): ";
 
     cin >> choice;
-    wcout << endl;
+    cout << endl;
 
     return choice;
 }
 
 int main() {
 
-    // int choice = menu();
+    int choice = menu();
 
-    arrayT arr{1, 1, 1, 1};
-    
     vector<Sort*> sorts{new Radix, new Comb, new Shell};
-
-    sorts[0]->execute(arr);
     
-    // while (choice) {
-    //     choice = menu();
-    // }
+    while (choice) {
 
-    for (auto elem : arr)
-        cout << elem << " ";
-    cout << endl;
+        if (choice == 4) {
+                timeMeasure(10, ITERS, MAX_AMOUNT, 0);
+                timeMeasure(10, ITERS, MAX_AMOUNT, 1);
+                timeMeasure(10, ITERS, MAX_AMOUNT, 2);
+                timeMeasure(10, ITERS, MAX_AMOUNT, 3);
+            }
+        else {
+
+            ArrayT arr("../code/data.txt");
+
+            if (!arr.size())
+                cout << "Некорректные данные!\n";
+            else {
+                cout << "До: " << arr;
+                sorts[choice - 1]->execute(arr);
+                cout << "После: " << arr; 
+            }
+        }
+
+        choice = menu();
+    }
 }
