@@ -1,0 +1,11 @@
+\babel@toc {russian}{}\relax 
+\contentsline {chapter}{\numberline {1}Выполнение задания}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Реализуемый алгоритм}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Выбор языка программирования}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Код программы}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Модели программ}{4}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Граф управления программы}{4}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Информационный граф программы}{6}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Операционная история программы}{7}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Информационная история программы}{8}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.5}Возможность распараллеливания}{9}{subsection.1.4.5}%

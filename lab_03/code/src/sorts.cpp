@@ -21,6 +21,7 @@ static int findMax(ArrayT& arr) {
 
 static int mod(int a, int b) {
 
+    // return a % b;
     if (a >= 0)
         return a % b;
     else {
@@ -38,12 +39,14 @@ ArrayT Radix::countSort(ArrayT& arr) {
     ArrayT arrNew(size);
 
     for (int i = 0; i < size; ++i) 
+        // ends[mod(arr[i], _base)]++;
         ends[mod(arr[i], _base)]++;
 
     for (int i = 1; i < ends.size(); ++i)
         ends[i] += ends[i - 1];
 
     for (int i = 0; i < size; ++i) {
+        // int& j = ends[mod(arr[i], _base)];
         int& j = ends[mod(arr[i], _base)];
         --j;
         arrNew[j] = arr[i];
@@ -84,12 +87,13 @@ void Radix::execute(ArrayT& arr) {
 void Comb::execute(ArrayT& arr) {
 
     double koef = 1.247;
+    int size = arr.size();
 
-    int step = static_cast<int>(arr.size() / koef);
+    int step = static_cast<int>(size / koef);
 
     while (step >= 1) {
 
-        for (int i = 0; i + step < arr.size(); i++)
+        for (int i = 0; i + step < size; i++)
 
             if (arr[i] > arr[i + step])
                 swap(arr[i], arr[i + step]);
