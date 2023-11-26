@@ -10,19 +10,19 @@
 
 В листинге \ref{lst:merge} приведена реализация алгоритма сортировки слиянием.
 
-\lstinputlisting[label=lst:merge, caption=Реализация алгоритма сортировки слиянием, firstline=13,lastline=55]{../code/main.cpp}
+\lstinputlisting[label=lst:merge, caption=Реализация алгоритма сортировки слиянием, firstline=9,lastline=60]{../code/main.cpp}
 
 \section{Модели программ}
 
-На рисунках \ref{fg:mg}--\ref{fg:ii} представлены модели графовых управлений.
+На рисунках \ref{fg:mg}--\ref{fg:ii_2} представлены модели графовых управлений.
 
 \subsection{Граф управления программы}
 
 \begin{figure}[h]
 	\centering
-	\label{fg:mg}
-	\includegraphics[height=0.2\textheight]{img/граф_управления.pdf}
+	\includegraphics[height=0.4\textheight]{img/граф_управления.pdf}
 	\caption{Граф управления}
+	\label{fg:mg}
 \end{figure}
 
 \clearpage
@@ -31,9 +31,9 @@
 
 \begin{figure}[h]
 	\centering
-	\label{fg:ig}
-	\includegraphics[height=0.5\textheight, page=1]{img/информационный_граф.pdf}
+	\includegraphics[height=0.6\textheight]{img/информационный_граф.pdf}
 	\caption{Информационный граф}
+	\label{fg:ig}
 \end{figure}
 
 \clearpage
@@ -42,11 +42,22 @@
 
 Рассмотрим следующий массив: \texttt{a = [4, 3, 2, 1]}.
 
+На рисунках \ref{fg:os_1}--\ref{fg:os_2} представлена операционная история программы для этого массива.
+
 \begin{figure}[h]
 	\centering
-	\label{fg:os}
-	\includegraphics[height=0.7\textheight, page=1]{img/операционная_история.pdf}
-	\caption{Операционная история}
+	\includegraphics[height=0.7\textheight]{img/операционная_история_1.pdf}
+	\caption{Операционная история (начало)}
+	\label{fg:oi_1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.9\textheight]{img/операционная_история_2.pdf}
+	\caption{Операционная история (конец)}
+	\label{fg:oi_2}
 \end{figure}
 
 \clearpage
@@ -55,12 +66,21 @@
 
 \begin{figure}[h]
 	\centering
-	\label{fg:ii}
-	\includegraphics[height=0.7\textheight, page=1]{img/информационная_история.pdf}
-	\caption{Информационная история}
+	\includegraphics[height=0.7\textheight]{img/информационная_история_1.pdf}
+	\caption{Информационная история (начало)}
+	\label{fg:ii_1}
 \end{figure}
 
 \clearpage
 
-\subsection{Возможность распараллеливания}
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.6\textheight]{img/информационная_история_2.pdf}
+	\caption{Информационная история (конец)}
+	\label{fg:ii_2}
+\end{figure}
+
+\clearpage
+
+\section*{Возможность распараллеливания}
 Можно разделить массив на части и запустить каждую часть сортировки в отдельном потоке, а затем объединить результаты.
