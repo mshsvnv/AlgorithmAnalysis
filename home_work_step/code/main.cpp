@@ -11,26 +11,40 @@ using arrayT = vector<T>;
 int main() {
     srand(time(0));
 
-    int power = 5;                                      // (1)
-    arrayT<double> koefs(power + 1);                    // (2)
+    int power = 2;                             // (1)
+    arrayT<double> koefs(power + 1);           // (2)
 
-    for (int i = 0; i <= power; ++i) {                  // (3)
-        koefs[i] = rand() % 100 - 50;                   // (4)
-        cout << "Коэффициент при x^"                   // (5)
+    for (int i = 0; i <= power; ++i) {         // (3)
+        koefs[i] = rand() % 10 - 5;            // (4)
+        cout << "Коэффициент при x^"           
              << power - i << ": " 
              << koefs[i] << endl;
     }
 
-    arrayT<double> tmp(power + 1);                      // (6)
-    double x = 1;                                       // (7)
+    int n = 5;                                 // (5)          
+    arrayT<double> xValues(n);                 // (6)
+    
+    for (int i = 0; i < n; ++i)                // (7)
+        xValues[i] = rand() % 10 - 5;          // (8)
 
-    for (int i = 0; i <= power; ++i) {                  // (8)
+    for (int i = 0; i < n; ++i) {              // (9)
 
-        tmp[i] = koefs[i];                              // (9)
+        double x = xValues[i],                 // (10)
+               cur,                            // (11)
+               prev;                           // (12)
+        
+        for (int j = 0; j <= power; ++j) {     // (13)
 
-        if (i)                                          // (10)
-            tmp[i] += x * tmp[i - 1];                   // (11)
+            cur = koefs[j];                    // (14)
+
+            if (j)                             // (15)
+                prev = cur + x * prev;         // (16)
+            else
+                prev = cur;                    // (17)
+        }
+
+        cout << "Результа для x = "            // (18)
+             << xValues[i] << ": " 
+             << prev << endl;
     }
-
-    cout << "\nРезультат: " << tmp[power];              // (12)
 }
