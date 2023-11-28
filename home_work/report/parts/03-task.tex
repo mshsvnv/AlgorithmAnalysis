@@ -1,86 +1,46 @@
-\chapter{Выполнение задания}
+\chapter{Введение}
 
-\section{Реализуемый алгоритм}
-Сортировка слиянием
+\section{Задание}
 
-\section{Выбор языка программирования}
-Для выполнения домашнего задания был выбран язык \texttt{C++}.
+Описать четырьмя графовыми моделями (ГУ, ИГ, ОИ, ИИ) последовательный алгоритм либо фрагмент алгоритма, содержащий от 15 значащих строк кода и от двух циклов, один из которых является вложенным в другой.
 
-\section{Код программы}
+\textbf{Вариант 17:} в качестве реализуемого алгоритма~--- сортировка слиянием.
 
-В листинге \ref{lst:merge} приведена реализация алгоритма сортировки слиянием.
+\section{Графовые модели программы}
 
-\lstinputlisting[label=lst:merge, caption=Реализация алгоритма сортировки слиянием, firstline=9,lastline=60]{../code/main.cpp}
+Программа представлена в виде графа: набор вершин и множество соединяющих их направленных дуг.
 
-\section{Модели программ}
+\begin{enumerate}
+    \item \textbf{Вершины}: процедуоы, циклы, линейный участки, операторы, итерации циклов, срабатывание операторов и т. д.
+    \item \textbf{Дуги}: отражают связь (отношение между вершинами). 
+\end{enumerate}
 
-На рисунках \ref{fg:mg}--\ref{fg:ii_2} представлены модели графовых управлений.
+Выделяют 2 типа отношений:
+\begin{enumerate}
+    \item операционное отношение~--- по передаче управления;
+    \item операционное отношение~--- по передаче данных.
+\end{enumerate}
 
-\subsection{Граф управления программы}
+\subsection*{Граф управления}
+\begin{enumerate}
+    \item \textbf{Вершины}: операторы.
+    \item \textbf{Дуги}: операционные отношения.
+\end{enumerate}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=0.4\textheight]{img/граф_управления.pdf}
-	\caption{Граф управления}
-	\label{fg:mg}
-\end{figure}
+\subsection*{Информационный граф}
+\begin{enumerate}
+    \item \textbf{Вершины}: операторы.
+    \item \textbf{Дуги}: информационные отношения.
+\end{enumerate}
 
-\clearpage
+\subsection*{Операционная история}
+\begin{enumerate}
+    \item \textbf{Вершины}: срабатывание операторов.
+    \item \textbf{Дуги}: операционные отношения.
+\end{enumerate}
 
-\subsection{Информационный граф программы}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=0.6\textheight]{img/информационный_граф.pdf}
-	\caption{Информационный граф}
-	\label{fg:ig}
-\end{figure}
-
-\clearpage
-
-\subsection{Операционная история программы}
-
-Рассмотрим следующий массив: \texttt{a = [4, 3, 2, 1]}.
-
-На рисунках \ref{fg:oi_1}--\ref{fg:oi_2} представлена операционная история программы для этого массива.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=0.7\textheight]{img/операционная_история_1.pdf}
-	\caption{Операционная история (начало)}
-	\label{fg:oi_1}
-\end{figure}
-
-\clearpage
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=0.9\textheight]{img/операционная_история_2.pdf}
-	\caption{Операционная история (конец)}
-	\label{fg:oi_2}
-\end{figure}
-
-\clearpage
-
-\subsection{Информационная история программы}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=0.7\textheight]{img/информационная_история_1.pdf}
-	\caption{Информационная история (начало)}
-	\label{fg:ii_1}
-\end{figure}
-
-\clearpage
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=0.6\textheight]{img/информационная_история_2.pdf}
-	\caption{Информационная история (конец)}
-	\label{fg:ii_2}
-\end{figure}
-
-\clearpage
-
-\section*{Возможность распараллеливания}
-Можно разделить массив на части и запустить каждую часть сортировки в отдельном потоке, а затем объединить результаты.
+\subsection*{Информационная история}
+\begin{enumerate}
+    \item \textbf{Вершины}: срабатывание операторов.
+    \item \textbf{Дуги}: информационные отношения.
+\end{enumerate}

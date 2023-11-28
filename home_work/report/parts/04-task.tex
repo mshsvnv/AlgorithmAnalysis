@@ -1,0 +1,87 @@
+\chapter{Выполнение}
+
+\section{Выбор языка программирования}
+Для выполнения домашнего задания был выбран язык \texttt{C++}.
+
+\section{Код программы}
+
+В листинге \ref{lst:merge} приведена реализация алгоритма сортировки слиянием.
+
+\lstinputlisting[label=lst:merge, caption=Реализация алгоритма сортировки слиянием, firstline=9,lastline=60]{../code/main.cpp}
+
+\section{Графовые модели программы}
+
+\subsection{Граф управления}
+
+На рисунке \ref{fg:mg} представлен граф управления.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.4\textheight]{img/граф_управления.pdf}
+	\caption{Граф управления}
+	\label{fg:mg}
+\end{figure}
+
+\clearpage
+
+\subsection{Информационный граф}
+
+На рисунке \ref{fg:ig} представлен информационный граф.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.6\textheight]{img/информационный_граф.pdf}
+	\caption{Информационный граф}
+	\label{fg:ig}
+\end{figure}
+
+\clearpage
+
+\subsection{Операционная история}
+
+Рассмотрим следующий массив: \texttt{a = [4, 3, 2, 1]}.
+
+На рисунках \ref{fg:oi_1}--\ref{fg:oi_2} представлена операционная история программы для этого массива.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.7\textheight]{img/операционная_история_1.pdf}
+	\caption{Операционная история (начало)}
+	\label{fg:oi_1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.9\textheight]{img/операционная_история_2.pdf}
+	\caption{Операционная история (конец)}
+	\label{fg:oi_2}
+\end{figure}
+
+\clearpage
+
+\subsection{Информационная история}
+
+На рисунках \ref{fg:ii_1}--\ref{fg:ii_2} представлена информационная история программы для этого массива.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.7\textheight]{img/информационная_история_1.pdf}
+	\caption{Информационная история (начало)}
+	\label{fg:ii_1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=0.6\textheight]{img/информационная_история_2.pdf}
+	\caption{Информационная история (конец)}
+	\label{fg:ii_2}
+\end{figure}
+
+\clearpage
+
+\section*{Возможность распараллеливания}
+Можно разделить массив на части и запустить каждую часть сортировки в отдельном потоке, а затем объединить результаты.
