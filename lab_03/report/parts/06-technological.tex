@@ -11,329 +11,58 @@
 
 \begin{itemize}
 	\item \texttt{main.cpp}~--- файл содержит точку входа в программу, из которой происходит вызов алгоритмов по разработанному интерфейсу;
-	\item \texttt{matrix.cpp}~--- файл содержит реализацию класса \texttt{MatrixT};
-	\item \texttt{multiply.cpp}~--- файл содержит функции умножения матриц;
-	\item \texttt{measure.cpp}~--- файл содержит функции, замеряющие процессорное время выполнения алгоритмов умножения матриц;
+	\item \texttt{array.cpp}~--- файл содержит реализацию класса \texttt{ArrayT};
+	\item \texttt{sorts.cpp}~--- файл содержит функции алгоритомов сортировок;
+	\item \texttt{measure.cpp}~--- файл содержит функции, замеряющие процессорное время выполнения алгоритмов сортировок;
 \end{itemize}
 
 \section{Реализация алгоритмов}
-В листинге \ref{lst:std} приведена реализация алгоритма стандартного умножения матриц.
+В листинге \ref{lst:radix} приведена реализация алгоритма поразрядной сортировки.
 
-В листинге \ref{lst:vin} приведена реализация алгоритма умножения матриц методом Винограда.
+В листинге \ref{lst:shell} приведена реализация алгоритма сортировки Шелла.
 
-В листинге \ref{lst:vin_opt} приведена реализация оптимизированного алгоритма умножения матриц методом Винограда.
+В листинге \ref{lst:comb} приведена реализация алгоритма сортировки расческой.
 
-В листинге \ref{lst:strassen} приведена реализация алгоритма умножения матриц методом Штрассена.
-
-\lstinputlisting[label=lst:std, caption=Функция стандартного умножения матриц, firstline=16,lastline=36]{../code/src/multiply.cpp}
+\lstinputlisting[label=lst:radix, caption=Функция поразрядной сортировки, firstline=34,lastline=83]{../code/src/sorts.cpp}
 
 \clearpage
 
-\lstinputlisting[label=lst:vin, caption=Функция умножения матриц методом Винограда, firstline=38,lastline=80]{../code/src/multiply.cpp}
+\lstinputlisting[label=lst:shell, caption=Функция сортировки Шелла, firstline=103,lastline=119]{../code/src/sorts.cpp}
 
-\clearpage
-
-\lstinputlisting[label=lst:vin_opt, caption=Оптимизированная функция умножения матриц методом Винограда, firstline=82,lastline=132]{../code/src/multiply.cpp}
-
-\clearpage
-
-\lstinputlisting[label=lst:strassen, caption=Функция умножения матриц методом Штрассена, firstline=134,lastline=187]{../code/src/multiply.cpp}
+\lstinputlisting[label=lst:comb, caption=Функция сортировки расческой, firstline=85,lastline=101]{../code/src/sorts.cpp}
 
 \clearpage
 
 \section{Функциональные тесты}
-В таблице \ref{tbl:func_test_std} приведены тесты для функции, реализующей алгоритм стандартного умножения матриц.
+В таблице \ref{tab:tests} приведены функциональные тесты для разработанных алгоритмов сортировки. Все тесты пройдены успешно.
 
-В таблице \ref{tbl:func_test_vin} приведены тесты для функции, реализующих алгоритмы умножения матриц методом Винограда.
-
-В таблице \ref{tbl:func_test_strassen} приведены тесты для функции, реализующих алгоритмы умножения матриц методом Штрассена.
-
-\begin{table}[h!]
-    \caption{Функциональные тесты для стандартного алгоритма умножения матриц}
-    \label{tbl:func_test_std}
-    \centering
-        \begin{tabular}{||c|c|c||} 
-        \hline
-        Матрица 1& Матрица 2& Ожидаемый результат \\
-        \hline\hline
-        $\begin{pmatrix}
-            1 & 2\\
-            3 & 4\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            &
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            1 & 2\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            3 & 4\\
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$ \\
-        \hline
-        $\begin{pmatrix}
-            1 & 1 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1\\
-            1\\
-            1\\
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            3
-        \end{pmatrix}$ \\
-        \hline
-        $\begin{pmatrix}
-            5 & 6 & 7\\
-            4 & 9 & 8\\
-            3 & 2 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1 & 0 & 0\\
-            0 & 1 & 0\\
-            0 & 0 & 1\\
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            5 & 6 & 7\\
-            4 & 9 & 8\\
-            3 & 2 & 1\\
-        \end{pmatrix}$ \\
-        \hline
-        $\begin{pmatrix}
-            5 & 6 & 7\\
-            4 & 9 & 8\\
-            3 & 2 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1 & 0\\
-            0 & 1\\
-            0 & 0\\
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            5 & 6\\
-            4 & 9\\
-            3 & 2\\
-        \end{pmatrix}$ \\
-        \hline
-        \end{tabular}
-\end{table}
-
-\begin{table}[h!]
-    \caption{Функциональные тесты для алгоритма умножения матриц методом Винограда}
-    \label{tbl:func_test_vin}
-    \centering
-        \begin{tabular}{||c|c|c||} 
-        \hline
-        Матрица 1& Матрица 2& Ожидаемый результат \\
-        \hline\hline
-        $\begin{pmatrix}
-            1 & 2\\
-            3 & 4\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            &
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            1 & 2\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            3 & 4\\
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$ \\
-        \hline
-        $\begin{pmatrix}
-            1 & 1 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1\\
-            1\\
-            1\\
-        \end{pmatrix}$
-        & \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            5 & 6 & 7\\
-            4 & 9 & 8\\
-            3 & 2 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1 & 0 & 0\\
-            0 & 1 & 0\\
-            0 & 0 & 1\\
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            5 & 6 & 7\\
-            4 & 9 & 8\\
-            3 & 2 & 1\\
-        \end{pmatrix}$ \\
-        \hline
-        $\begin{pmatrix}
-            5 & 6 & 7\\
-            4 & 9 & 8\\
-            3 & 2 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1 & 0\\
-            0 & 1\\
-            0 & 0\\
-        \end{pmatrix}$
-        & \textit{Неверный размер} \\
-        \hline
-        \end{tabular}
-\end{table}
-
-\begin{table}[h!]
-    \caption{Функциональные тесты для алгоритма умножения матриц методом Штрассена}
-    \label{tbl:func_test_strassen}
-    \centering
-        \begin{tabular}{||c|c|c||} 
-        \hline
-        Матрица 1& Матрица 2& Ожидаемый результат \\
-        \hline\hline
-        $\begin{pmatrix}
-            1 & 2\\
-            3 & 4\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            &
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            1 & 2\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            3 & 4\\
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            1 & 1 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1\\
-            1\\
-            1\\
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            5 & 6 & 7\\
-            4 & 9 & 8\\
-            3 & 2 & 1\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1 & 0 & 0\\
-            0 & 1 & 0\\
-            0 & 0 & 1\\
-        \end{pmatrix}$
-        &
-        \textit{Неверный размер} \\
-        \hline
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            1
-        \end{pmatrix}$ \\
-        \hline
-        $\begin{pmatrix}
-            5 & 7\\
-            4 & 8\\
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1 & 0\\
-            0 & 1\\
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            5 & 7\\
-            4 & 8\\
-        \end{pmatrix}$ \\
-        \hline
-        $\begin{pmatrix}
-            1 & 2 & 3 & 4\\
-            5 & 6 & 7 & 8\\
-            9 & 10 & 11 & 12\\
-            13 & 14 & 14 & 16
-        \end{pmatrix}$ 
-        &  
-        $\begin{pmatrix}
-            1 & 0 & 0 & 0\\
-            0 & 1 & 0 & 0\\
-            0 & 0 & 1 & 0\\
-            0 & 0 & 0 & 1
-        \end{pmatrix}$
-        &
-        $\begin{pmatrix}
-            1 & 2 & 3 & 4\\
-            5 & 6 & 7 & 8\\
-            9 & 10 & 11 & 12\\
-            13 & 14 & 14 & 16
-        \end{pmatrix}$ \\
-        \hline
-        \end{tabular}
+\begin{table}[ht]
+	\small
+	\begin{center}
+		\begin{threeparttable}
+			\caption{Функциональные тесты}
+			\label{tab:tests}
+			\begin{tabular}{|c|c|c|c|c|c|}
+				\hline
+				\bfseries Массив
+				& \bfseries Размер
+				& \bfseries Ожидаемый рез.
+				& \multicolumn{3}{c|}{\bfseries Фактический рез.} \\ \cline{4-6}
+				& & & \bfseries Поразрядная & \bfseries Шелла & \bfseries Расческой \\
+				\hline
+				1 2 3 4  & 4 & 1 2 3 4 & 1 2 3 4 & 1 2 3 4 & 1 2 3 4 \\
+				\hline
+				4 3 2 1 & 4 & 4 3 2 1 & 4 3 2 1 & 4 3 2 1 & 4 3 2 1 \\
+				\hline
+				1 2 3 -9 & 4 & -9 1 2 3  & -9 1 2 3 & -9 1 2 3 & -9 1 2 3 \\
+				\hline
+				-5 -1 -3 -4 -5 & 5 & -5 -5 -4 -3 -1 & -5 -5 -4 -3 -1 & -5 -5 -4 -3 -1 \\
+				\hline
+			\end{tabular}	
+		\end{threeparttable}	
+	\end{center}
 \end{table}
 
 \section*{Вывод}
-Были представлены листинги функций, реализующих стандартный алгоритм умножения матриц, алгоритм Винограда, оптимизированный алгоритм Винограда и алгоритм Штрассена.
+Были представлены листинги функций, функциональные тесты.
 Также в данном разделе была представлена информация о выбранных средствах для разработки алгоритмов.

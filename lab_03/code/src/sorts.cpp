@@ -39,14 +39,12 @@ ArrayT Radix::countSort(ArrayT& arr) {
     ArrayT arrNew(size);
 
     for (int i = 0; i < size; ++i) 
-        // ends[mod(arr[i], _base)]++;
         ends[mod(arr[i], _base)]++;
 
-    for (int i = 1; i < ends.size(); ++i)
+    for (int i = 1; i < _base; ++i)
         ends[i] += ends[i - 1];
 
     for (int i = 0; i < size; ++i) {
-        // int& j = ends[mod(arr[i], _base)];
         int& j = ends[mod(arr[i], _base)];
         --j;
         arrNew[j] = arr[i];
@@ -78,7 +76,7 @@ void Radix::execute(ArrayT& arr) {
 
         _base *= _step;
     
-        maxElem /= 10;
+        maxElem /= _step;
     }
 
     arr = neg + pos;

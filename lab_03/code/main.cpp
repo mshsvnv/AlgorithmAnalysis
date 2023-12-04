@@ -33,12 +33,15 @@ int main() {
     while (choice) {
 
         if (choice == 4) {
-                timeMeasure(10, ITERS, MAX_AMOUNT, 0);
-                timeMeasure(10, ITERS, MAX_AMOUNT, 1);
-                timeMeasure(10, ITERS, MAX_AMOUNT, 2);
-                timeMeasure(10, ITERS, MAX_AMOUNT, 3);
+            timeMeasure(10, ITERS, MAX_AMOUNT, 0);
+            timeMeasure(10, ITERS, MAX_AMOUNT, 1);
+            timeMeasure(10, ITERS, MAX_AMOUNT, 2);
+            timeMeasure(10, ITERS, MAX_AMOUNT, 3);
+        }
+        else if (choice == 5) {
+
             }
-        else {
+        else{
 
             ArrayT arr("../code/data.txt");
 
