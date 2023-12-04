@@ -2,8 +2,9 @@
 #include "inc/measure.h"
 #include "inc/array.h"
 
-#define MAX_AMOUNT 100
+#define MAX_AMOUNT 10000
 #define ITERS 100
+#define STEP 1000
 
 int menu() {
 
@@ -33,14 +34,13 @@ int main() {
     while (choice) {
 
         if (choice == 4) {
-            timeMeasure(10, ITERS, MAX_AMOUNT, 0);
-            timeMeasure(10, ITERS, MAX_AMOUNT, 1);
-            timeMeasure(10, ITERS, MAX_AMOUNT, 2);
-            timeMeasure(10, ITERS, MAX_AMOUNT, 3);
+            timeMeasure(STEP, ITERS, MAX_AMOUNT, 0);
+            timeMeasure(STEP, ITERS, MAX_AMOUNT, 1);
+            timeMeasure(STEP, ITERS, MAX_AMOUNT, 2);
+            timeMeasure(STEP, ITERS, MAX_AMOUNT, 3);
         }
-        else if (choice == 5) {
-
-            }
+        else if (choice == 5) 
+            memoryMeasure(STEP, MAX_AMOUNT);
         else{
 
             ArrayT arr("../code/data.txt");

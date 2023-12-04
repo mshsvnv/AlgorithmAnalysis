@@ -82,6 +82,10 @@ void Radix::execute(ArrayT& arr) {
     arr = neg + pos;
 }
 
+int Radix::getVolume(int i) {
+    return sizeof(int) * 2 + i * (sizeof(int) * 10 + sizeof(int) * i + sizeof(int) * 4);
+}
+
 void Comb::execute(ArrayT& arr) {
 
     double koef = 1.247;
@@ -100,6 +104,10 @@ void Comb::execute(ArrayT& arr) {
     }           
 }
 
+int Comb::getVolume(int i) {
+    return sizeof(int) * 4;
+}
+
 void Shell::execute(ArrayT& arr) {
 
     int size = arr.size();
@@ -107,13 +115,19 @@ void Shell::execute(ArrayT& arr) {
 
     for (int n = gap; n > 0; n /= 2) {
 
-        for (int i = 1; i < size; i += n) {
+        for (int i = n; i < size; i += 1) {
 
-            for (int j = i; j >= 1; --j) {
+            int j;
+            int tmp = arr[i];
 
-                if (arr[j - 1] > arr[j])
-                    swap(arr[j - 1], arr[j]);
-            }
+            for (j = i; j >= n && arr[j - n] > tmp; j -= n)
+                arr[j] = arr[j - n];
+
+            arr[j] = tmp;
         }
     }
+}
+
+int Shell::getVolume(int i) {
+    return sizeof(int) * 5;
 }

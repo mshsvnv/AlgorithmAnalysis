@@ -11,7 +11,6 @@ class Graph:
         self.Radix = np.array([])
         self.Comb = np.array([])
         self.Shell = np.array([])
-        self.Str = np.array([])
 
     def readFile(self, fileName):
 
@@ -31,9 +30,6 @@ class Graph:
                 self.Comb = np.append(self.Comb, float(values[2]))
                 self.Shell = np.append(self.Shell, float(values[3]))
 
-                if len(values) == 5:
-                    self.Str = np.append(self.Str, float(values[4]))
-            
     def buildGraph(self, pdf: PdfPages):
     
         plt.grid()
@@ -51,15 +47,18 @@ class Graph:
     
         plt.legend(legend)
 
+        plt.semilogy()
+
         pdf.savefig()
 
         plt.close()
 
 if __name__ == "__main__":
 
-    files = ['time_even.csv',
-             'time_odd.csv',
-             'time_ext.csv']
+    files = ['time_asc.csv',
+             'time_des.csv',
+             'time_rand.csv',
+             'time_same.csv']
     
     with PdfPages('../../report/img/figures.pdf') as pdf:
         

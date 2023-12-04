@@ -35,6 +35,31 @@ void printHead(int num) {
     cout << "+-------------------------------------------------------+\n";
 }
 
+void memoryMeasure(int step, int maxAmount) {
+    
+    printHead(step);
+    srand(time(NULL));
+
+    vector<Sort*> sorts{new Radix, new Comb, new Shell};
+
+    int len = sorts.size();
+
+    for (int i = step; i <= step + maxAmount; i += step) {
+
+        vector<double> volumes(len, 0);
+
+        for (int j = 0; j < 3; ++j) 
+            volumes[j] = sorts[j]->getVolume(i);
+
+        cout << "| " << setw(5) << i << " │ "
+        << fixed << setprecision(2) << setw(13) << volumes[0] << " │ "
+        << fixed << setprecision(2) << setw(13) << volumes[1] << " │ "
+        << fixed << setprecision(2) << setw(13) << volumes[2] << " │\n";
+
+        cout << "+-------------------------------------------------------+\n";  
+    }
+}
+
 void timeMeasure(int step, int iters, int maxAmount, int type) {
 
     printHead(step);

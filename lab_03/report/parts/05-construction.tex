@@ -72,17 +72,97 @@
 \end{enumerate}
 
 \section{Трудоемкость алгоритмов}
-В следующих частях будут приведены рассчеты трудоемкостей алгоритмов для умножения матриц.
+В следующих частях будут приведены рассчеты трудоемкостей алгоритмов сортировок.
+
+Трудоемкость обмена элементов местами равна 5.
+
+Пусть размер сортируемого массива~--- $size$.
 
 \subsection*{Поразрядная сортировка}
-% TODO
+Трудоемкость алгоритма поразрядной сортировки равна:
+\begin{equation}
+	f_radix = 2 + m \cdot (2 + f_count).
+\end{equation}
+где $m$~--- число разрядов в максимальном числе;
+$f_count$~--- трудоемкость сортировки разрядов подсчетом.
+
+Трудоемкость $f_count$ равна:
+\begin{equation}
+	f_count = 1 + 2 + size \cdot (2 + 4) + 2 + 9 \cdot(2 + 4) + 2 + size \cdot (2 + 9) = 17 \cdot size + 61.
+\end{equation}
+
+Итоговая трудоемкость поразрядной сортировки равна:
+\begin{equation}
+	f_radix = 2 + m \cdot (17 \cdot size + 61) = 2 * 17 \cdot size \cdot m + 61 \cdot m \approx O(m \cdot size).
+\end{equation}
+
 \subsection*{Сортировка расческой}
-\textbf{Лучший случай:}
-\textbf{Худший случай:}
+Трудоемкость алгоритма сортировки расческой равна:
+\begin{equation}
+	f_comb = 4 + f_{for_1} \cdot f_{for_2}.
+\end{equation}
+Трудоемкость внешнего цикла равна:
+\begin{equation}
+	f_{for_1} = 1 + log_koef{size} \cdot(3 + f_{for_2}) 
+\end{equation}
+Трудоемкость внутреннего цикла равна:
+
+\textbf{Лучший случай:} когда элементы массива уже отсортированы или практически (т. е. количество перемещений мало).
+\begin{equation}
+	f_{for_2} = 2 + size \cdot(2 + 4) =  2 + size \cdot 11 \approx O(size).
+\end{equation}
+
+Итоговая трудоемкость для лучшего случая равнв: 
+\begin{equation}
+	f_comb = O(size \cdot log_koef{size}).
+\end{equation}
+
+\textbf{Худший случай:} когда элементы массива расположены в обратном порядке.
+\begin{equation}
+	f_{for_2} = 2 + size \cdot(2 + 4 + 5) =  2 + size \cdot 11 \approx O(size).
+\end{equation}
+
+Итоговая трудоемкость для худшего случая равнв: 
+\begin{equation}
+	f_comb = O(size^2).
+\end{equation}
 
 \subsection*{Сортировка Шелла}
-\textbf{Лучший случай:}
-\textbf{Худший случай:}
+Трудоемкость алгоритма сортировки Шелла равна:
+\begin{equation}
+	f_shell = 3 + f_{for_1} \cdot f_{for_2} \cdot f_{for_3}.
+\end{equation}
+Трудоемкость внешнего цикла равна:
+\begin{equation}
+	f_{for_1} = 2 + log_2{size} \ cdot (2 + f_{for_2}) \approx O(log_2{size}) .
+\end{equation}
+Трудоемкость следующего внутреннего цикла равна:
+\begin{equation}
+	f_{for_2} = 2 + \frac{size}{n} \cdot (2 + 4 + f_{for_3}) \approx O(\frac{size}{n}), 
+\end{equation}
+где $n$ изменяется во внешнем цикле.
+
+Трудоемкость второго внутреннего цикла равна:
+
+\textbf{Лучший случай:} когда элементы массива уже отсортированы или практически (т. е. количество перемещений мало).
+\begin{equation}
+	f_{for_3} = O(1), 
+\end{equation}
+
+Итоговая трудоемкость для лучшего случая равнв: 
+\begin{equation}
+	f_shell = O(log_2{size} \cdot size).
+\end{equation}
+
+\textbf{Худший случай:} когда элементы массива расположены в обратном порядке.
+\begin{equation}
+	f_{for_3} = 6 + size \cdot (6 + 5) = \approx O(size).
+\end{equation}
+
+Итоговая трудоемкость для худшего случая равнв: 
+\begin{equation}
+	f_shell = O(size^2).
+\end{equation}
 
 \section*{Вывод}
 В данном разделе на основе теоретических данных, полученных в аналитическом разделе, были построены схемы алгоритмов сортировок. Оценены трудоемкости в лучшем и худшем случаях. 
