@@ -129,5 +129,5 @@ void Shell::execute(ArrayT& arr) {
 }
 
 int Shell::getVolume(int i) {
-    return sizeof(int) * 5;
+    return sizeof(int) * 6;
 }
