@@ -30,11 +30,16 @@ class Graph:
                 self.Comb = np.append(self.Comb, float(values[2]))
                 self.Shell = np.append(self.Shell, float(values[3]))
 
-    def buildGraph(self, pdf: PdfPages):
+    def buildGraph(self, pdf: PdfPages, type = 'time'):
     
         plt.grid()
         plt.xlabel("Размер, эл.")
-        plt.ylabel("Время, мкс.")
+
+        if (type == 'memory'):
+            plt.ylabel("Объем, байт")
+            plt.semilogy()
+        else:
+            plt.ylabel("Время, мкс.")
 
         plt.plot(self.lens, self.Radix / 1000, color = "red", marker = "+", linestyle = "-")
         plt.plot(self.lens, self.Comb / 1000, color = "green", marker = ".", linestyle = ":")
@@ -47,8 +52,6 @@ class Graph:
     
         plt.legend(legend)
 
-        plt.semilogy()
-
         pdf.savefig()
 
         plt.close()
@@ -58,13 +61,20 @@ if __name__ == "__main__":
     files = ['time_asc.csv',
              'time_des.csv',
              'time_rand.csv',
-             'time_same.csv']
+             'time_same.csv',
+             'memory.csv']
+    
+    i = 0
     
     with PdfPages('../../report/img/figures.pdf') as pdf:
         
         for file in files:
-
+            
             graph = Graph()
             graph.readFile(file)
-            graph.buildGraph(pdf)
+
+            if i == 3:
+                graph.buildGraph(pdf, 'memory') 
+
+            i += 1
   

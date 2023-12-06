@@ -21,7 +21,6 @@ static int findMax(ArrayT& arr) {
 
 static int mod(int a, int b) {
 
-    // return a % b;
     if (a >= 0)
         return a % b;
     else {
