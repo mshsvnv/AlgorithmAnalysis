@@ -37,7 +37,7 @@ class Graph:
 
         if (type == 'memory'):
             plt.ylabel("Объем, байт")
-            plt.semilogy()
+            # plt.semilogy()
         else:
             plt.ylabel("Время, мкс.")
 
@@ -61,7 +61,6 @@ if __name__ == "__main__":
     files = ['time_asc.csv',
              'time_des.csv',
              'time_rand.csv',
-             'time_same.csv',
              'memory.csv']
     
     i = 0
@@ -75,6 +74,8 @@ if __name__ == "__main__":
 
             if i == 3:
                 graph.buildGraph(pdf, 'memory') 
+            else:
+                graph.buildGraph(pdf)
 
             i += 1
   

@@ -82,7 +82,7 @@ void Radix::execute(ArrayT& arr) {
 }
 
 int Radix::getVolume(int i) {
-    return sizeof(int) * 2 + i * (sizeof(int) * 10 + sizeof(int) * i + sizeof(int) * 4);
+    return sizeof(int) * 2 + sizeof(int) * 10 + sizeof(int) * i + sizeof(int) * 4;
 }
 
 void Comb::execute(ArrayT& arr) {
