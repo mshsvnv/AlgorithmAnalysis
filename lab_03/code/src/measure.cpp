@@ -77,14 +77,17 @@ void timeMeasure(int step, int iters, int maxAmount, int type) {
 
         switch (type)
         {
-        case 1:
+        case 0:
             arr.ascFill();
+            cout << "asc\n";
+            break;
+        case 1:
+            arr.descFill();
+            cout << "desc\n";
             break;
         case 2:
-            arr.descFill();
-            break;
-        case 3:
             arr.randomFill();
+            cout << "random\n";
             break;
         default:
             break;

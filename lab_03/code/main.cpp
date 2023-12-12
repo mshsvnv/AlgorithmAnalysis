@@ -34,10 +34,9 @@ int main() {
     while (choice) {
 
         if (choice == 4) {
-            timeMeasure(STEP, ITERS, MAX_AMOUNT, 0);
-            timeMeasure(STEP, ITERS, MAX_AMOUNT, 1);
-            timeMeasure(STEP, ITERS, MAX_AMOUNT, 2);
-            timeMeasure(STEP, ITERS, MAX_AMOUNT, 3);
+            timeMeasure(STEP, ITERS, MAX_AMOUNT, 0); // по возрастанию
+            timeMeasure(STEP, ITERS, MAX_AMOUNT, 1); // по убыванию
+            timeMeasure(STEP, ITERS, MAX_AMOUNT, 2); // рандом
         }
         else if (choice == 5) 
             memoryMeasure(STEP, MAX_AMOUNT);
