@@ -1,54 +1,75 @@
-#include <iostream>
-#include <vector>
+#include "./inc/sorts.h"
+#include "./inc/measure.h"
 
-using namespace std;
+int menu() {
 
-using arrayT = vector<int>;
+    int choice;
 
-void merge(arrayT& arr, int left, int right) {
+    cout << "\n\t\tМеню\n"
+    "1. Обычная сортировка слиянием\n"
+    "2. Расспаралл. сортировка слиянием\n\n"
+    "3. Замерить время\n"
+    "0. Выход\n\n"
+    "Выберете пункт (0-4): ";
 
-    int mid = (left + right) / 2;
+    cin >> choice;
+    cout << endl;
 
-    int i = left, 
-        j = mid + 1, pos = 0, 
-        len = right - left + 1;
-
-    arrayT tmp(len);
-
-    while (i <= mid && j <= right)
-        tmp[pos++] = (arr[i] < arr[j]) ? arr[i++] : arr[j++];
-
-    while (i <= mid)    
-        tmp[pos++] = arr[i++];
-
-    while (j <= right)    
-        tmp[pos++] = arr[j++];
-
-    for (int i = left; i <= right; ++i)
-        arr[i] = tmp[i - left];
-}
-
-void mergeSort(arrayT& arr, int left, int right) {
-
-    if (right <= left)
-        return;
-
-    int mid = (right + left) / 2;
-
-    cout << left << mid << right << endl;
-
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid + 1, right);
-    merge(arr, left, right);
+    return choice;
 }
 
 int main() {
 
-    arrayT arr{5, 4, 3, -22, -11};
+    int choice = menu();
 
-    mergeSort(arr, 0, 4);
+    while (choice) {
 
-    for (auto elem : arr)
-        cout << elem << " ";
-    cout << endl;
+        if (choice == 3) {
+
+            int start = 10000, stop = 10001, step = 1;
+			int count = 100;
+			int startThread = 0, stopThread = 48;
+
+			// cout << "Введите начальный размер массива, конечный размер и шаг изменения размера массива\n";
+			// cin >> start >> stop >> step;
+			// cout << "Введите количество повторений сортировки: ";
+			// cin >> count;
+			// cout << "Введите начальное число потоков массива, конечное число потоков\n";
+			// cin >> startThread >> stopThread;
+			getTimeResults(start, stop, step, count, startThread, stopThread);
+        }
+        else {
+
+            arrayT arr;
+
+            int len;
+            cout << "Длина массива: ";
+            cin >> len;
+
+            for (int i = 0; i < len; ++i) {
+                int elem;
+                cin >> elem;
+                arr.emplace_back(elem);
+            }
+
+            cout << "До: ";
+            print(arr);
+
+            if (choice == 1)
+                mergeSort(arr, 0, len);
+            else {
+                int n;
+
+                cout << "Количество потоков: ";
+                cin >> n;
+
+                mergeSortMultiThread(arr, 0, len, n);
+            }
+
+            cout << "После: ";
+            print(arr);
+        }
+
+        choice = menu();
+    }
 }
