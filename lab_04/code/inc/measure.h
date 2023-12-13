@@ -7,4 +7,5 @@ void getTimeResults(size_t wordLenStart,
                     size_t wordLenStep,
                     int countProcessed,
                     int threadCountStart,
-                    int threadCountEnd);
+                    int threadCountEnd, 
+                    int threadStep);

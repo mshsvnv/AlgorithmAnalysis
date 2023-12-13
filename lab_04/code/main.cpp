@@ -36,7 +36,12 @@ int main() {
 			// cin >> count;
 			// cout << "Введите начальное число потоков массива, конечное число потоков\n";
 			// cin >> startThread >> stopThread;
-			getTimeResults(start, stop, step, count, startThread, stopThread);
+            
+			getTimeResults(start, stop, step, count, startThread, stopThread, 2);
+
+            start = 1000, stop = 10000, step = 1000, startThread = 1, stopThread = 2;
+
+            getTimeResults(start, stop, step, count, startThread, stopThread, 1);
         }
         else {
 

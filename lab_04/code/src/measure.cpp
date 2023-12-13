@@ -81,7 +81,7 @@ double getTimeResultsMatrix(size_t wordsLen,
 	mergeSortTimeMultiThread /= countProcessed;
 
 	printf("|%7zu||%15.5g||%18.5g|%3d|\n", wordsLen, mergeSortTime, mergeSortTimeMultiThread, threadCount);
-	std::cout << std::flush;
+	cout << flush;
 	return mergeSortTime;
 }
 
@@ -90,16 +90,17 @@ void getTimeResults(size_t wordLenStart,
                     size_t wordLenStep,
                     int countProcessed,
                     int threadCountStart,
-                    int threadCountEnd)
+                    int threadCountEnd,
+					int threadStep)
 {
 	printf("\n\n|   n   ||   Сортировка слиянием(мс)    ||   Сортировка Слияние многопоток(мс)    ||  число потоков|\n");
 	arrayT res = generateVector(wordLenStop);
 	double prevTime;
 
-	for (size_t i = wordLenStart; i < wordLenStop; i += wordLenStep)
-	{
+	for (size_t i = wordLenStart; i < wordLenStop; i += wordLenStep) {
+		
 		prevTime = -1.0;
-		for (int thr = threadCountStart; thr < threadCountEnd; ++thr)
+		for (int thr = threadCountStart; thr < threadCountEnd; thr += threadStep)
 			prevTime = getTimeResultsMatrix(i, countProcessed, res, thr, prevTime);
 
 	}
