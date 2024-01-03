@@ -1,0 +1,42 @@
+\documentclass{bmstu}
+
+\setlist[itemize]{label=---}
+\setlist[enumerate]{label=\arabic*)}
+
+\usepackage{relsize}
+\usepackage{csvsimple}
+
+\usepackage{dcolumn}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+
+\bibliography{parts/biblio}
+
+\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}
+\captionsetup[algorithm]{name=Листинг}
+
+\begin{document}
+	
+	\makereporttitle{Информатика и системы управления}
+	{Программное обеспечение ЭВМ и информационные технологии}
+	{лабораторной работе №7}
+	{Анализ Алгоритмов}
+	{Алгоритмы поиска}
+	{}
+	{Савинова~М.~Г./ИУ7-51Б}
+	{Строганов~Ю.~В.}
+	
+	\maketableofcontents
+	
+	\include{parts/00-introduction}
+	\include{parts/01-analysis}
+	\include{parts/02-construction}
+	\include{parts/03-technological}
+	\include{parts/04-research}
+	\include{parts/05-conclusion}
+	
+	\makebibliography
+	
+\end{document}

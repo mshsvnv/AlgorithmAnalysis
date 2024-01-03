@@ -1,0 +1,77 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{lectures1}{online}{}
+      \name{author}{1}{}{%
+        {{hash=db8f5da7d06c44c24bac52e2e2fe254f}{%
+           family={Охотин.\bibnamedelimi А.\bibnamedelimi С.},
+           familyi={О\bibinitperiod\bibinitdelim А\bibinitperiod\bibinitdelim С\bibinitperiod}}}%
+      }
+      \strng{namehash}{db8f5da7d06c44c24bac52e2e2fe254f}
+      \strng{fullhash}{db8f5da7d06c44c24bac52e2e2fe254f}
+      \strng{bibnamehash}{db8f5da7d06c44c24bac52e2e2fe254f}
+      \strng{authorbibnamehash}{db8f5da7d06c44c24bac52e2e2fe254f}
+      \strng{authornamehash}{db8f5da7d06c44c24bac52e2e2fe254f}
+      \strng{authorfullhash}{db8f5da7d06c44c24bac52e2e2fe254f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Лекция 6}
+      \field{title}{Математические основы алгоритмов}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://users.math-cs.spbu.ru/~okhotin/teaching/algorithms1_2022
+      \endverb
+      \verb{url}
+      \verb https://users.math-cs.spbu.ru/~okhotin/teaching/algorithms1_2022
+      \endverb
+    \endentry
+    \entry{lectures2}{online}{}
+      \name{author}{1}{}{%
+        {{hash=539292a83a0e94308c055ac49dffe133}{%
+           family={Ваныкина.\bibnamedelimi Г.\bibnamedelimi В.},
+           familyi={В\bibinitperiod\bibinitdelim Г\bibinitperiod\bibinitdelim В\bibinitperiod}}}%
+      }
+      \strng{namehash}{539292a83a0e94308c055ac49dffe133}
+      \strng{fullhash}{539292a83a0e94308c055ac49dffe133}
+      \strng{bibnamehash}{539292a83a0e94308c055ac49dffe133}
+      \strng{authorbibnamehash}{539292a83a0e94308c055ac49dffe133}
+      \strng{authornamehash}{539292a83a0e94308c055ac49dffe133}
+      \strng{authorfullhash}{539292a83a0e94308c055ac49dffe133}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Лекция 40}
+      \field{title}{Структуры и алгоритмы компьютерной обработки данных}
+      \field{year}{2012}
+      \verb{urlraw}
+      \verb https://intuit.ru/studies/courses/648/504/info
+      \endverb
+      \verb{url}
+      \verb https://intuit.ru/studies/courses/648/504/info
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

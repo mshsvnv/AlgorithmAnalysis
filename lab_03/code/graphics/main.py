@@ -8,9 +8,10 @@ class Graph:
     def __init__(self):
 
         self.lens = np.array([])
-        self.Radix = np.array([])
-        self.Comb = np.array([])
-        self.Shell = np.array([])
+        self.O0 = np.array([])
+        self.O1 = np.array([])
+        self.O2 = np.array([])
+        self.Ofast = np.array([])
 
     def readFile(self, fileName):
 
@@ -58,10 +59,9 @@ class Graph:
 
 if __name__ == "__main__":
 
-    files = ['time_asc.csv',
-             'time_des.csv',
-             'time_rand.csv',
-             'memory.csv']
+    files = ['no_march.csv',
+             'march.csv',
+             'all.csv']
     
     i = 0
     
