@@ -1,0 +1,14 @@
+\babel@toc {russian}{}\relax 
+\contentsline {chapter}{\numberline {1}Аналитический раздел}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Алгоритм Кнута~--~Морриса~--~Пратта}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Модификация алгоритма Кнута~--~Морриса~--~Пратта}{4}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Конструкторский раздел}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Требования к программному обеспечению}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Разработка алгоритмов}{6}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Технологический раздел}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Средства реализации}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Сведения о модулях программы}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Реализация алгоритмов}{10}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Тестирование}{10}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Исследовательский раздел}{11}{chapter.4}%
+\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}{13}{chapter*.5}%
