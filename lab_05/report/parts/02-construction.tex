@@ -1,129 +1,16 @@
 \chapter{Конструкторский раздел}
-В данном разделе будут представлены псевдокоды алгоритмов Кнута~--~Морриса~--~Пратта и его модификации.
+В данном разделе будут представлены схемы последовательной и параллельной работы стадий конвейера.
 
 \section{Требования к программному обеспечению}
 К программному обеспечению предъявлен ряд требований:
 \begin{enumerate}
-	\item наличие интерфейса для выбора действия;
+	\item наличие интерфейса для выбора запускаемого режима работы конвейера~--- последовательного иои параллельного;
 	\item возможность ввода строки и подстроки;
-	\item возможность выполнения операции поиска подстроки в строке.
+	\item формирование файла с логом работы конвейера, логирование событий обработки должно происходить после окончания работы конвейера.
 \end{enumerate}
 
 \section{Разработка алгоритмов}
-В качестве инcтрумента для создания псевдокода использован пакет \texttt{algorithm}.
 
-В случае нахождения подстроки в строке просиходит возврат \textbf{shift}, то есть смещение относительно начала строки, иначе~--- \textbf{-1}. 
-
-Определим следующие операторы и функции:
-\begin{itemize}
-	\item оператор $\gets$ обозначает присваивание значение переменной;
-	\item оператор $[i]$ обозначает получение элемента из массива с индексом $i$;
-	\item функция $\max$ возвращает максимальное значение;
-	\item функция $ord$ возвращает целое число, представляющее символ Юникода;
-	\item функция $length$ возвращает длину массива, строки;
-\end{itemize}
-
-В листингах~\ref{alg:alg_01}--\ref{alg:alg_02} рассмотрены псевдокоды алгоритмов формирования дополнительных массивов суффиксов и сдвигов соответственно. 
-
-В листингах~\ref{alg:alg_03}--\ref{alg:alg_04} рассмотрены псевдокоды алгоритма Кнута~--~Морриса~--~Пратта и его модификации. 
-
-\begin{algorithm}[H]
-	\caption{Псевдокод алгоритма формирования массива суффиксов}
-	\label{alg:alg_01}
-	\text{\textbf{На входе}: строка $w = a_1 \dots a_n$, ссылка на массив $\pi$}\\
-	\begin{algorithmic}[1]
-		\Function{MakePiList}{$w$}
-		\State $j \gets 0$
-		\State $i \gets 1$
-		\While{$i < n$}
-			\If{$a_j = a_i$}
-				\State $\pi[i] \gets j + 1$
-				\State $j \gets j + 1$
-				\State $i \gets i + 1$
-			\Else
-				\If{$j = 0$}
-					\State $\pi[i] \gets 0$
-					\State $i \gets i + 1$
-				\Else
-					\State $j \gets \pi[j - 1]$
-				\EndIf
-			\EndIf
-		\EndWhile
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[H]
-	\caption{Псевдокод алгоритма формирования массива сдвигов}
-	\label{alg:alg_02}
-	\text{\textbf{На входе}: строка $w = a_1 \dots a_n$, ссылка на массив $badChars$}\\
-	\begin{algorithmic}[1]
-		\Function{MakeBadChars}{$w$, $badChars$}
-		\State $j \gets 0$
-		\State $i \gets 1$
-		\For{$i = (0, n)$}
-			\State{$badChars[ord(w_i)] \gets i$}
-		\EndFor
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[H]
-	\caption{Псевдокод алгоритма  Кнута~--~Морриса~--~Пратта}
-	\label{alg:alg_03}
-	\text{\textbf{На входе}: строка $w = a_1 \dots a_n$, подстрока $x = b_1 \dots b_m$, массив суффиксов $\pi$}\\
-	\begin{algorithmic}[1]
-		\Function{KMP}{$w$, $x$, $\pi$}
-		\State $i \gets 0$
-		\State $j \gets 0$
-		\State $n \gets length(w)$
-		\State $m \gets length(x)$
-		\While{$i < n$}
-			\If{$a_i = b_j$}
-				\State $i \gets i + 1$
-				\State $j \gets j + 1$
-				\If{$j = m$}
-					\Return $i - n$
-				\EndIf
-			\Else
-				\If{$j = 0$}
-					\State $i \gets i + 1$
-				\Else
-					\State $j \gets \pi[j - 1]$
-				\EndIf
-			\EndIf
-		\EndWhile
-		
-		\Return $-1$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[H]
-	\caption{Псевдокод модифицированного алгоритма  Кнута~--~Морриса~--~Пратта}
-	\label{alg:alg_04}
-	\text{\textbf{На входе}: строка $w = a_1 \dots a_n$, подстрока $x = b_1 \dots b_m$, массив суффиксов $\pi$, массив сдвигов $badChars$}\\
-	\begin{algorithmic}[1]
-		\Function{KMPopt}{$w$, $x$, $\pi$, $badChars$}
-		\State $n \gets length(w)$
-		\State $m \gets length(x)$
-		\State $shift \gets 0$
-		\While{$shift \leq n - m$}
-			\State $j \gets m - 1$
-			\While{$j \geq o$ and $x_j = w_{shift + j}$}
-				\State $j \gets m - 1$
-			\EndWhile
-			\If{$j < 0$}
-				\Return $shift$
-			\Else
-				\State $shift \gets shift + \max(pi[j], badChars[ord(x_{shift + j})])$
-			\EndIf
-		\EndWhile
-		
-		\Return $-1$
-		\EndFunction
-	\end{algorithmic}
-\end{algorithm}
 
 \section*{Вывод}
-В данном разделе были описаны псевдокоды для алгоритма Кнута~--~Морриса~--~Пратта и его модификации. 
+В данном разделе были представлены схемы последовательной и параллельной работы стадий конвейера.

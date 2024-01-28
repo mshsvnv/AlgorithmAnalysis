@@ -30,12 +30,12 @@ int main() {
 			int count = 100;
 			int startThread = 0, stopThread = 48;
 
-			// cout << "Введите начальный размер массива, конечный размер и шаг изменения размера массива\n";
-			// cin >> start >> stop >> step;
-			// cout << "Введите количество повторений сортировки: ";
-			// cin >> count;
-			// cout << "Введите начальное число потоков массива, конечное число потоков\n";
-			// cin >> startThread >> stopThread;
+			cout << "Введите начальный размер массива, конечный размер и шаг изменения размера массива\n";
+			cin >> start >> stop >> step;
+			cout << "Введите количество повторений сортировки: ";
+			cin >> count;
+			cout << "Введите начальное число потоков массива, конечное число потоков\n";
+			cin >> startThread >> stopThread;
             
 			getTimeResults(start, stop, step, count, startThread, stopThread, 2);
 

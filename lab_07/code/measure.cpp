@@ -29,7 +29,7 @@ auto getCPUTime(func_ptr func, const string& text, const string& pattern) {
 
 void genText(string& text, int len) {
 
-    const string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678"; // символы, которые могут использоваться
+    const string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678";
 
     for (int i = 0; i < len; ++i) 
         text += characters[rand() % characters.length()];
@@ -99,6 +99,13 @@ void timeMeasure() {
 }
 
 void compMeasure() {
+
+    ofstream kmpFile, kmpModFile;
+    kmpFile.open("../graphs/time_kmp.csv", ios::trunc); 
+    kmpModFile.open("../graphs/time_kmp_mod.csv", ios::trunc); 
+
+    kmpFile << "str,under_str,best,worst1,worst2\n";
+    kmpModFile << "str,under_str,best,worst1,worst2\n";
     
     srand(time(NULL));
 
@@ -126,8 +133,12 @@ void compMeasure() {
             pattern.clear();
         }
         tmp = get_comp_amt();
+
         cout << "Длина строки:  " << N << " Длина подстроки: " << lenPattern << endl;
         cout << "Лучший случай: " << tmp.first << " " << tmp.second << endl;
+
+        kmpFile << N << "," << lenPattern << "," << tmp.first << "," << tmp.second << ",";
+        kmpModFile << N << "," << lenPattern << "," << tmp.second << ",";
 
         reset_comps();
         for (int i = 0; i < k; ++i) {
@@ -144,6 +155,9 @@ void compMeasure() {
         tmp = get_comp_amt();
         cout << "Худший случай 1: " << tmp.first << " " << tmp.second << endl;
 
+        kmpFile <<  tmp.first << ",";
+        kmpModFile <<  tmp.second << ",";
+
         reset_comps();
         for (int i = 0; i < k; ++i) {
 
@@ -158,11 +172,17 @@ void compMeasure() {
 
         tmp = get_comp_amt();
         cout << "Худший случай 2: " << tmp.first << " " << tmp.second << endl;
-        
+
+        kmpFile <<  tmp.first << "\n";
+        kmpModFile <<  tmp.second << "\n";
+
         cout << endl;
 
         lenPattern *= 2;
         text.clear();
     }
+
+    kmpFile.close();
+    kmpModFile.close();
 }
 
