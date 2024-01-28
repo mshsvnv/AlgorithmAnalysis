@@ -32,31 +32,35 @@ class Graph:
                 # self.values[i] = np.append(self.values[i], float(values[2]))
                 # self.values[i] = np.append(self.values[i], float(values[3]))
                 # self.values[i] = np.append(self.values[i], float(values[4]))
+        
+        self.values = self.values.reshape(5, 3)
 
-def buildGraph(graph: Graph, graphMod: Graph, pdf: PdfPages, i):
+def buildGraph(graph: Graph, graphMod: Graph, fileName, i):
 
-    plt.grid()
-    plt.xlabel("Длина строки, эл.")
+    with PdfPages(fileName) as pdf: 
 
-    plt.ylabel("Кол-во сравнений")
-    plt.semilogy()
+        plt.grid()
+        plt.xlabel("Длина строки, эл.")
 
-    plt.plot(graph.strr, graph.values[:, i], color = "red", marker = "+", linestyle = "-")
-    plt.plot(graph.strr, graphMod.values[:, i], color = "green", marker = ".", linestyle = ":")
+        plt.ylabel("Кол-во сравнений")
+        plt.semilogy()
 
-    legend = ["Кнут-Моррис-Пратт",
-              "Модифицированный КМП"]
+        plt.plot(graph.strr, graph.values[:, i], color = "red", marker = "+", linestyle = "-")
+        plt.plot(graph.strr, graphMod.values[:, i], color = "green", marker = ".", linestyle = ":")
 
-    plt.legend(legend)
-    plt.show()
-    pdf.savefig()
-    plt.close()
+        legend = ["Кнут-Моррис-Пратт",
+                "Модифицированный КМП"]
+
+        plt.legend(legend)
+        
+        pdf.savefig()
+        plt.close()
 
 if __name__ == "__main__":
 
     files = ['../../report/inc/img/fig_best.pdf',
-             '../../report/inc/img/fig_wosrt1.pdf',
-             '../../report/inc/img/fig_wosrt2.pdf']
+             '../../report/inc/img/fig_worst1.pdf',
+             '../../report/inc/img/fig_worst2.pdf']
     
     graphKmp = Graph()
     graphKmp.readFile('time_kmp.csv')
@@ -64,7 +68,5 @@ if __name__ == "__main__":
     graphKmpMod = Graph()
     graphKmpMod.readFile('time_kmp_mod.csv')
 
-    print(graphKmp.values[0, 0])
-
-    # for i in range(3):
-    #     buildGraph(graphKmp, graphKmpMod, PdfPages(files[i]), i)  
+    for i in range(3):
+        buildGraph(graphKmp, graphKmpMod, files[i], i)  

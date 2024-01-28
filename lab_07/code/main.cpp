@@ -37,13 +37,15 @@ int main()
             cin >> ws;
             getline(cin, pattern);
 
+            reset_comps();
             int res_01 = KMP(text, pattern);
             int res_02 = KMP_optimized(text, pattern);
+            auto tmp = get_comp_amt();
 
             if (res_01 == -1 || res_02 == -1) 
                 cout << "Исходная подстрока не найдена.\n";
             else {
-                cout << "Смещение относительно начала (КМП): " << res_01 << "\n";
+                cout << "Смещение относительно начала (КМП): " << res_01 <<  "\n";
                 cout << "Смещение относительно начала (КМП модифицированный): " << res_02 << "\n";
             }
         }

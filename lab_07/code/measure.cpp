@@ -137,7 +137,7 @@ void compMeasure() {
         cout << "Длина строки:  " << N << " Длина подстроки: " << lenPattern << endl;
         cout << "Лучший случай: " << tmp.first << " " << tmp.second << endl;
 
-        kmpFile << N << "," << lenPattern << "," << tmp.first << "," << tmp.second << ",";
+        kmpFile << N << "," << lenPattern << "," << tmp.first << ",";
         kmpModFile << N << "," << lenPattern << "," << tmp.second << ",";
 
         reset_comps();
@@ -151,12 +151,12 @@ void compMeasure() {
             
             pattern.clear();
         }
-
         tmp = get_comp_amt();
+        
         cout << "Худший случай 1: " << tmp.first << " " << tmp.second << endl;
 
-        kmpFile <<  tmp.first << ",";
-        kmpModFile <<  tmp.second << ",";
+        kmpFile << tmp.first << ",";
+        kmpModFile << tmp.second << ",";
 
         reset_comps();
         for (int i = 0; i < k; ++i) {
@@ -173,8 +173,8 @@ void compMeasure() {
         tmp = get_comp_amt();
         cout << "Худший случай 2: " << tmp.first << " " << tmp.second << endl;
 
-        kmpFile <<  tmp.first << "\n";
-        kmpModFile <<  tmp.second << "\n";
+        kmpFile << tmp.first << "\n";
+        kmpModFile << tmp.second << "\n";
 
         cout << endl;
 

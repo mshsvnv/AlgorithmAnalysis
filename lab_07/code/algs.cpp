@@ -53,7 +53,6 @@ int KMP(const string& text, const string& pattern) {
 
     int i = 0, j = 0;
 
-    ++comps.first;
     while (i < n) {
 
         ++comps.first;
@@ -61,12 +60,10 @@ int KMP(const string& text, const string& pattern) {
             
             i++, j++;
 
-            ++comps.first;
             if (j == m) 
                 return i - m;
             
         } else {
-            ++comps.first;
 
             if (j == 0) {
                 i++;
@@ -74,7 +71,6 @@ int KMP(const string& text, const string& pattern) {
             else 
                 j = pi[j - 1];
         }
-        ++comps.first;
     }
 
     return -1;
@@ -90,29 +86,26 @@ int KMP_optimized(const string& text, const string& pattern) {
 
     int shift = 0;
 
-    ++comps.second;
     while (shift <= n - m) {
 
         int j = m - 1;
 
         ++comps.second;
-        while (j >= 0 && pattern[j] == text[shift + j])
+        while (j >= 0 && pattern[j] == text[shift + j]) {
             j--;
+            ++comps.second;
+        }
 
-        ++comps.second;
         if (j < 0)
             return shift;
         else {
             int k = m;
 
-            ++comps.second;
             if (badChars.contains(text[shift + j]))
                 k = badChars[text[shift + j]];
 
             shift += max(pi[j], k);
         }
-
-        ++comps.second;
     }
     
     return -1;

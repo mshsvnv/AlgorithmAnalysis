@@ -9,7 +9,6 @@
 \begin{itemize}
 	\item \texttt{main.cpp}~--- файл, содержащий точку входа в программу;
 	\item \texttt{algs.cpp}~--- файл, содержащий реализации алгоритмов поиска.
-	\item \texttt{measure.cpp}~--- файл, содержащий функции, замеряющие процессорное время выполнения алгоритмов сортировок;
 \end{itemize}
 	
 \section{Реализация алгоритмов}
@@ -21,7 +20,7 @@
 {Реализация алгоритма Кнута~--~Морриса~--~Пратта поиска строки в подстроке}
 
 \includelistingpretty
-{modif_kmp.cpp}
+{kmp_modif.cpp}
 {c++}
 {Реализация модифицированного алгоритма Кнута~--~Морриса~--~Пратта поиска строки в подстроке}
 
@@ -36,7 +35,36 @@
 {Реализация алгоритма формирования массива сдвигов}
 
 \section{Тестирование}
-В таблице~\ref{} приведены модульные тесты для разработанных алгоритмов поиска. Все тесты успешно пройдены.
+В таблице~\ref{t:mod_tests} приведены модульные тесты для разработанных алгоритмов поиска. Все тесты успешно пройдены.
+
+\begin{table}[ht]
+	\small
+	\begin{center}
+		\begin{threeparttable}
+			\caption{Модульные тесты}
+			\label{t:mod_tests}
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				\bfseries Строка-текст
+				& \bfseries Строка-образец
+				& \bfseries Ожидаемый р-т
+				& \multicolumn{2}{c|}{\bfseries Фактический р-т} \\ \cline{4-5}
+				& & & \bfseries КМП & \bfseries Модиф. КМП \\
+				\hline
+				abcdefgabcdefg & bcd & 1 & 1 & 1 \\
+				\hline
+				abcdefghi & xyz & -1 & -1 & -1 \\
+				\hline
+				ababababab & abab & 0  & 0 & 0 \\
+				\hline
+				abcdefg & abcd & 0 & 0 & 0 \\
+				\hline
+				xyabc & abc & 2 & 2 & 2 \\
+				\hline
+			\end{tabular}	
+		\end{threeparttable}	
+	\end{center}
+\end{table}
 
 \section*{Вывод}
 В данной части работы были представлены листинги реализованных алгоритмов и тесты, успешно пройденные программой.

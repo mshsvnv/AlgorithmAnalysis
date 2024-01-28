@@ -3,19 +3,18 @@
 \setlist[itemize]{label=---}
 \setlist[enumerate]{label=\arabic*)}
 
-\usepackage{relsize}
-\usepackage{csvsimple}
-
 \usepackage{dcolumn}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
 
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 
-\bibliography{parts/biblio}
+\bibliography{biblio}
 
 \algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}
 \captionsetup[algorithm]{name=Листинг}
+
+\usepackage{threeparttable}
 
 \begin{document}
 	
@@ -26,16 +25,16 @@
 	{Алгоритмы поиска}
 	{}
 	{Савинова~М.~Г./ИУ7-51Б}
-	{Строганов~Ю.~В.}
+	{Волкова~Л.~Л.}
 	
 	\maketableofcontents
 	
-	\include{parts/00-introduction}
-	\include{parts/01-analysis}
-	\include{parts/02-construction}
-	\include{parts/03-technological}
-	\include{parts/04-research}
-	\include{parts/05-conclusion}
+	\include{00-introduction}
+	\include{01-analysis}
+	\include{02-construction}
+	\include{03-technological}
+	\include{04-research}
+	\include{05-conclusion}
 	
 	\makebibliography
 	
