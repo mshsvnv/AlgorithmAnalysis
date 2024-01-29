@@ -3,19 +3,14 @@
 \setlist[itemize]{label=---}
 \setlist[enumerate]{label=\arabic*)}
 
-\usepackage{relsize}
-\usepackage{csvsimple}
-
 \usepackage{dcolumn}
 \newcolumntype{d}[1]{D{.}{.}{#1}}
 
-\usepackage{algpseudocode}
-\usepackage{algorithm}
+\usepackage{csvsimple}
+\usepackage{threeparttable}
+\usepackage{multirow}
 
-\bibliography{parts/biblio}
-
-\algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}
-\captionsetup[algorithm]{name=Листинг}
+\bibliography{biblio}
 
 \begin{document}
 	
@@ -23,19 +18,19 @@
 	{Программное обеспечение ЭВМ и информационные технологии}
 	{лабораторной работе №5}
 	{Анализ Алгоритмов}
-	{Организация асинхронного взаимодействия потоков вычислений на примере конвейерных вычислений}
+	{Организация асинхронного взаимодействия потоков вычисления на примере конвейерных вычислений}
 	{}
 	{Савинова~М.~Г./ИУ7-51Б}
-	{Строганов~Ю.~В.}
+	{Волкова~Л.~Л., Строганов~Ю.В.}
 	
 	\maketableofcontents
 	
-	\include{parts/00-introduction}
-	\include{parts/01-analysis}
-	\include{parts/02-construction}
-	\include{parts/03-technological}
-	\include{parts/04-research}
-	\include{parts/05-conclusion}
+	\include{00-introduction}
+	\include{01-analysis}
+	\include{02-construction}
+	\include{03-technological}
+	\include{04-research}
+	\include{05-conclusion}
 	
 	\makebibliography
 	
