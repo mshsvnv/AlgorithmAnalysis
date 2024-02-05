@@ -1,17 +1,19 @@
 MatrixCSR MatrixCSR::operator+(const MatrixCSR &mtr) {
     
-    MatrixCSR c;
+    MatrixCSR c; 
 
     c.n = n;
-    c.m = n;
+    c.m = m;
 
     int val = 0;
 
     for (int i = 0; i < NR.size() - 1; i++) {
+
         if (i == 0)
             c.NR.push_back(0);
         else
             c.NR.push_back(c.NR[i - 1] + val);
+
         val = 0;
 
         int ka = NR[i];
@@ -35,7 +37,6 @@ MatrixCSR MatrixCSR::operator+(const MatrixCSR &mtr) {
                 ka++;
                 kb++;
             }
-            }
             val++;
         }
 
@@ -52,6 +53,6 @@ MatrixCSR MatrixCSR::operator+(const MatrixCSR &mtr) {
         }
     }
 
-    c.NR.push_back(c.NR[c.NR.size() - 1] + (c.AN.size() - c.NR[c.NR.size() - 1]));
+    c.NR.push_back(c.AN.size());
     return c;
 }

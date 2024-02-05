@@ -28,17 +28,6 @@ ostream& operator<<(ostream& stream, const MatrixCSR& mtr) {
     return stream;
 }
 
-ostream& operator<<(ostream& stream, const MatrixT& mtr) {
-
-    for (int i = 0; i < mtr.n; i++) {
-        for (int j = 0; j < mtr.m; j++)
-            stream << mtr.arr[i][j] << " ";
-        stream << endl;
-    }
-
-    return stream;
-}
-
 MatrixCSR::MatrixCSR(size_t _n, size_t _m, size_t num_cnt) {
 
     int cnt = 0, prev = 0;
@@ -47,7 +36,6 @@ MatrixCSR::MatrixCSR(size_t _n, size_t _m, size_t num_cnt) {
 
     for (size_t i = 0; i < n; i++) {
 
-        srand(clock() % 1000000);
         int val = 0;
 
         for (size_t j = 0; cnt < num_cnt && j < m; j++) {
@@ -75,48 +63,25 @@ MatrixCSR::MatrixCSR(size_t _n, size_t _m, size_t num_cnt) {
         prev = val;
     }
 
-    NR.push_back(AN.size());
-}
-
-MatrixT MatrixCSR::decomprass() {
-
-    MatrixT mtr;
-    
-    mtr.m = m;
-    mtr.n = n;
-
-    for (int i = 0; i < n; i++ )
-    {
-        mtr.arr.emplace_back();
-        for (int j = 0; j < m; j++ )
-            mtr.arr.back().push_back(0);
-    }
-
-    int mtr_i = 0;
-    for (int i = 0; i < n; i++) {
-        
-        for (int j = NR[i]; j < NR[i + 1]; j++)
-            mtr.arr[mtr_i][JA[j]] = AN[j];
-        mtr_i++;
-    }
-
-    return mtr;
+    NR.push_back(NR[n - 1] + (AN.size() - NR[n - 1]));
 }
 
 MatrixCSR MatrixCSR::operator+(const MatrixCSR &mtr) {
     
-    MatrixCSR c;
+    MatrixCSR c; 
 
     c.n = n;
-    c.m = n;
+    c.m = m;
 
     int val = 0;
 
     for (int i = 0; i < NR.size() - 1; i++) {
+
         if (i == 0)
             c.NR.push_back(0);
         else
             c.NR.push_back(c.NR[i - 1] + val);
+
         val = 0;
 
         int ka = NR[i];
@@ -156,6 +121,6 @@ MatrixCSR MatrixCSR::operator+(const MatrixCSR &mtr) {
         }
     }
 
-    c.NR.push_back(c.NR[c.NR.size() - 1] + (c.AN.size() - c.NR[c.NR.size() - 1]));
+    c.NR.push_back(c.AN.size());
     return c;
 }
